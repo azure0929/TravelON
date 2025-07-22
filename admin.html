@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>TravelON</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+  />
+
+  <!-- Jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- Pretendard CDN -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css"
+  />
+
+  <!-- Fontawesome CDN -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Chartjs-plugin-datalabels CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+
+</head>
+<body>
+  <div id="wrap">
+    <!-- header -->
+    <header>
+      <div class="logo-wrapper">
+        <img class="logo" src="image/logo.png" alt="TravelON 로고" />
+      </div>
+    </header>
+
+    <main>
+      <!-- section: 매출 현황 -->
+      <section id="sales" class="main-section active">
+        <h1 class="title">매출 현황</h1>
+        <section class="sales-chart">
+          <div class="info">
+            <h2 class="chart-title monthly">월별 매출 (원)</h2>
+            <div class="month-dropdown dropdown"></div>
+          </div>
+          <div class="chart-container">
+            <canvas id="monthlySalesChart"></canvas>
+          </div>
+        </section>
+        <section class="sales-chart">
+          <div class="info">
+            <h2 class="chart-title weekly">주별 매출 (원)</h2>
+            <div class="week-dropdown dropdown"></div>
+          </div>
+          <div class="chart-container">
+            <canvas id="weeklySalesChart"></canvas>
+          </div>
+        </section>
+      </section>
+      
+      <!-- section: 고객 정보 -->
+      <section id="clients" class="main-section">
+        <h1 class="title">고객 정보</h1>
+        <div class="contents">
+          <article class="card">
+            <div class="profile">
+              <img class="client-image" src="image/client01.png" alt="박보검 프로필 사진" loading="lazy" />
+              <div class="client-info">
+                <p class="name">이름: <span>박보검</span></p>
+                <p class="email">이메일: <span>Park93@naver.com</span></p>
+              </div>
+            </div>
+            <div class="reservation-info">
+              <p class="reserve-title">예약 정보</p>
+              <div class="reserve-detail">
+                <span>GuestHouse1</span>
+                <p>룸 유형: <span>RoomName1</span></p>
+                <p>숙박 예정일: <span>2025.06.01 - 2025.06.04</span></p>
+                <p>인원 수: <span>3</span>명</p>
+              </div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="profile">
+              <img class="client-image" src="image/client02.png" alt="아이유 프로필 사진" loading="lazy" />
+              <div class="client-info">
+                <p class="name">이름: <span>아이유</span></p>
+                <p class="email">이메일: <span>IU93@naver.com</span></p>
+              </div>
+            </div>
+            <div class="reservation-info">
+              <p class="reserve-title">예약 정보</p>
+              <div class="reserve-detail">
+                <span>GuestHouse1</span>
+                <p>룸 유형: <span>RoomName1</span></p>
+                <p>숙박 예정일: <span>2025.06.01 - 2025.06.04</span></p>
+                <p>인원 수: <span>3</span>명</p>
+              </div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="profile">
+              <img class="client-image" src="image/client03.png" alt="신시아 프로필 사진" loading="lazy" />
+              <div class="client-info">
+                <p class="name">이름: <span>신시아</span></p>
+                <p class="email">이메일: <span>Shin98@naver.com</span></p>
+              </div>
+            </div>
+            <div class="reservation-info">
+              <p class="reserve-title">예약 정보</p>
+              <div class="reserve-detail">
+                <span>GuestHouse1</span>
+                <p>룸 유형: <span>RoomName1</span></p>
+                <p>숙박 예정일: <span>2025.06.01 - 2025.06.04</span></p>
+                <p>인원 수: <span>3</span>명</p>
+              </div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="profile">
+              <img class="client-image" src="image/client04.png" alt="고윤정 프로필 사진" loading="lazy" />
+              <div class="client-info">
+                <p class="name">이름: <span>고윤정</span></p>
+                <p class="email">이메일: <span>Younjung96@naver.com</span></p>
+              </div>
+            </div>
+            <div class="reservation-info">
+              <p class="reserve-title">예약 정보</p>
+              <div class="reserve-detail">
+                <span>GuestHouse1</span>
+                <p>룸 유형: <span>RoomName1</span></p>
+                <p>숙박 예정일: <span>2025.06.01 - 2025.06.04</span></p>
+                <p>인원 수: <span>3</span>명</p>
+              </div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="profile">
+              <img class="client-image" src="image/client05.png" alt="김소현 프로필 사진" loading="lazy" />
+              <div class="client-info">
+                <p class="name">이름: <span>김소현</span></p>
+                <p class="email">이메일: <span>Sohyu99@naver.com</span></p>
+              </div>
+            </div>
+            <div class="reservation-info">
+              <p class="reserve-title">예약 정보</p>
+              <div class="reserve-detail">
+                <span>GuestHouse1</span>
+                <p>룸 유형: <span>RoomName1</span></p>
+                <p>숙박 예정일: <span>2025.06.01 - 2025.06.04</span></p>
+                <p>인원 수: <span>3</span>명</p>
+              </div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="profile">
+              <img class="client-image" src="image/client06.png" alt="박보영 프로필 사진" loading="lazy" />
+              <div class="client-info">
+                <p class="name">이름: <span>박보영</span></p>
+                <p class="email">이메일: <span>Boyoung90@naver.com</span></p>
+              </div>
+            </div>
+            <div class="reservation-info">
+              <p class="reserve-title">예약 정보</p>
+              <div class="reserve-detail">
+                <span>GuestHouse1</span>
+                <p>룸 유형: <span>RoomName1</span></p>
+                <p>숙박 예정일: <span>2025.06.01 - 2025.06.04</span></p>
+                <p>인원 수: <span>3</span>명</p>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="loading-spinner" aria-hidden="true">
+        </div>
+      </section>
+
+      <!-- section: 예약자 비율 -->
+      <section id="reserve" class="main-section">
+        <h1 class="title">예약자 비율</h1>
+        <div class="contents">
+          <div class="detail">
+            <article class="chart">
+              <div class="chart-container">
+                <h1>나이별</h1>
+                <canvas id="ageChart"></canvas>
+              </div>
+            </article>
+            <article class="chart">
+              <div class="chart-container">
+                <h1>지역별</h1>
+                <canvas id="regionChart"></canvas>
+              </div>
+            </article>
+          </div>
+          <div class="detail">
+            <article class="chart">
+              <div class="chart-container">
+                <h1>룸 유형별</h1>
+                <canvas id="roomChart"></canvas>
+              </div>
+            </article>
+            <article class="chart">
+              <div class="chart-container">
+                <h1>게스트하우스 유형별</h1>
+                <canvas id="guesthouseChart"></canvas>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- aside -->
+    <aside>
+      <div class="aside-inner">
+        <div class="profile">
+          <div class="photo">
+            <img src="image/admin-profile.png" alt="관리자 프로필" loading="lazy" />
+          </div>
+          <ul class="tabs">
+            <li class="tab active">
+              <span class="icon"><i class="fa-solid fa-chart-simple"></i></span>
+              <span>매출 현황</span>
+            </li>
+            <li class="tab">
+              <span class="icon"><i class="fa-solid fa-users"></i></span>
+              <span>고객 정보</span>
+            </li>
+            <li class="tab">
+              <span class="icon"><i class="fa-solid fa-chart-pie"></i></span>
+              <span>예약자 비율</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <img class="footer-logo" src="image/logo.png" alt="TravelON 로고" />
+        <div class="info-wrap">
+          <div class="info-inner">
+            <div class="company-info">
+              <p>(주) 게스트하우스 | 대표: 이우진, 함동윤, 양준용 |
+              사업자등록번호: 012-34-56789
+              | 통신판매업신고: 2025-서울시청-0123</p>
+              <p>메일: kosagh1@gmail.com | 관광사업자 등록번호: 제2025-000012호 | 주소: 서울 종로구 창경궁로 254 7층</p>
+              <p>고객센터: 1644-1234 (오전 9시 - 오후 6시)</p>
+            </div>
+            <nav class="footer-nav">
+              <a href="#none">회사소개</a>
+              <a href="#none">이용약관</a>
+              <a href="#none">개인정보처리방침</a>
+            </nav>
+            <div class="social-links">
+              <a href="#none" aria-label="Facebook">
+                <img src="image/facebook.png" alt="Facebook 아이콘" />
+              </a>
+              <a href="#none" aria-label="Instagram">
+                <img src="image/instagram.png" alt="Instagram 아이콘" />
+              </a>
+            </div>
+          </div>
+          <div class="customer-support">
+            <h3>고객센터</h3>
+            <p>고객문의: 오전 09시 ~ 오후 6시</p>
+            <p>카카오톡 문의: 24시간 운영</p>
+            <div class="contact-buttons">
+              <a href="#none" class="contact-button">
+                <img src="image/call.png" alt="전화 아이콘" />
+                <span>1677-1234</span>
+              </a>
+              <a href="#none" class="contact-button">
+                <div class="kakao-icon"></div>
+                <span>카카오 문의</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div role="button" class="scroll-top" id="scrollTopBtn">
+    <img src="image/scrollTop.png" alt="scroll-top" loading="lazy" />
+  </div>
+
+  <script src="js/admin.js"></script>
+  <script src="js/common.js"></script>
+
+</body>
+</html>

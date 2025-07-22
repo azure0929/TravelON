@@ -1,0 +1,506 @@
+@charset "UTF-8";
+
+/* section: intro */
+section.intro {
+  margin-top: 264px;
+  position: relative;
+}
+section.intro .title {
+  font-weight: bold;
+  font-size: 4.375rem;
+  text-align: center;
+  margin-bottom: 132px;
+}
+section.intro .title span {
+  display: block;
+}
+section.intro .intro-bg {
+  width: 100%;
+  min-width: 1280px;
+  height: 476px;
+  border-radius: 238px;
+  background: url("../image/intro.jpg") no-repeat;
+  background-size: cover;
+}
+
+/* section: notice */
+section.notice {
+  margin-top: 100px;
+}
+section.notice .inner a {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  border-radius: 30px;
+  padding: 16px;
+  border: 1px solid #dcdcdc;
+  height: 50px;
+  color: #8a8a8a;
+  cursor: pointer;
+}
+section.notice .title {
+  width: 48px;
+  height: 28px;
+  border-radius: 30px;
+  padding: 6px 10px;
+  color: #f1f1f1;
+  line-height: 1rem;
+  background-color: var(--primary-color);
+}
+
+/* section: event */
+section.event {
+  margin-top: 70px;
+}
+section.event .title {
+  font-size: x-large;
+  margin-bottom: 36px;
+}
+section.event .content {
+  display: flex;
+  gap: 86px;
+  justify-content: space-between;
+  color: #f1f1f1;
+}
+section.event .content .main {
+  position: relative;
+  width: 492px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+section.event .content .main .info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 9;
+}
+section.event .content .main .info > div {
+  margin-bottom: 14px;
+}
+section.event .content .main .info > div span {
+  display: block;
+  font-size: 2.125rem;
+  font-weight: bold;
+}
+section.event .content .event-wrap {
+  position: relative;
+  width: 706px;
+}
+section.event .content .event-lists {
+  display: flex;
+  gap: 46px;
+  align-items: center;
+}
+section.event .content .event-lists .event-list {
+  border-radius: 16px;
+  width: 330px;
+  height: 330px;
+  position: relative;
+}
+section.event .content .event-lists .event-list .photo {
+  border-radius: 16px;
+  overflow: hidden;
+}
+section.event .content .event-lists .event-list .info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 9;
+}
+section.event .content .event-lists .event-list .info .info-detail span {
+  display: block;
+  font-size: 2.125rem;
+  font-weight: bold;
+}
+section.event .swiper-pagination {
+  margin-top: 460px;
+  margin-left: 372px;
+  width: 330px;
+  height: 8px;
+  background-color: #EFEFEF;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.swiper-pagination-progressbar-fill {
+  background-color: var(--primary-color, #2a95a9);
+  border-radius: 4px;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+/* section: benefit */
+section.benefit {
+  margin-top: 100px;
+  background: url("../image/benefit-bg.webp") no-repeat center;
+  background-size: cover;
+}
+section.benefit .inner {
+  padding: 60px 0;
+}
+section.benefit .inner .title {
+  font-size: x-large;
+  margin-bottom: 36px;
+}
+section.benefit .content ul {
+  display: flex;
+  justify-content: space-between;
+}
+section.benefit .content ul li {
+  position: relative;
+  width: 290px;
+  height: 470px;
+  border-radius: 18px;
+  overflow: hidden;
+}
+section.benefit .content ul li video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+section.benefit .content ul li img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+section.benefit .content ul li .info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: var(--text-secondary-color);
+  z-index: 9;
+}
+section.benefit .content ul li .link {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+/* section: "weeklysale" */
+section.weeklysale {
+  margin-top: 72px;
+}
+section.weeklysale .inner .title {
+  font-size: 1.125rem;
+  margin-bottom: 36px;
+}
+section.weeklysale .inner .content {
+  position: relative;
+  margin-top: 36px;
+}
+section.weeklysale .inner .content ul {
+  display: flex;
+  justify-content: space-between;
+}
+section.weeklysale .inner .content ul li .photo {
+  width: 400px;
+  height: 270px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+section.weeklysale .inner .content ul li .info {
+  margin-top: 22px;
+}
+section.weeklysale .inner .content ul li .info > span {
+  font-size: 1.125;
+  font-weight: medium;
+  margin-bottom: 12px;
+}
+section.weeklysale .inner .content ul li .info .price .sale {
+  font-size: 2rem;
+  font-weight: medium;
+  margin-right: 12px;
+}
+section.weeklysale .swiper-button-prev,
+section.weeklysale .swiper-button-next {
+  z-index: 99; /* 버튼이 위에 보이도록 */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--primary-color, #2a95a9);
+  border-radius: 50%;
+  background-color: #fff;
+  transition: all .3s ease;
+}
+section.weeklysale .swiper-button-next:after,
+section.weeklysale .swiper-button-prev:after {
+  font-size: 14px;
+  color: var(--primary-color, #2a95a9);
+}
+section.weeklysale .swiper-button-prev:hover,
+section.weeklysale .swiper-button-next:hover {
+  background-color: var(--primary-color);
+}
+section.weeklysale .swiper-button-next:hover:after,
+section.weeklysale .swiper-button-prev:hover:after {
+  color: #fff;
+}
+
+/* section: weeklyrecommend */
+section.weeklyrecommend {
+  margin-top: 110px;
+}
+section.weeklyrecommend .inner .title {
+  font-size: x-large;
+  margin-bottom: 36px;
+}
+section.weeklyrecommend .content {
+  position: relative;
+  margin-top: 36px;
+}
+section.weeklyrecommend .content ul {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+section.weeklyrecommend .content ul li {
+  position: relative;
+  cursor: pointer;
+}
+section.weeklyrecommend .content ul li .photo {
+  width: 400px;
+  height: 270px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+section.weeklyrecommend .content ul li .info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+section.weeklyrecommend .content ul li .info h3 {
+  font-size: 1.25rem;
+  color: var(--text-secondary-color);
+  z-index: 9;
+}
+section.weeklyrecommend .swiper-button-prev,
+section.weeklyrecommend .swiper-button-next {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--primary-color, #2a95a9);
+  border-radius: 50%;
+  background-color: #fff;
+  transition: all .3s ease;
+}
+section.weeklyrecommend .swiper-button-prev {
+  left: 1170px;
+}
+section.weeklyrecommend .swiper-button-next:after,
+section.weeklyrecommend .swiper-button-prev:after {
+  font-size: 14px;
+  color: var(--primary-color, #2a95a9);
+}
+section.weeklyrecommend .swiper-button-prev:hover,
+section.weeklyrecommend .swiper-button-next:hover {
+  background-color: var(--primary-color);
+}
+section.weeklyrecommend .swiper-button-next:hover:after,
+section.weeklyrecommend .swiper-button-prev:hover:after {
+  color: #fff;
+}
+
+/* section: skip_ad */
+section.skip_ad {
+  margin-top: 120px;
+  background: url("../image/strip-ad.png") no-repeat center;
+  background-size: cover;
+  width: 100%;
+  height: 142px;
+}
+
+/* section: welcome */
+section.welcome {
+  margin-top: 150px;
+}
+section.welcome .inner .title {
+  font-size: x-large;
+  margin-bottom: 36px;
+}
+section.welcome .inner .content {
+  position: relative;
+  border-radius: 16px;
+  margin-top: 36px;
+  height: 270px;
+  background: url("../image/welcomecoupon.png") no-repeat center;
+  background-size: cover;
+}
+section.welcome .inner .content .info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 278px;
+  z-index: 9;
+}
+section.welcome .inner .content .info span {
+  display: block;
+}
+section.welcome .inner .content .info > span {
+  font-size: 2.25rem;
+  font-weight: medium;
+}
+section.welcome .inner .content .info .sale {
+  font-size: 4.375rem;
+  font-weight: bold;
+}
+section.welcome .inner .content .info .detail {
+  font-size: 1rem;
+  color: #707070;
+}
+
+/* section: popular */
+section.popular {
+  margin-top: 120px;
+  margin-bottom: 232px;
+}
+section.popular .inner .title {
+  font-size: x-large;
+  margin-bottom: 36px;
+}
+section.popular .content {
+  margin-top: 16px;
+}
+section.popular .content .tabs {
+  display: flex;
+  gap: 16px;
+}
+section.popular .content .tabs .tab {
+  width: 76px;
+  height: 28px;
+  text-align: center;
+  padding: 4px 0;
+  line-height: 1.1rem;
+  border: 1px solid #191919;
+  border-radius: 30px;
+  cursor: pointer;
+}
+section.popular .content .tabs .tab.active {
+  color: var(--text-secondary-color);
+  background-color: #191919;
+}
+section.popular .content .popularlists {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+section.popular .content .popularlists .list {
+  position: relative;
+  width: 400px;
+  height: 270px;
+  border-radius: 16px;
+  color: var(--text-secondary-color);
+  overflow: hidden;
+  cursor: pointer;
+}
+section.popular .content .popularlists .list .photo {
+  width: 400px;
+  height: 270px;
+}
+section.popular .content .popularlists .list .photo img {
+  display: block;
+}
+section.popular .content .popularlists .list .info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 140px;
+  height: 84px;
+  z-index: 9;
+}
+section.popular .content .popularlists .list .info span {
+  font-size: 1.875rem;
+  font-weight: bold;
+}
+
+/* menubar 클릭 시 slide */
+.menubar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 446px;
+  height: 100vh;
+  padding: 100px 100px 100px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 0 30px 30px 0;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.16);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+  z-index: 999;
+}
+.menubar.active {
+  transform: translateX(0);
+}
+.menubar .close-btn {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+.menubar .menubar-inner {
+  height: calc(100% - 200px);
+  margin: 0 auto;
+  overflow: visible;
+}
+.menubar .menubar-inner .title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.menubar .menubar-inner .info {
+  margin-top: 60px;
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  overflow-y: scroll;
+}
+.menubar .menubar-inner .info::-webkit-scrollbar {
+  width: 8px;
+}
+.menubar .menubar-inner .info::-webkit-scrollbar-track {
+  background-color: #f6f6f6;
+  border-radius: 4px;
+}
+.menubar .menubar-inner .info::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+.menubar .menubar-inner .info .section span {
+  font-size: 1.125rem;
+}
+.menubar .menubar-inner .info .section ul {
+  margin: 0;
+  margin-top: 18px;
+  padding: 0;
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+}
+.menubar .menubar-inner .info .section ul li {
+  width: fit-content;
+  padding: 8px 10px;
+  border: 1px solid #BCBCBC;
+  border-radius: 8px;
+}

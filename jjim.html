@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>찜 페이지</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css" />
+
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/jjim.css" />
+  <link rel="stylesheet" href="css/totalmodal.css"/>
+  <link rel="stylesheet" href="css/reservemodal.css" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+</head>
+<body class="body">
+  <div id="wrap">
+    <!-- header -->
+    <header id="header"></header>
+
+    <main class="jjin-contents">
+      <div class="delete-container d-flex justify-content-end mt-4 pe-3">
+        <span id="btn-clear-all" style="cursor: pointer;">전체삭제</span>
+      </div>
+
+      <!-- 카드 리스트 -->
+      <div class="cards">
+        
+      </div>
+
+      <div class="booking-container">
+        <button class="btn btn-reserve">예약</button>
+        <button class="btn btn-delete">삭제</button>
+        <div class="total-price">
+          총 가격: <strong>72,000</strong>원
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer"></footer>
+  </div>
+
+  <!-- 스크롤 탑 버튼 -->
+  <div role="button" class="scroll-top" id="scrollTopBtn">
+    <img src="image/scrollTop.png" alt="scroll-top" loading="lazy" />
+  </div>
+
+  <!-- 예약 모달 -->
+  <div class="modal" id="modalWrap">
+    <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div class="info-head">
+          <img src="image/modal-reserve.png" alt="예약 아이콘" loading="lazy" />
+          <span id="modalTitle">예약</span>
+        </div>
+        <button class="modal-close" id="modalCloseBtn" aria-label="닫기">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="nameInput">이름</label>
+          <input type="text" id="nameInput" placeholder="이름을 입력하세요." />
+        </div>
+        <div class="form-group">
+          <label>게스트하우스</label>
+          <div class="tag-boxes">
+            <span class="tag-box">Guesthouse1</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ageInput">나이</label>
+          <input type="number" id="ageInput" placeholder="나이를 입력하세요." />
+        </div>
+        <div class="form-group">
+          <label for="roomInput">룸</label>
+          <input type="text" id="roomInput" readonly />
+        </div>
+        <div class="form-group">
+          <label for="emailInput">이메일</label>
+          <input type="email" id="emailInput" placeholder="이메일을 입력하세요." />
+        </div>
+        <div class="form-group">
+          <label for="stayDateInput">숙박 예정일</label>
+          <div class="date-picker-wrapper">
+            <input type="text" id="stayDateInput" readonly placeholder="예: 2025.06.01 - 2025.06.04" />
+            <svg class="date-picker-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="button" tabindex="0" aria-label="날짜 선택 열기">
+              <path d="M7 11h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/>
+              <path fill="none" d="M0 0h24v24H0z"/>
+              <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14
+                c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0
+                16H5V9h14v11z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="passwordInput">비밀번호</label>
+          <input type="password" id="passwordInput" placeholder="비밀번호를 입력하세요." />
+        </div>
+         <div class="form-group">
+          <label for="guestCountInput">인원 수</label>
+          <input type="text" id="guestCountInput" placeholder="ex. 3" />
+        </div>
+        <div class="form-group">
+          <label for="passwordConfirmInput">비밀번호 확인</label>
+          <input type="password" id="passwordConfirmInput" placeholder="비밀번호를 다시 입력하세요." />
+        </div>
+      </div>
+
+      <button class="btn-next">다음</button>
+    </div>
+  </div>
+
+  <div class="card-modal" id="cardModal"></div>
+
+  <div class="total-modal" id="totalModal"></div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
+<script src="js/common.js"></script>
+<script src="js/cardmodal.js"></script>
+<script src="js/totalmodal.js"></script>
+<script src="js/jjim.js"></script>
+</body>
+</html>

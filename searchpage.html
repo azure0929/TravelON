@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>검색 결과 페이지</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="js/SearchPageJs.js"></script>
+  <script src="js/cardRenderer.js"></script>
+  <link rel="stylesheet" href="./css/common.css" />
+  <link rel="stylesheet" href="css/SearchPageStyle.css" />
+</head>
+
+<body>
+  <header id="header"></header>
+  <main>
+    <div class="contain">
+      <div class="category-btns">
+        <div class="d-flex">
+          <button class="btn category-btn btn-sm active">전체</button>
+          <button class="btn category-btn btn-sm">도미토리형</button>
+          <button class="btn category-btn btn-sm">프라이빗형</button>
+          <button class="btn category-btn btn-sm">패밀리/독채형</button>
+          <button class="btn category-btn btn-sm">테마형/특수형</button>
+          <button class="btn category-btn btn-sm">장기 숙박형</button>
+        </div>
+        <div class="sort-container">
+          <button class="sort-toggle">
+            <img class="sort-image" src="image/sort_non.webp" alt="정렬이미지" loading="lazy" />
+          </button>
+          <ul class="sort-dropdown">
+            <li class="sort-option selected">예약가 높은순</li>
+            <li class="sort-option">예약가 낮은순</li>
+            <li class="sort-option">등록 많은 순</li>
+            <li class="sort-option">찜 많은 순</li>
+            <li>
+              <button class="btn-apply">적용</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="page-spinner" class="spinner-overlay">
+        <div class="spinner"></div>
+      </div>
+
+      <div id="search-total">
+        <section class="category-group">
+          <h2 class="gh-title">도미토리형</h2>
+          <div class="responsive"></div>
+        </section>
+        <section class="category-group">
+          <h2 class="gh-title">프라이빗형</h2>
+          <div class="responsive">
+          </div>
+        </section>
+        <section class="category-group">
+          <h2 class="gh-title">패밀리/독채형</h2>
+          <div class="responsive">
+          </div>
+        </section>
+        <section class="category-group">
+          <h2 class="gh-title">테마형/특수형</h2>
+          <div class="responsive">
+          </div>
+        </section>
+        <section class="category-group">
+          <h2 class="gh-title">장기 숙박형</h2>
+          <div class="responsive">
+          </div>
+        </section>
+      </div>
+
+      <div id="search-list" class="list-wrapper">
+        <div id="spinner">
+          <div class="spinner"></div>
+        </div>
+      </div>
+      
+      <div role="button" class="scroll-top" id="scrollTopBtn">
+        <img src="image/scrollTop.png" alt="scroll-top" loading="lazy" />
+      </div>
+  </main>
+  
+  <footer id="footer"></footer>
+
+  <script src="js/common.js"></script>
+
+</body>
+
+</html>

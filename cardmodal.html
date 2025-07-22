@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>카드 모달</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/cardmodal.css" />
+
+</head>
+
+<body>
+  <div class="modal card-payment-modal" id="cardModal" style="display: none;">
+    <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div class="modalTitle">
+          <div class="cardimg">
+            <img src="image/card.png" alt="카드 아이콘" loading="lazy" />
+          </div>
+          <span>카드 결제</span>
+        </div>
+        <button class="modal-close" id="cardModalCloseBtn" aria-label="닫기">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- 카드사 선택 -->
+        <div class="form-group">
+          <label for="cardCompanySelect">카드사</label>
+          <select id="cardCompanySelect">
+            <option>국민카드</option>
+            <option>신한카드</option>
+            <option>우리카드</option>
+            <option>삼성카드</option>
+          </select>
+        </div>
+
+        <!-- 카드번호 -->
+        <div class="form-group">
+          <label>카드번호</label>
+          <ul class="cardnumber">
+            <li><input type="text" maxlength="4" class="card-input" /></li> -
+            <li><input type="text" maxlength="4" class="card-input" /></li> -
+            <li><input type="text" maxlength="4" class="card-input" /></li> -
+            <li><input type="text" maxlength="4" class="card-input" /></li>
+          </ul>
+        </div>
+
+        <!-- 이름 -->
+        <div class="form-group">
+          <label for="payerName">이름</label>
+          <input type="text" id="payerName" placeholder="이름을 입력하세요" readonly/>
+        </div>
+
+        <!-- 이메일 -->
+        <div class="form-group">
+          <label for="payerEmail">이메일</label>
+          <input type="email" id="payerEmail" placeholder="이메일을 입력하세요" readonly/>
+        </div>
+      </div>
+
+      <button class="btn-next" id="submitCard">예약</button>
+    </div>
+  </div>
+
+  <!-- script -->
+
+
+</body>
+
+</html>
