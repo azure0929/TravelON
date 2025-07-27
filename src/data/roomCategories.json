@@ -1,0 +1,122 @@
+[
+  {
+    "type": "싱글룸",
+    "rooms": [
+      {
+        "id": "single1",
+        "title": "싱글룸_1",
+        "desc": "보풀리스, 디즈니, 티빙",
+        "limit": "기준 2인 최대 2인",
+        "beds": "침대 1개",
+        "originalPrice": "45,000",
+        "discountPrice": "25,000"
+      },
+      {
+        "id": "single2",
+        "title": "싱글룸_2",
+        "desc": "보풀리스, 디즈니, 티빙",
+        "limit": "기준 2인 최대 2인",
+        "beds": "침대 1개",
+        "originalPrice": "45,000",
+        "discountPrice": "25,000"
+      }
+    ],
+    "image": "image/singleroom.webp"
+  },
+  {
+    "type": "더블룸",
+    "rooms": [
+      {
+        "id": "double1",
+        "title": "더블룸_1",
+        "desc": "보풀리스, 디즈니, 티빙",
+        "limit": "기준 4인 최대 4인",
+        "beds": "침대 2개",
+        "originalPrice": "55,000",
+        "discountPrice": "25,000"
+      },
+      {
+        "id": "double2",
+        "title": "더블룸_2",
+        "desc": "보풀리스, 디즈니, 티빙",
+        "limit": "기준 4인 최대 4인",
+        "beds": "침대 4개",
+        "originalPrice": "55,000",
+        "discountPrice": "25,000"
+      }
+    ],
+    "image": "image/doubleroom.webp"
+  },
+  {
+    "type": "옵션 A",
+    "rooms": [
+      {
+        "id": "optionA1",
+        "title": "옵션 A_1",
+        "desc": "보풀리스, 디즈니, 티빙",
+        "limit": "기준 4인 최대 6인",
+        "beds": "침대 2개",
+        "originalPrice": "65,000",
+        "discountPrice": "25,000"
+      },
+      {
+        "id": "optionA2",
+        "title": "옵션 A_2",
+        "desc": "보풀리스, 디즈니, 티빙",
+        "limit": "기준 4인 최대 6인",
+        "beds": "침대 2개",
+        "originalPrice": "65,000",
+        "discountPrice": "25,000"
+      }
+    ],
+    "image": "image/optionroom.webp"
+  },
+  {
+    "type": "옵션 B",
+    "rooms": [
+      {
+        "id": "optionB1",
+        "title": "옵션 B_1",
+        "desc": "보풀리스, 디즈니, 티빙",
+        "limit": "기준 6인 최대 6인",
+        "beds": "침대 3개",
+        "originalPrice": "65,000",
+        "discountPrice": "25,000"
+      },
+      {
+        "id": "optionB2",
+        "title": "옵션 B_2",
+        "desc": "보풀리스, 디즈니, 티빙",
+        "limit": "기준 6인 최대 6인",
+        "beds": "침대 3개",
+        "originalPrice": "65,000",
+        "discountPrice": "25,000"
+      }
+    ],
+    "image": "image/optionroom.webp"
+  },
+  {
+    "type": "옵션 C",
+    "rooms": [
+      {
+        "id": "optionC1",
+        "title": "옵션 C_1",
+        "desc": "보풀리스, 디즈니, 티빙",
+        "limit": "기준 6인 최대 8인",
+        "beds": "침대 3개",
+        "originalPrice": "75,000",
+        "discountPrice": "25,000"
+      },
+      {
+        "id": "optionC2",
+        "title": "옵션 C_2",
+        "desc": "보풀리스, 디즈니, 티빙",
+        "limit": "기준 6인 최대 8인",
+        "beds": "침대 3개",
+        "originalPrice": "75,000",
+        "discountPrice": "25,000"
+      }
+    ],
+    "image": "image/optionroom.webp"
+  }
+]

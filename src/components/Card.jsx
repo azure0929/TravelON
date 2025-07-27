@@ -13,8 +13,8 @@ function Card({ card, onHeartClick, onCardClick }) {
   const handleHeartClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    onHeartClick(card, !isJjimmed); // 부모 컴포넌트에 상태 변경 알림
-    setIsJjimmed(!isJjimmed); // 현재 컴포넌트의 상태 변경
+    onHeartClick(card, !isJjimmed); // Notify parent component about heart status change
+    setIsJjimmed(!isJjimmed); // Update local state for heart icon
   };
 
   const handleCardClick = () => {
@@ -25,8 +25,6 @@ function Card({ card, onHeartClick, onCardClick }) {
     <p className="sold-out">예약마감</p>
   ) : (
     <p className="cardprice">
-      {" "}
-      {/* 클래스 이름을 .price에서 .cardprice로 변경했네요. CSS도 확인해주세요! */}
       <del className="original-price">{card.originalPrice}</del>
       <span className="discount-price">{card.discountPrice}</span>
     </p>
@@ -34,13 +32,16 @@ function Card({ card, onHeartClick, onCardClick }) {
 
   return (
     <div className="card" onClick={handleCardClick}>
+      {" "}
       <div className="card-img-wrapper">
-        <img
-          src={card.image}
-          className="card-img"
-          alt="썸네일"
-          loading="lazy"
-        />
+        <a href={`/detail/${card.title}`} onClick={(e) => e.stopPropagation()}>
+          <img
+            src={card.image}
+            className="card-img"
+            alt="썸네일"
+            loading="lazy"
+          />
+        </a>
       </div>
       <div className="card-body">
         <div className="card-head">

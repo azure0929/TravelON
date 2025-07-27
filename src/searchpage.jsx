@@ -202,7 +202,7 @@ function SearchPage() {
   };
 
   const handleCardClick = (card) => {
-    const url = `detailpage.html?title=${encodeURIComponent(
+    const url = `detailpage?title=${encodeURIComponent(
       card.title
     )}&image=${encodeURIComponent(card.image)}&location=${encodeURIComponent(
       card.location
