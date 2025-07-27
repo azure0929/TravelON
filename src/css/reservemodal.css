@@ -1,0 +1,135 @@
+#modalWrap.modal {
+  display: none;
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1000;
+}
+#modalWrap .modal-container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 720px;
+  padding: 30px 40px;
+  border-radius: 20px;
+  border: 15px solid #dadada;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: white;
+}
+#modalWrap .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+#modalWrap .modal-header .info-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#modalWrap .modal-header .info-head img {
+  width: 48px;
+}
+#modalWrap .modal-header span {
+  display: inline-block;
+  width: 80px;
+  font-size: 24px;
+  font-weight: bold;
+}
+#modalWrap .modal-close {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  font-size: 3rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+#modalWrap .modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 30px;
+  row-gap: 20px;
+}
+#modalWrap .form-group {
+  display: flex;
+  flex-direction: column;
+}
+#modalWrap .form-group label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+#modalWrap .form-group input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  color: var(--input-placeholder-color);
+  font-size: 0.875rem;
+}
+#modalWrap .form-group input.invalid {
+  border-color: #dc3545;
+}
+#modalWrap .form-group input.valid {
+  border-color: #28a745;
+}
+#modalWrap .tag-boxes {
+  display: flex;
+  gap: 10px;
+}
+#modalWrap .tag-box {
+  background-color: #f1f1f1;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  user-select: none;
+}
+#modalWrap .btn-next {
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
+  width: 90px;
+  height: 34px;
+  background-color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 600;  
+  border: 1px solid; 
+  border-color: black; 
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+#modalWrap .btn-next:hover {
+  background-color: #555D7E;
+  color: white;
+}
+#modalWrap .date-picker-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#modalWrap #stayDateInput {
+  flex: 1;
+  cursor: pointer;
+  background-color: #fff;
+  user-select: none;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  font-size: 16px;
+}
+#modalWrap .date-picker-icon {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  fill: #007bff;
+  flex-shrink: 0;
+  user-select: none;
+  transition: fill 0.2s ease;
+}
+#modalWrap .date-picker-icon:hover {
+  fill: #0056b3;
+}

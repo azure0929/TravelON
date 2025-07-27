@@ -1,0 +1,100 @@
+{
+  "statistics": {
+    "ageGroup": {
+      "labels": ["20대", "30대"],
+      "data": [4, 2]
+    },
+    "region": {
+      "labels": ["서울", "부산", "인천"],
+      "data": [3, 2, 1]
+    },
+    "roomType": {
+      "labels": ["싱글룸", "더블룸", "옵션A", "옵션B", "옵션C"],
+      "data": [1, 1, 1, 2, 1]
+    },
+    "guesthouseType": {
+      "labels": ["도미토리형", "프라이빗형", "패밀리/단체형", "테마형/특수형", "장기숙박형"],
+      "data": [1, 2, 1, 1, 1]
+    }
+  },
+  "clients": [
+    {
+      "name": "박보검",
+      "email": "Park93@naver.com",
+      "age": 30,
+      "region": "서울",
+      "guesthouse": "GuestHouse1",
+      "roomType": "옵션B",
+      "guesthouseType": "프라이빗형",
+      "checkin": "2025-06-01",
+      "checkout": "2025-06-04",
+      "nights": 3,
+      "people": 3
+    },
+    {
+      "name": "아이유",
+      "email": "IU93@naver.com",
+      "age": 30,
+      "region": "부산",
+      "guesthouse": "GuestHouse1",
+      "roomType": "옵션A",
+      "guesthouseType": "패밀리/단체형",
+      "checkin": "2025-06-01",
+      "checkout": "2025-06-04",
+      "nights": 3,
+      "people": 3
+    },
+    {
+      "name": "신시아",
+      "email": "Shin98@naver.com",
+      "age": 27,
+      "region": "서울",
+      "guesthouse": "GuestHouse1",
+      "roomType": "옵션B",
+      "guesthouseType": "테마형/특수형",
+      "checkin": "2025-06-01",
+      "checkout": "2025-06-04",
+      "nights": 3,
+      "people": 3
+    },
+    {
+      "name": "고윤정",
+      "email": "Younjung96@naver.com",
+      "age": 29,
+      "region": "인천",
+      "guesthouse": "GuestHouse1",
+      "roomType": "옵션C",
+      "guesthouseType": "프라이빗형",
+      "checkin": "2025-06-01",
+      "checkout": "2025-06-04",
+      "nights": 3,
+      "people": 3
+    },
+    {
+      "name": "김소현",
+      "email": "Sohyu99@naver.com",
+      "age": 25,
+      "region": "서울",
+      "guesthouse": "GuestHouse1",
+      "roomType": "싱글룸",
+      "guesthouseType": "도미토리형",
+      "checkin": "2025-06-01",
+      "checkout": "2025-06-04",
+      "nights": 3,
+      "people": 3
+    },
+    {
+      "name": "박보영",
+      "email": "Boyoung90@naver.com",
+      "age": 34,
+      "region": "부산",
+      "guesthouse": "GuestHouse1",
+      "roomType": "더블룸",
+      "guesthouseType": "장기숙박형",
+      "checkin": "2025-06-01",
+      "checkout": "2025-06-04",
+      "nights": 3,
+      "people": 3
+    }
+  ]
+}

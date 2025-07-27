@@ -1,0 +1,113 @@
+.card-payment-modal {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  display: none;
+}
+.card-payment-modal .modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 440px;
+  background-color: #fff;
+  padding: 30px 40px;
+  border: 15px solid #dadada;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+.card-payment-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.card-payment-modal .modal-header .modalTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.card-payment-modal .modal-header .modalTitle .cardimg {
+  width: 36px;
+  height: 36px;
+}
+.card-payment-modal .modal-header .modalTitle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.card-payment-modal .modal-header span {
+  font-size: 22px;
+  font-weight: bold;
+}
+.card-payment-modal .modal-close {
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  color: #333;
+  padding: 0;
+}
+.card-payment-modal .modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card-payment-modal .form-group {
+  display: flex;
+  flex-direction: column;
+}
+.card-payment-modal .form-group label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+.card-payment-modal .form-group input,
+.card-payment-modal .form-group select {
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #333;
+}
+.card-payment-modal .cardnumber {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.card-payment-modal .cardnumber li input.card-input {
+  width: 50px;
+  padding: 8px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  font-family: monospace;
+}
+.card-payment-modal .btn-next {
+  position: relative;
+  margin-left: 250px; 
+  width: 90px;
+  height: 36px;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.card-payment-modal .btn-next:hover {
+  background-color: #555D7E;
+  color: #fff;
+}
