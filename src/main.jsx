@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -80,7 +80,7 @@ export default function Main() {
                     el: ".event-progressbar",
                   }}
                   autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  modules={[Autoplay, Pagination]}
+                  modules={[Pagination]}
                 >
                   <SwiperSlide className="event-list">
                     <div className="photo">

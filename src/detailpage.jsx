@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import SwiperCore from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -29,8 +29,6 @@ const DetailPage = () => {
   const [currentCard, setCurrentCard] = useState(null);
   const [selectedDates, setSelectedDates] = useState([]);
 
-  const scrollTopBtnRef = useRef(null);
-
   useEffect(() => {
     const pathSegments = window.location.pathname.split("/");
     const encodedTitleFromUrl = pathSegments[pathSegments.length - 1];
@@ -46,36 +44,6 @@ const DetailPage = () => {
         console.error("Card not found for title:", decodedTitle);
       }
     }
-
-    const handleScroll = () => {
-      if (scrollTopBtnRef.current) {
-        if (window.scrollY > 200) {
-          scrollTopBtnRef.current.style.display = "flex";
-        } else {
-          scrollTopBtnRef.current.style.display = "none";
-        }
-      }
-    };
-
-    const scrollToTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    if (scrollTopBtnRef.current) {
-      scrollTopBtnRef.current.addEventListener("click", scrollToTop);
-    }
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (scrollTopBtnRef.current) {
-        scrollTopBtnRef.current.removeEventListener("click", scrollToTop);
-      }
-    };
   }, []);
 
   const handleReserveClick = (roomTitle) => {
@@ -266,16 +234,6 @@ const DetailPage = () => {
           ))}
         </div>
 
-        <div
-          role="button"
-          className="scroll-top"
-          id="scrollTopBtn"
-          ref={scrollTopBtnRef}
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        >
-          <img src="../image/scrollTop.png" alt="scroll-top" loading="lazy" />
-        </div>
-
         {isModalOpen && (
           <div className="modal" id="modalWrap" style={{ display: "block" }}>
             <div
@@ -406,6 +364,14 @@ const DetailPage = () => {
         <div className="total-modal" id="totalModal"></div>
       </main>
       <Footer />
+      <div
+        role="button"
+        className="scroll-top"
+        id="scrollTopBtn"
+        aria-label="맨 위로 이동"
+      >
+        <img src="image/scrollTop.png" alt="scroll-top" />
+      </div>
     </>
   );
 };

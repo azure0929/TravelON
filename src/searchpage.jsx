@@ -39,6 +39,23 @@ function SearchPage() {
     "장기 숙박형",
   ];
 
+  // scrollTop 버튼
+  useEffect(() => {
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        scrollBtn.classList.add("show");
+      } else {
+        scrollBtn.classList.remove("show");
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   useEffect(() => {
     setPageSpinnerVisible(true);
     setTimeout(() => {
@@ -381,6 +398,14 @@ function SearchPage() {
         </div>
       </main>
       <Footer />
+      <div
+        role="button"
+        className="scroll-top"
+        id="scrollTopBtn"
+        aria-label="맨 위로 이동"
+      >
+        <img src="image/scrollTop.png" alt="scroll-top" />
+      </div>
     </>
   );
 }
