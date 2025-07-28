@@ -21,17 +21,6 @@ import "./css/reservemodal.css";
 import cardData from "@/data/cardData.json";
 import roomCategoriesData from "@/data/roomCategories.json";
 
-// Import all images explicitly
-import detailImage1 from "@/image/detailimage1.webp";
-import detailImage2 from "@/image/detailimage2.webp";
-import detailImage3 from "@/image/detailimage3.webp";
-import locationIcon from "@/image/location.webp";
-import heartNonIcon from "@/image/heart_non.webp";
-import personIcon from "@/image/person.png";
-import bedIcon from "@/image/bed.png";
-import scrollTopIcon from "@/image/scrollTop.png";
-import modalReserveIcon from "@/image/modal-reserve.png";
-
 SwiperCore.use([Navigation, Pagination]);
 
 const DetailPage = () => {
@@ -84,7 +73,7 @@ const DetailPage = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       if (scrollTopBtnRef.current) {
-        scrollTopBtnRef.removeEventListener("click", scrollToTop);
+        scrollTopBtnRef.current.removeEventListener("click", scrollToTop);
       }
     };
   }, []);
@@ -108,9 +97,10 @@ const DetailPage = () => {
 
   const handleHeartClick = (event) => {
     const heartImg = event.target;
-    // Use imported image variables directly for comparison and assignment
-    if (heartImg.src !== heartNonIcon) {
-      heartImg.src = heartNonIcon;
+    if (heartImg.src.includes("heart-non.webp")) {
+      heartImg.src = "../image/heart-sel.webp";
+    } else {
+      heartImg.src = "../image/heart-non.webp";
     }
   };
 
@@ -143,7 +133,7 @@ const DetailPage = () => {
           >
             <SwiperSlide>
               <img
-                src={detailImage1} // Use imported image
+                src="../image/detailimage01"
                 alt="이미지1"
                 className="slider-img"
                 loading="lazy"
@@ -151,7 +141,7 @@ const DetailPage = () => {
             </SwiperSlide>
             <SwiperSlide>
               <img
-                src={detailImage2} // Use imported image
+                src="../image/detailimage02"
                 alt="이미지2"
                 className="slider-img"
                 loading="lazy"
@@ -159,7 +149,7 @@ const DetailPage = () => {
             </SwiperSlide>
             <SwiperSlide>
               <img
-                src={detailImage3} // Use imported image
+                src="../image/detailimage03"
                 alt="이미지3"
                 className="slider-img"
                 loading="lazy"
@@ -173,7 +163,7 @@ const DetailPage = () => {
             </h2>
             <p id="detail-location" className="location-text">
               <img
-                src={locationIcon} // Use imported image
+                src="../image/location.png" // 이제 import 됨
                 alt="위치"
                 className="icon"
                 loading="lazy"
@@ -216,7 +206,11 @@ const DetailPage = () => {
               {category.rooms.map((room) => (
                 <div className="room-card" key={room.id}>
                   <img
-                    src={category.image} // This `category.image` needs to be an imported variable or a public path like `/image/room_category_default.webp`
+                    // 이 `category.image` 경로는 `roomCategories.json`에 정의되어 있어야 합니다.
+                    // 만약 그 경로도 `/image/`로 시작하는 절대 경로가 아니라면,
+                    // `roomCategories.json`의 해당 경로도 수정해야 합니다.
+                    // 예: "image": "/image/room_type_standard.webp"
+                    src={category.image}
                     alt={room.title}
                     className="room-img"
                     loading="lazy"
@@ -229,13 +223,13 @@ const DetailPage = () => {
                       <div className="room-desc">{room.desc}</div>
                       <div className="room-meta">
                         <div>
-                          <img src={personIcon} className="icon" />{" "}
-                          {/* Use imported image */}
+                          <img src="../image/person.png" className="icon" />{" "}
+                          {/* 이제 import 됨 */}
                           <span className="room-limit">{room.limit}</span>
                         </div>
                         <div className="room-beds">
-                          <img src={bedIcon} className="icon" />{" "}
-                          {/* Use imported image */}
+                          <img src="../image/bed.png" className="icon" />{" "}
+                          {/* 이제 import 됨 */}
                           <span className="room-bed">{room.beds}</span>
                         </div>
                       </div>
@@ -243,7 +237,7 @@ const DetailPage = () => {
                     <div className="room-side">
                       <button className="heart-btn" onClick={handleHeartClick}>
                         <img
-                          src={heartNonIcon} // Use imported image
+                          src="../image/heart-non.webp" // 이제 import 됨
                           alt="찜하기"
                           className="heart-img"
                         />
@@ -279,11 +273,7 @@ const DetailPage = () => {
           ref={scrollTopBtnRef}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <img
-            src={scrollTopIcon} // Use imported image
-            alt="scroll-top"
-            loading="lazy"
-          />
+          <img src="../image/scrollTop.png" alt="scroll-top" loading="lazy" />
         </div>
 
         {isModalOpen && (
@@ -296,10 +286,7 @@ const DetailPage = () => {
             >
               <div className="modal-header">
                 <div className="info-head">
-                  <img
-                    src={modalReserveIcon} // Use imported image
-                    alt="예약 아이콘"
-                  />
+                  <img src="../image/modal-reserve.png" alt="예약 아이콘" />
                   <span id="modalTitle">예약</span>
                 </div>
                 <button

@@ -250,6 +250,7 @@ footer .inner .company-info .company-link li:nth-child(2) a {
 footer .inner .company-info .sns {
   display: flex;
   gap: 12px;
+  margin-top: 16px;
 }
 footer .inner .company-info .sns li {
   width: 36px;

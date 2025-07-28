@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
-import "../css/common.css";
+import "@/css/common.css";
 
 export default function Header() {
   const [search, setSearch] = useState("");
@@ -27,7 +27,7 @@ export default function Header() {
     if (!menubar) return;
 
     if (menuActive) {
-      menubar.style.display = "flex"; // flex로 지정!
+      menubar.style.display = "flex";
       gsap.fromTo(
         menubar,
         { x: -446, opacity: 0 },
