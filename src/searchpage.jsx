@@ -5,6 +5,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import Card from "@/components/Card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollTop from "@/components/ScrollTop";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -18,7 +19,6 @@ import cardData from "@/data/cardData.json";
 // image
 import sortSel from "@/image/sort_sel.webp";
 import sortNon from "@/image/sort_non.webp";
-import scrollTopIcon from "@/image/scrollTop.png";
 
 function SearchPage() {
   const [activeCategory, setActiveCategory] = useState("전체");
@@ -43,23 +43,6 @@ function SearchPage() {
     "테마형/특수형",
     "장기 숙박형",
   ];
-
-  // scrollTop 버튼
-  useEffect(() => {
-    const scrollBtn = document.getElementById("scrollTopBtn");
-    const handleScroll = () => {
-      if (window.scrollY > 200) {
-        scrollBtn.classList.add("show");
-      } else {
-        scrollBtn.classList.remove("show");
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     setPageSpinnerVisible(true);
@@ -390,14 +373,7 @@ function SearchPage() {
         </div>
       </main>
       <Footer />
-      <div
-        role="button"
-        className="scroll-top"
-        id="scrollTopBtn"
-        aria-label="맨 위로 이동"
-      >
-        <img src={scrollTopIcon} alt="scroll-top" />
-      </div>
+      <ScrollTop />
     </>
   );
 }

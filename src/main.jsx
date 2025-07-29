@@ -4,14 +4,14 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "./css/common.css";
-import "./css/main.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import popularData from "./data/popularData.json";
+import "@/css/common.css";
+import "@/css/main.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ScrollTop from "@/components/ScrollTop";
+import popularData from "@/data/popularData.json";
 
 // image
-import scrollTopIcon from "@/image/scrollTop.png";
 import event01 from "@/image/event01.webp";
 import event02 from "@/image/event02.webp";
 import event03 from "@/image/event03.webp";
@@ -604,14 +604,7 @@ export default function Main() {
       </main>
 
       <Footer />
-      <div
-        role="button"
-        className="scroll-top"
-        id="scrollTopBtn"
-        aria-label="맨 위로 이동"
-      >
-        <img src={scrollTopIcon} alt="scroll-top" />
-      </div>
+      <ScrollTop />
     </div>
   );
 }

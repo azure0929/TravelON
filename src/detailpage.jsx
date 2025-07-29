@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ScrollTop from "@/components/ScrollTop";
 
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
@@ -42,8 +43,6 @@ const DetailPage = () => {
   const [currentCard, setCurrentCard] = useState(null);
   const [selectedDates, setSelectedDates] = useState([]);
 
-  const scrollTopBtnRef = useRef(null);
-
   useEffect(() => {
     const pathSegments = window.location.pathname.split("/");
     const encodedTitleFromUrl = pathSegments[pathSegments.length - 1];
@@ -59,36 +58,6 @@ const DetailPage = () => {
         console.error("Card not found for title:", decodedTitle);
       }
     }
-
-    const handleScroll = () => {
-      if (scrollTopBtnRef.current) {
-        if (window.scrollY > 200) {
-          scrollTopBtnRef.current.style.display = "flex";
-        } else {
-          scrollTopBtnRef.current.style.display = "none";
-        }
-      }
-    };
-
-    const scrollToTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    if (scrollTopBtnRef.current) {
-      scrollTopBtnRef.current.addEventListener("click", scrollToTop);
-    }
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (scrollTopBtnRef.current) {
-        scrollTopBtnRef.removeEventListener("click", scrollToTop);
-      }
-    };
   }, []);
 
   const handleReserveClick = (roomTitle) => {
@@ -110,7 +79,6 @@ const DetailPage = () => {
 
   const handleHeartClick = (event) => {
     const heartImg = event.target;
-    // Use imported image variables directly for comparison and assignment
     if (heartImg.src !== heartNonIcon) {
       heartImg.src = heartSelIcon;
     }
@@ -174,12 +142,7 @@ const DetailPage = () => {
               {currentCard.title}
             </h2>
             <p id="detail-location" className="location-text">
-              <img
-                src={location} // Use imported image
-                alt="위치"
-                className="icon"
-                loading="lazy"
-              />
+              <img src={location} alt="위치" className="icon" loading="lazy" />
               {currentCard.location}
             </p>
           </div>
@@ -232,12 +195,10 @@ const DetailPage = () => {
                       <div className="room-meta">
                         <div>
                           <img src={personIcon} className="icon" />{" "}
-                          {/* Use imported image */}
                           <span className="room-limit">{room.limit}</span>
                         </div>
                         <div className="room-beds">
                           <img src={bedIcon} className="icon" />{" "}
-                          {/* Use imported image */}
                           <span className="room-bed">{room.beds}</span>
                         </div>
                       </div>
@@ -245,7 +206,7 @@ const DetailPage = () => {
                     <div className="room-side">
                       <button className="heart-btn" onClick={handleHeartClick}>
                         <img
-                          src={heartNonIcon} // Use imported image
+                          src={heartNonIcon}
                           alt="찜하기"
                           className="heart-img"
                         />
@@ -407,14 +368,7 @@ const DetailPage = () => {
         <div className="total-modal" id="totalModal"></div>
       </main>
       <Footer />
-      <div
-        role="button"
-        className="scroll-top"
-        id="scrollTopBtn"
-        aria-label="맨 위로 이동"
-      >
-        <img src={scrollTopIcon} alt="scroll-top" />
-      </div>
+      <ScrollTop />
     </>
   );
 };
