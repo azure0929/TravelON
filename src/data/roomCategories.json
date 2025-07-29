@@ -20,7 +20,8 @@
         "originalPrice": "45,000",
         "discountPrice": "25,000"
       }
-    ]
+    ],
+    "image": "singleroom.webp"
   },
   {
     "type": "더블룸",
@@ -43,7 +44,8 @@
         "originalPrice": "55,000",
         "discountPrice": "25,000"
       }
-    ]
+    ],
+    "image": "doubleroom.webp"
   },
   {
     "type": "옵션 A",
@@ -66,7 +68,8 @@
         "originalPrice": "65,000",
         "discountPrice": "25,000"
       }
-    ]
+    ],
+    "image": "optionroom.webp"
   },
   {
     "type": "옵션 B",
@@ -89,7 +92,8 @@
         "originalPrice": "65,000",
         "discountPrice": "25,000"
       }
-    ]
+    ],
+    "image": "optionroom.webp"
   },
   {
     "type": "옵션 C",
@@ -112,6 +116,7 @@
         "originalPrice": "75,000",
         "discountPrice": "25,000"
       }
-    ]
+    ],
+    "image": "optionroom.webp"
   }
 ]

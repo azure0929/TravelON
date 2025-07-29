@@ -10,7 +10,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/searchpage" element={<SearchPage />} />
+          <Route path="/SearchPage" element={<SearchPage />} />
           <Route path="/jjim" element={<Jjim />} />
           <Route path="/detail/:id" element={<DetailPage />} />
         </Routes>
@@ -18,4 +18,5 @@ function App() {
     </Router>
   );
 }
+
 export default App;

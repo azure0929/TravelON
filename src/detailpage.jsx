@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import SwiperCore from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,39 +9,76 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollTop from "@/components/ScrollTop";
 
-import Flatpickr from "react-flatpickr";
-import "flatpickr/dist/flatpickr.min.css";
-import "flatpickr/dist/themes/material_green.css";
-import { Korean } from "flatpickr/dist/l10n/ko.js";
-
 import "./css/common.css";
 import "./css/detailpage.css";
-import "./css/totalmodal.css";
-import "./css/reservemodal.css";
 
-// image
 import singleroom from "@/image/singleroom.webp";
+import doubleroom from "@/image/doubleroom.webp";
+import optionroom from "@/image/optionroom.webp";
+
 import detailImage1 from "@/image/detailimage1.webp";
 import detailImage2 from "@/image/detailimage2.webp";
 import detailImage3 from "@/image/detailimage3.webp";
-import location from "@/image/location.webp";
+import locationIcon from "@/image/location.webp";
 import heartNonIcon from "@/image/heart_non.webp";
 import heartSelIcon from "@/image/heart_sel.webp";
 import personIcon from "@/image/person.png";
 import bedIcon from "@/image/bed.png";
-import scrollTopIcon from "@/image/scrollTop.png";
-import modalReserveIcon from "@/image/modal-reserve.png";
 
 import cardData from "@/data/cardData.json";
 import roomCategoriesData from "@/data/roomCategories.json";
+import reviewData from "@/data/reviewData.json";
+
+// 모달 컴포넌트들을 정확하게 임포트합니다.
+import ReserveModal from "./reservemodal";
+import CardModal from "./cardmodal";
+import TotalModal from "./totalmodal";
 
 SwiperCore.use([Navigation, Pagination]);
 
+const imageMap = {
+  "singleroom.webp": singleroom,
+  "doubleroom.webp": doubleroom,
+  "optionroom.webp": optionroom,
+};
+
 const DetailPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedRoom, setSelectedRoom] = useState("");
-  const [currentCard, setCurrentCard] = useState(null);
-  const [selectedDates, setSelectedDates] = useState([]);
+  // 각 모달의 열림/닫힘 상태를 별도로 관리합니다.
+  const [isReserveModalOpen, setIsReserveModalOpen] = useState(false); // 예약 폼 모달
+  const [isCardModalOpen, setIsCardModalOpen] = useState(false); // 카드 결제 모달
+  const [isTotalModalOpen, setIsTotalModalOpen] = useState(false); // 최종 확인 모달
+
+  const [selectedRoomTitle, setSelectedRoomTitle] = useState(""); // 현재 선택된 방 제목 (ReserveModal로 전달)
+  const [currentCard, setCurrentCard] = useState(null); // 현재 게스트하우스 데이터 (ReserveModal로 전달)
+
+  const [baseOriginalPrice, setBaseOriginalPrice] = useState(0);
+  const [baseDiscountPrice, setBaseDiscountPrice] = useState(0);
+
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      if (i <= Math.floor(rating)) {
+        stars.push(
+          <span key={i} className="star full">
+            ★
+          </span>
+        );
+      } else if (i - rating < 1) {
+        stars.push(
+          <span key={i} className="star half">
+            ★
+          </span>
+        );
+      } else {
+        stars.push(
+          <span key={i} className="star empty">
+            ☆
+          </span>
+        );
+      }
+    }
+    return stars;
+  };
 
   useEffect(() => {
     const pathSegments = window.location.pathname.split("/");
@@ -54,37 +91,145 @@ const DetailPage = () => {
 
       if (foundCard) {
         setCurrentCard(foundCard);
+        const original = parseInt(
+          (foundCard.originalPrice || "0").replace(/[^0-9]/g, ""),
+          10
+        );
+        const discount = parseInt(
+          (foundCard.discountPrice || "0").replace(/[^0-9]/g, ""),
+          10
+        );
+        setBaseOriginalPrice(original);
+        setBaseDiscountPrice(discount);
       } else {
         console.error("Card not found for title:", decodedTitle);
       }
     }
   }, []);
 
-  const handleReserveClick = (roomTitle) => {
-    setSelectedRoom(roomTitle);
-    setIsModalOpen(true);
+  const restoreHeartButtonsForDetail = useCallback(() => {
+    if (!currentCard) return;
+
+    const jjimCards = JSON.parse(localStorage.getItem("jjimCards") || "[]");
+    const currentTitle = currentCard.title;
+
+    const guesthouse = jjimCards.find((item) => item.title === currentTitle);
+    if (!guesthouse || !guesthouse.rooms) return;
+
+    document.querySelectorAll(".room-card").forEach((roomCardEl) => {
+      const roomType = roomCardEl
+        .querySelector(".room-title")
+        ?.textContent.trim();
+      const originalPrice = roomCardEl
+        .querySelector(".original-price")
+        ?.textContent.trim();
+      const heartImg = roomCardEl.querySelector(".heart-img");
+
+      if (roomType && heartImg) {
+        const isRoomJjimmed = guesthouse.rooms.some(
+          (room) =>
+            room.roomType === roomType && room.originalPrice === originalPrice
+        );
+
+        if (isRoomJjimmed) {
+          heartImg.classList.add("heart-active");
+          heartImg.src = heartSelIcon;
+        } else {
+          heartImg.classList.remove("heart-active");
+          heartImg.src = heartNonIcon;
+        }
+      }
+    });
+  }, [currentCard]);
+
+  useEffect(() => {
+    restoreHeartButtonsForDetail();
+  }, [restoreHeartButtonsForDetail]);
+
+  // ReserveModal을 열기 위한 핸들러
+  const handleOpenReserveModal = (roomTitle) => {
+    setSelectedRoomTitle(roomTitle); // 클릭한 방의 제목 설정
+    setIsReserveModalOpen(true); // ReserveModal 열기
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedRoom("");
-    setSelectedDates([]);
+  // ReserveModal을 닫기 위한 핸들러
+  const handleCloseReserveModal = () => {
+    setIsReserveModalOpen(false); // ReserveModal 닫기
+    setSelectedRoomTitle(""); // 선택된 방 제목 초기화
   };
 
-  const handleSubmitReservation = () => {
-    console.log("예약이 제출되었습니다!");
-    console.log("선택된 날짜:", selectedDates);
-    setIsModalOpen(false);
+  // ReserveModal에서 예약 제출이 완료되었을 때 호출될 핸들러 (다음 모달인 CardModal 열기)
+  const handleSubmitReservationFromReserveModal = (reservationData) => {
+    setIsReserveModalOpen(false); // ReserveModal 닫기
+    setIsCardModalOpen(true); // CardModal 열기
   };
 
-  const handleHeartClick = (event) => {
-    const heartImg = event.target;
-    if (heartImg.src !== heartNonIcon) {
+  // CardModal에서 결제가 성공했을 때 호출될 핸들러 (다음 모달인 TotalModal 열기)
+  const handlePaymentSuccessFromCardModal = () => {
+    setIsCardModalOpen(false); // CardModal 닫기
+    setIsTotalModalOpen(true); // TotalModal 열기
+  };
+
+  // TotalModal을 닫기 위한 핸들러
+  const handleCloseTotalModal = () => {
+    setIsTotalModalOpen(false); // TotalModal 닫기
+  };
+
+  const handleHeartToggle = (e, room, roomImage) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const heartImg = e.currentTarget.querySelector(".heart-img");
+    const isJjimmed = heartImg.src.includes("heart_sel.webp");
+
+    let jjimCards = JSON.parse(localStorage.getItem("jjimCards") || "[]");
+
+    const currentTitle = currentCard.title;
+    let existingGuesthouse = jjimCards.find(
+      (item) => item.title === currentTitle
+    );
+
+    if (!existingGuesthouse) {
+      existingGuesthouse = {
+        title: currentTitle,
+        image: currentCard.image,
+        location: currentCard.location,
+        rooms: [],
+      };
+      jjimCards.push(existingGuesthouse);
+    }
+
+    const roomObj = {
+      roomImage: roomImage,
+      roomType: room.title,
+      originalPrice: room.originalPrice,
+      discountPrice: room.discountPrice,
+      limit: room.limit,
+      beds: room.beds,
+    };
+
+    if (isJjimmed) {
+      existingGuesthouse.rooms = existingGuesthouse.rooms.filter(
+        (r) =>
+          !(
+            r.roomType === roomObj.roomType &&
+            r.originalPrice === roomObj.originalPrice
+          )
+      );
+      heartImg.src = heartNonIcon;
+    } else {
+      existingGuesthouse.rooms.push(roomObj);
       heartImg.src = heartSelIcon;
     }
+
+    if (existingGuesthouse.rooms.length === 0) {
+      jjimCards = jjimCards.filter((item) => item.title !== currentTitle);
+    }
+
+    localStorage.setItem("jjimCards", JSON.stringify(jjimCards));
   };
 
-  const roomCategories = roomCategoriesData;
+  const formatPrice = (num) => num.toLocaleString("ko-KR");
 
   if (!currentCard) {
     return (
@@ -92,7 +237,7 @@ const DetailPage = () => {
         <Header />
         <main>
           <div className="detailpage-wrapper">
-            <p>게스트하우스를 찾을 수 없습니다.</p>
+            <p>게스트하우스 정보를 불러오는 중이거나 찾을 수 없습니다.</p>
           </div>
         </main>
         <Footer />
@@ -142,7 +287,12 @@ const DetailPage = () => {
               {currentCard.title}
             </h2>
             <p id="detail-location" className="location-text">
-              <img src={location} alt="위치" className="icon" loading="lazy" />
+              <img
+                src={locationIcon}
+                alt="위치"
+                className="icon"
+                loading="lazy"
+              />
               {currentCard.location}
             </p>
           </div>
@@ -151,221 +301,175 @@ const DetailPage = () => {
             <Swiper
               className="review-slider"
               spaceBetween={10}
-              slidesPerView={1}
-              navigation
-              pagination={{ clickable: true }}
+              slidesPerView={2.5}
+              navigation={true}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1.2,
+                  spaceBetween: 10,
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 15,
+                },
+                1024: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+              }}
             >
-              <SwiperSlide>
-                <div className="review-item">
-                  <p>
-                    "정말 즐거운 시간을 보냈습니다. 깨끗하고 서비스도
-                    최고였어요!" - 김철수
-                  </p>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="review-item">
-                  <p>
-                    "위치도 좋고, 방도 편안해서 다음에도 이용하고 싶어요." -
-                    이영희
-                  </p>
-                </div>
-              </SwiperSlide>
+              {reviewData.map((review, index) => (
+                <SwiperSlide key={index}>
+                  <div className="review-card">
+                    <div className="review-user">{review.user}</div>
+                    <div className="review-info">
+                      <div className="date-stars">
+                        <div className="review-date">{review.date}</div>
+                        <div className="review-stars">
+                          {renderStars(review.rating)}
+                        </div>
+                      </div>
+                      <div className="review-content">
+                        <div className="review-text">{review.text}</div>
+                        <div className="review-thumb">
+                          <img
+                            src={require(`./image/${review.image}`)}
+                            alt="리뷰 썸네일"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
 
           <h2 className="room-select">객실 선택</h2>
-          {roomCategories.map((category) => (
+          {roomCategoriesData.map((category, categoryIndex) => (
             <div className="room-category" key={category.type}>
               <h3 className="room-type-title">{category.type}</h3>
-              {category.rooms.map((room) => (
-                <div className="room-card" key={room.id}>
-                  <img
-                    src={singleroom}
-                    alt={room.title}
-                    className="room-img"
-                    loading="lazy"
-                  />
-                  <div className="room-info">
-                    <div className="room-main">
-                      <div className="room-header">
-                        <div className="room-title">{room.title}</div>
-                      </div>
-                      <div className="room-desc">{room.desc}</div>
-                      <div className="room-meta">
-                        <div>
-                          <img src={personIcon} className="icon" />{" "}
-                          <span className="room-limit">{room.limit}</span>
+              {category.rooms.map((room) => {
+                const priceGap = categoryIndex * 10000;
+                const finalOriginal =
+                  baseOriginalPrice > 0 ? baseOriginalPrice + priceGap : null;
+                const finalDiscount =
+                  baseDiscountPrice > 0 ? baseDiscountPrice + priceGap : null;
+
+                const isSoldOut =
+                  baseDiscountPrice === 0 || finalDiscount === null;
+
+                const roomImage = imageMap[category.image];
+
+                return (
+                  <div className="room-card" key={room.id}>
+                    <img
+                      src={roomImage}
+                      alt={room.title}
+                      className="room-img"
+                      loading="lazy"
+                    />
+                    <div className="room-info">
+                      <div className="room-main">
+                        <div className="room-header">
+                          <div className="room-title">{room.title}</div>
                         </div>
-                        <div className="room-beds">
-                          <img src={bedIcon} className="icon" />{" "}
-                          <span className="room-bed">{room.beds}</span>
+                        <div className="room-desc">{room.desc}</div>
+                        <div className="room-meta">
+                          <div>
+                            <img
+                              src={personIcon}
+                              className="icon"
+                              alt="인원 아이콘"
+                            />{" "}
+                            <span className="room-limit">{room.limit}</span>
+                          </div>
+                          <div className="room-beds">
+                            <img
+                              src={bedIcon}
+                              className="icon"
+                              alt="침대 아이콘"
+                            />{" "}
+                            <span className="room-bed">{room.beds}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="room-side">
-                      <button className="heart-btn" onClick={handleHeartClick}>
-                        <img
-                          src={heartNonIcon}
-                          alt="찜하기"
-                          className="heart-img"
-                        />
-                      </button>
-                      <div className="room-price">
-                        <span className="original-price">
-                          {room.originalPrice}
-                        </span>
-                        <span className="discount-price">
-                          {room.discountPrice}
-                        </span>
-                      </div>
-                      <div className="room-actions">
+                      <div className="room-side">
                         <button
-                          className="reserve-btn"
-                          onClick={() => handleReserveClick(room.title)}
+                          className="heart-btn"
+                          onClick={(e) => handleHeartToggle(e, room, roomImage)}
                         >
-                          예약하기
+                          <img
+                            src={heartNonIcon}
+                            alt="찜하기"
+                            className="heart-img"
+                          />
                         </button>
+                        <div className="room-price">
+                          {isSoldOut ? (
+                            <p className="sold-out">예약마감</p>
+                          ) : (
+                            <>
+                              {finalOriginal &&
+                                finalOriginal > finalDiscount && (
+                                  <span className="original-price">
+                                    {formatPrice(finalOriginal)}
+                                  </span>
+                                )}
+                              <span className="discount-price">
+                                {finalDiscount
+                                  ? formatPrice(finalDiscount)
+                                  : ""}
+                              </span>
+                            </>
+                          )}
+                        </div>
+                        <div className="room-actions">
+                          <button
+                            className={`reserve-btn ${
+                              isSoldOut ? "disabled-btn" : ""
+                            }`}
+                            onClick={() => handleOpenReserveModal(room.title)}
+                            disabled={isSoldOut}
+                          >
+                            {isSoldOut ? "예약 마감" : "예약하기"}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ))}
         </div>
 
-        {isModalOpen && (
-          <div className="modal" id="modalWrap" style={{ display: "block" }}>
-            <div
-              className="modal-container"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="modalTitle"
-            >
-              <div className="modal-header">
-                <div className="info-head">
-                  <img
-                    src={modalReserveIcon} // Use imported image
-                    alt="예약 아이콘"
-                  />
-                  <span id="modalTitle">예약</span>
-                </div>
-                <button
-                  className="modal-close"
-                  id="modalCloseBtn"
-                  aria-label="닫기"
-                  onClick={handleCloseModal}
-                >
-                  &times;
-                </button>
-              </div>
-
-              <div className="modal-body">
-                <div className="form-group">
-                  <label htmlFor="nameInput">이름</label>
-                  <input
-                    type="text"
-                    id="nameInput"
-                    placeholder="이름을 입력하세요."
-                  />
-                </div>
-                <div className="form-group">
-                  <label>게스트하우스</label>
-                  <div className="tag-boxes">
-                    <span className="tag-box">{currentCard.title}</span>
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="ageInput">나이</label>
-                  <input
-                    type="number"
-                    id="ageInput"
-                    placeholder="나이를 입력하세요."
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="roomInput">룸</label>
-                  <input
-                    type="text"
-                    id="roomInput"
-                    value={selectedRoom}
-                    readOnly
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="emailInput">이메일</label>
-                  <input
-                    type="email"
-                    id="emailInput"
-                    placeholder="이메일을 입력하세요."
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="stayDateInput">숙박 예정일</label>
-                  <div className="date-picker-wrapper">
-                    <Flatpickr
-                      options={{
-                        mode: "range",
-                        dateFormat: "Y.m.d",
-                        locale: Korean,
-                        placeholder: "예: 2025.06.01 - 2025.06.04",
-                      }}
-                      value={selectedDates}
-                      onChange={(dates) => {
-                        setSelectedDates(dates);
-                      }}
-                      className="form-control"
-                      id="stayDateInput"
-                    />
-                    <svg
-                      className="date-picker-icon"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      role="button"
-                      tabIndex="0"
-                      aria-label="날짜 선택 열기"
-                    >
-                      <path d="M7 11h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z" />
-                      <path fill="none" d="M0 0h24v24H0z" />
-                      <path
-                        d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14
-                                            c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-4zm0
-                                            16H5V9h14v11z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="passwordInput">비밀번호</label>
-                  <input
-                    type="password"
-                    id="passwordInput"
-                    placeholder="비밀번호를 입력하세요."
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="guestCountInput">인원 수</label>
-                  <input type="text" id="guestCountInput" placeholder="ex. 3" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="passwordConfirmInput">비밀번호 확인</label>
-                  <input
-                    type="password"
-                    id="passwordConfirmInput"
-                    placeholder="비밀번호를 다시 입력하세요."
-                  />
-                </div>
-              </div>
-              <button className="btn-next" onClick={handleSubmitReservation}>
-                다음
-              </button>
-            </div>
-          </div>
+        {/* ReserveModal 렌더링 */}
+        {isReserveModalOpen && (
+          <ReserveModal
+            isOpen={isReserveModalOpen}
+            onClose={handleCloseReserveModal}
+            onSubmitReservation={handleSubmitReservationFromReserveModal}
+            selectedRoomTitleFromParent={selectedRoomTitle}
+            currentCard={currentCard}
+          />
         )}
 
-        <div className="card-modal" id="cardModal"></div>
-        <div className="total-modal" id="totalModal"></div>
+        {/* CardModal 렌더링 */}
+        {isCardModalOpen && (
+          <CardModal
+            onClose={() => setIsCardModalOpen(false)} // CardModal 닫기
+            onPaymentSuccess={handlePaymentSuccessFromCardModal} // 결제 성공 시 TotalModal 열기
+          />
+        )}
+
+        {/* TotalModal 렌더링 */}
+        {isTotalModalOpen && (
+          <TotalModal
+            isOpen={isTotalModalOpen}
+            onClose={handleCloseTotalModal}
+          />
+        )}
       </main>
       <Footer />
       <ScrollTop />

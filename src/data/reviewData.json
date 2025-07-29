@@ -1,0 +1,44 @@
+[
+  {
+    "user": "eljsdfiu...",
+    "date": "2025.06.01",
+    "rating": 4.5,
+    "text": "방이 깨끗하고 넓어요! 직원 응대도 친절하고 훌륭해요! 다음에도 이 게스트 하우스 오고싶네요!",
+    "image": "client01.png"
+  },
+  {
+    "user": "beautyand...",
+    "date": "2025.05.12",
+    "rating": 5,
+    "text": "우와! 친구들과 파티를 너무 재밌게 즐겼어요. 1박 2일로 예약했는데, 겨울에 또 올게요~",
+    "image": "client02.png"
+  },
+  {
+    "user": "chocolove...",
+    "date": "2025.06.01",
+    "rating": 4,
+    "text": "조식도 너무 맛있고 위치도 좋아요. 강추!",
+    "image": "client03.png"
+  },
+  {
+    "user": "eljsdfiu...",
+    "date": "2025.06.01",
+    "rating": 4.5,
+    "text": "방이 깨끗하고 넓어요! 직원 응대도 친절하고 훌륭해요! 다음에도 이 게스트 하우스 오고싶네요!",
+    "image": "client01.png"
+  },
+  {
+    "user": "beautyand...",
+    "date": "2025.05.12",
+    "rating": 5,
+    "text": "우와! 친구들과 파티를 너무 재밌게 즐겼어요. 1박 2일로 예약했는데, 겨울에 또 올게요~",
+    "image": "client02.png"
+  },
+  {
+    "user": "chocolove...",
+    "date": "2025.06.01",
+    "rating": 4,
+    "text": "조식도 너무 맛있고 위치도 좋아요. 강추!",
+    "image": "client03.png"
+  }
+]
