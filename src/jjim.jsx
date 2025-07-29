@@ -7,6 +7,7 @@ import TotalModal from "./totalmodal";
 import CardModal from "./cardmodal";
 import ScrollTop from "@/components/ScrollTop";
 import ReserveModal from "./reservemodal";
+import locationIcon from "@/image/location.webp";
 
 export default function Jjim() {
   // 상태 관리
@@ -118,8 +119,8 @@ export default function Jjim() {
 
   // 카드 렌더링
   const renderCard = (card, idx) => (
-    <div className="card" key={idx}>
-      <div className="main-image-wrapper">
+    <div className="jjimcard" key={idx}>
+      <div className="jjimcard-wrapper">
         <div className="checkbox">
           <input
             type="checkbox"
@@ -127,32 +128,44 @@ export default function Jjim() {
             onChange={() => handleSelect(idx)}
           />
         </div>
-        <img src={card.image} alt={card.title} className="main" />
+        <div className="jjimcard-photo">
+          <img src={require(`./image/${card.image}`)} alt={card.title} />
+        </div>
       </div>
-      <div className="card-content">
+      <div className="jjimcard-content">
         <div className="title">{card.title}</div>
-        <div className="location">{card.location}</div>
+        <div className="jjimcard-location">
+          <div className="location-icon">
+            <img src={locationIcon} alt="위치" />
+          </div>
+          <span>{card.location}</span>
+        </div>
         {Array.isArray(card.rooms) && card.rooms.length > 0 ? (
           card.rooms.map((room, i) => (
-            <div className="room-slide" key={i}>
-              <div className="room-info">
-                <img
-                  src={room.roomImage || "image/default.webp"}
-                  alt="룸 이미지"
-                />
-                <div className="room-details">
-                  <div className="room-top">{room.roomType}</div>
-                  <div className="room-middle">공유라운지+셀프키친</div>
-                  <div className="room-bottom">
-                    👥 {room.limit} <br /> 🛏️ {room.beds}
-                  </div>
+            <div className="jjimcard-slide" key={i}>
+              <div className="jjimcard-info">
+                <div className="jjimcard-image">
+                  <img
+                    src={room.roomImage || "image/default.webp"}
+                    alt="룸 이미지"
+                  />
                 </div>
-                <div className="price">
-                  <div className="original-price">
-                    <del>{room.originalPrice}</del>
+                <div className="jjimcard-details">
+                  <div className="jjimcard-detail">
+                    <div className="jjimcard-title">{room.roomType}</div>
+                    <div className="jjimcard-middle">공유라운지+셀프키친</div>
+                    <div className="jjimcard-bottom">
+                      <span>👥&nbsp;&nbsp;{room.limit}</span>
+                      <span>🛏️&nbsp;&nbsp;{room.beds}</span>
+                    </div>
                   </div>
-                  <div className="discount-price">
-                    <span>{room.discountPrice}</span>
+                  <div className="jjimcard-price">
+                    <span>
+                      <del>{room.originalPrice}</del>
+                    </span>
+                    <span className="jjimcard-discount">
+                      {room.discountPrice}원
+                    </span>
                   </div>
                 </div>
               </div>
@@ -169,13 +182,11 @@ export default function Jjim() {
     <>
       <Header />
       <div id="wrap">
-        <main className="jjin-contents">
-          <div className="delete-container d-flex justify-content-end mt-4 pe-3">
-            <span style={{ cursor: "pointer" }} onClick={handleClearAll}>
-              전체삭제
-            </span>
+        <main className="jjim-contents">
+          <div className="delete-container">
+            <span onClick={handleClearAll}>전체삭제</span>
           </div>
-          <div className="cards">
+          <div className="cardlists">
             {cards.length === 0 ? (
               <span className="none-data">찜한 항목이 없습니다.</span>
             ) : (
@@ -183,14 +194,27 @@ export default function Jjim() {
             )}
           </div>
           <div className="booking-container">
-            <button className="btn btn-reserve" onClick={handleReserve}>
-              예약
-            </button>
-            <button className="btn btn-delete" onClick={handleDelete}>
-              삭제
-            </button>
+            <div className="booking-btns">
+              <div
+                role="button"
+                className="jjim-reserve jjimbtn"
+                onClick={handleReserve}
+              >
+                예약
+              </div>
+              <div
+                role="button"
+                className="jjim-delete jjimbtn"
+                onClick={handleDelete}
+              >
+                삭제
+              </div>
+            </div>
             <div className="total-price">
-              총 가격: <strong>{totalPrice.toLocaleString()}</strong>원
+              <span>총 가격:</span>{" "}
+              <span>
+                <strong>{totalPrice.toLocaleString()}</strong>원
+              </span>
             </div>
           </div>
         </main>
