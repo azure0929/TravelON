@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import cardIcon from "@/image/card.png";
 import "@/css/cardmodal.css";
 
-export default function CardModal({ onClose, onPaymentSuccess }) {
+export default function CardModal({ isOpen, onClose, onPaymentSuccess }) {
   const [cardCompany, setCardCompany] = useState("국민카드");
   const [cardNumber, setCardNumber] = useState(["", "", "", ""]);
   const [payerName, setPayerName] = useState("");
@@ -80,6 +80,8 @@ export default function CardModal({ onClose, onPaymentSuccess }) {
       alert("결제가 완료되었습니다!");
       onPaymentSuccess(); // 부모에서 CardModal 닫고 TotalModal 열기
     }
+
+    if (!isOpen) return null;
   };
 
   return (

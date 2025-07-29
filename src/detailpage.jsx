@@ -29,7 +29,6 @@ import cardData from "@/data/cardData.json";
 import roomCategoriesData from "@/data/roomCategories.json";
 import reviewData from "@/data/reviewData.json";
 
-// 모달 컴포넌트들을 정확하게 임포트합니다.
 import ReserveModal from "./reservemodal";
 import CardModal from "./cardmodal";
 import TotalModal from "./totalmodal";
@@ -458,6 +457,7 @@ const DetailPage = () => {
         {/* CardModal 렌더링 */}
         {isCardModalOpen && (
           <CardModal
+            isOpen={isCardModalOpen}
             onClose={() => setIsCardModalOpen(false)} // CardModal 닫기
             onPaymentSuccess={handlePaymentSuccessFromCardModal} // 결제 성공 시 TotalModal 열기
           />
