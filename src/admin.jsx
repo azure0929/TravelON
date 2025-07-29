@@ -1,4 +1,6 @@
 import React from "react";
+import "@/css/common.css";
+import "@/css/admin.css";
 
 // TODO: Bootstrap, Fontawesome, Chart.js 등 외부 CSS/JS는 public/index.html 또는 App.js에서 import 필요
 // TODO: js/admin.js, js/common.js 등은 React useEffect 등으로 이식 필요

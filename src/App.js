@@ -3,6 +3,7 @@ import Main from "./main";
 import SearchPage from "./searchpage";
 import Jjim from "./jjim";
 import DetailPage from "./detailpage";
+import Admin from "./admin";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/SearchPage" element={<SearchPage />} />
           <Route path="/jjim" element={<Jjim />} />
           <Route path="/detail/:id" element={<DetailPage />} />
+          <Route path="/admin" element={<Admin />} />"
         </Routes>
       </div>
     </Router>
