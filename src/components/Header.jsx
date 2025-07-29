@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import "@/css/common.css";
+import logo from "@/image/logo.png";
+import reserveIcon from "@/image/reserve.png";
+import wishlistIcon from "@/image/wishlist.png";
 
 export default function Header() {
   const [search, setSearch] = useState("");
@@ -102,7 +105,7 @@ export default function Header() {
       <div className="inner">
         <div className="logo">
           <a href="/">
-            <img src="image/logo.png" alt="logo" loading="lazy" />
+            <img src={logo} alt="logo" loading="lazy" />
           </a>
         </div>
         <div className="search">
@@ -128,13 +131,13 @@ export default function Header() {
           <ul>
             <li>
               <a href="#none" id="reserveBtn" onClick={handleReserveClick}>
-                <img src="image/reserve.png" alt="예약" loading="lazy" />
+                <img src={reserveIcon} alt="예약" loading="lazy" />
                 <span>예약</span>
               </a>
             </li>
             <li>
               <a href="/jjim">
-                <img src="image/wishlist.png" alt="찜" loading="lazy" />
+                <img src={wishlistIcon} alt="찜" loading="lazy" />
                 <span>찜</span>
               </a>
             </li>

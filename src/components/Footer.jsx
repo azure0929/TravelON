@@ -1,11 +1,17 @@
 import "@/css/common.css";
+import logo from "@/image/logo.png";
+import facebookIcon from "@/image/facebook.png";
+import instagramIcon from "@/image/instagram.png";
+import callIcon from "@/image/call.png";
+import kakaoIcon from "@/image/kakao.png";
+import scrollTopIcon from "@/image/scrollTop.png";
 
 export default function Footer() {
   return (
     <footer>
       <div className="inner">
         <div className="logo">
-          <img src="image/logo.png" alt="logo" />
+          <img src={logo} alt="logo" />
         </div>
         <div className="company-info">
           <div className="left">
@@ -34,12 +40,12 @@ export default function Footer() {
             <ul className="sns">
               <li>
                 <a href="#none">
-                  <img src="image/facebook.png" alt="facebook" />
+                  <img src={facebookIcon} alt="facebook" />
                 </a>
               </li>
               <li>
                 <a href="#none">
-                  <img src="image/instagram.png" alt="instagram" />
+                  <img src={instagramIcon} alt="instagram" />
                 </a>
               </li>
             </ul>
@@ -54,7 +60,7 @@ export default function Footer() {
               <li>
                 <a href="#none">
                   <div className="photo">
-                    <img src="image/call.png" alt="전화문의" />
+                    <img src={callIcon} alt="전화문의" />
                   </div>
                   <span>1677-1234</span>
                 </a>
@@ -62,7 +68,7 @@ export default function Footer() {
               <li>
                 <a href="#none">
                   <div className="photo">
-                    <img src="image/kakao.png" alt="카카오 문의" />
+                    <img src={kakaoIcon} alt="카카오 문의" />
                   </div>
                   <span>카카오 문의</span>
                 </a>

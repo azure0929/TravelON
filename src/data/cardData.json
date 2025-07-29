@@ -1,7 +1,7 @@
 [
   {
     "category": "도미토리형",
-    "image": "image/eximage1.webp",
+    "image": "exImage1.webp",
     "title": "해변가 하우스",
     "rating": "4.5",
     "soldOut": true,
@@ -10,7 +10,7 @@
   },
   {
     "category": "도미토리형",
-    "image": "image/eximage2.webp",
+    "image": "exImage2.webp",
     "title": "소나무 게스트하우스",
     "rating": "4.3",
     "originalPrice": "38,000",
@@ -20,7 +20,7 @@
   },
   {
     "category": "도미토리형",
-    "image": "image/eximage3.webp",
+    "image": "exImage3.webp",
     "title": "바다소리 숙소",
     "rating": "4.0",
     "originalPrice": "42,000",
@@ -30,7 +30,7 @@
   },
   {
     "category": "도미토리형",
-    "image": "image/eximage4.webp",
+    "image": "exImage4.webp",
     "title": "별밤 하우스",
     "rating": "4.6",
     "originalPrice": "45,000",
@@ -40,7 +40,7 @@
   },
   {
     "category": "도미토리형",
-    "image": "image/eximage5.webp",
+    "image": "exImage5.webp",
     "title": "게스트 코지룸",
     "rating": "4.1",
     "soldOut": true,
@@ -49,7 +49,7 @@
   },
   {
     "category": "도미토리형",
-    "image": "image/eximage6.webp",
+    "image": "exImage6.webp",
     "title": "파도 게스트하우스",
     "rating": "4.4",
     "originalPrice": "39,000",
@@ -59,7 +59,7 @@
   },
   {
     "category": "도미토리형",
-    "image": "image/eximage2.webp",
+    "image": "exImage2.webp",
     "title": "블루하버 게스트하우스",
     "rating": "4.2",
     "originalPrice": "36,000",
@@ -69,7 +69,7 @@
   },
   {
     "category": "도미토리형",
-    "image": "image/eximage1.webp",
+    "image": "exImage1.webp",
     "title": "아침햇살 숙소",
     "rating": "4.3",
     "originalPrice": "41,000",
@@ -79,7 +79,7 @@
   },
   {
     "category": "도미토리형",
-    "image": "image/eximage3.webp",
+    "image": "exImage3.webp",
     "title": "여행자의 쉼터",
     "rating": "4.1",
     "soldOut": true,
@@ -88,7 +88,7 @@
   },
   {
     "category": "도미토리형",
-    "image": "image/eximage6.webp",
+    "image": "exImage6.webp",
     "title": "게스트 라운지",
     "rating": "4.0",
     "originalPrice": "37,000",
@@ -99,7 +99,7 @@
 
   {
     "category": "프라이빗형",
-    "image": "image/eximage4.webp",
+    "image": "exImage4.webp",
     "title": "프라이빗 하우스 강릉",
     "rating": "4.5",
     "originalPrice": "60,000",
@@ -109,7 +109,7 @@
   },
   {
     "category": "프라이빗형",
-    "image": "image/eximage.webp",
+    "image": "exImage1.webp",
     "title": "산책길 숙소",
     "rating": "4.3",
     "soldOut": true,
@@ -118,7 +118,7 @@
   },
   {
     "category": "프라이빗형",
-    "image": "image/eximage5.webp",
+    "image": "exImage5.webp",
     "title": "조용한 마을 게스트하우스",
     "rating": "4.4",
     "originalPrice": "55,000",
@@ -128,7 +128,7 @@
   },
   {
     "category": "프라이빗형",
-    "image": "image/eximage2.webp",
+    "image": "exImage2.webp",
     "title": "레트로 룸",
     "rating": "4.2",
     "originalPrice": "50,000",
@@ -138,7 +138,7 @@
   },
   {
     "category": "프라이빗형",
-    "image": "image/eximage6.webp",
+    "image": "exImage6.webp",
     "title": "힐링 프라이빗룸",
     "rating": "4.6",
     "originalPrice": "58,000",
@@ -149,7 +149,7 @@
 
   {
     "category": "패밀리/독채형",
-    "image": "image/eximage1.webp",
+    "image": "exImage1.webp",
     "title": "패밀리 독채 하우스",
     "rating": "4.7",
     "originalPrice": "120,000",
@@ -159,7 +159,7 @@
   },
   {
     "category": "패밀리/독채형",
-    "image": "image/eximage3.webp",
+    "image": "exImage3.webp",
     "title": "바다뷰 패밀리룸",
     "rating": "4.5",
     "soldOut": true,
@@ -168,7 +168,7 @@
   },
   {
     "category": "패밀리/독채형",
-    "image": "image/eximage4.webp",
+    "image": "exImage4.webp",
     "title": "가족형 게스트하우스",
     "rating": "4.3",
     "originalPrice": "110,000",
@@ -178,7 +178,7 @@
   },
   {
     "category": "패밀리/독채형",
-    "image": "image/eximage6.webp",
+    "image": "exImage6.webp",
     "title": "숲속의 하우스",
     "rating": "4.4",
     "originalPrice": "100,000",
@@ -188,7 +188,7 @@
   },
   {
     "category": "패밀리/독채형",
-    "image": "image/eximage2.webp",
+    "image": "exImage2.webp",
     "title": "감성 독채",
     "rating": "4.5",
     "originalPrice": "130,000",
@@ -199,7 +199,7 @@
 
   {
     "category": "테마형/특수형",
-    "image": "image/eximage.webp",
+    "image": "exImage1.webp",
     "title": "한옥 체험 숙소",
     "rating": "4.8",
     "originalPrice": "80,000",
@@ -209,7 +209,7 @@
   },
   {
     "category": "테마형/특수형",
-    "image": "image/eximage5.webp",
+    "image": "exImage5.webp",
     "title": "캠핑 컨셉 게스트하우스",
     "rating": "4.2",
     "soldOut": true,
@@ -218,7 +218,7 @@
   },
   {
     "category": "테마형/특수형",
-    "image": "image/eximage6.webp",
+    "image": "exImage6.webp",
     "title": "만화방 콘셉트 숙소",
     "rating": "4.1",
     "originalPrice": "50,000",
@@ -228,7 +228,7 @@
   },
   {
     "category": "테마형/특수형",
-    "image": "image/eximage1.webp",
+    "image": "exImage1.webp",
     "title": "레트로 감성 하우스",
     "rating": "4.0",
     "originalPrice": "55,000",
@@ -238,7 +238,7 @@
   },
   {
     "category": "테마형/특수형",
-    "image": "image/eximage3.webp",
+    "image": "exImage3.webp",
     "title": "우주 테마 숙소",
     "rating": "4.6",
     "originalPrice": "70,000",
@@ -249,7 +249,7 @@
 
   {
     "category": "장기 숙박형",
-    "image": "image/eximage2.webp",
+    "image": "exImage2.webp",
     "title": "장기 게스트하우스 강릉",
     "rating": "4.3",
     "originalPrice": "30,000",
@@ -259,7 +259,7 @@
   },
   {
     "category": "장기 숙박형",
-    "image": "image/eximage.webp",
+    "image": "exImage1.webp",
     "title": "코워킹 게스트하우스",
     "rating": "4.4",
     "soldOut": true,
@@ -268,7 +268,7 @@
   },
   {
     "category": "장기 숙박형",
-    "image": "image/eximage5.webp",
+    "image": "exImage5.webp",
     "title": "원룸형 게스트하우스",
     "rating": "4.2",
     "originalPrice": "35,000",
@@ -278,7 +278,7 @@
   },
   {
     "category": "장기 숙박형",
-    "image": "image/eximage6.webp",
+    "image": "exImage6.webp",
     "title": "워크앤레스트 하우스",
     "rating": "4.1",
     "originalPrice": "33,000",
@@ -288,7 +288,7 @@
   },
   {
     "category": "장기 숙박형",
-    "image": "image/eximage1.webp",
+    "image": "exImage1.webp",
     "title": "장기전용 하우스",
     "rating": "4.5",
     "originalPrice": "38,000",

@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import "@/css/searchpage.css";
 import "@/css/common.css";
+import star from "@/image/star.webp";
+import heartSel from "@/image/heart_sel.webp";
+import heartNon from "@/image/heart_non.webp";
+import locationIcon from "@/image/location.webp";
 
 function Card({ card, onHeartClick, onCardClick }) {
   const [isJjimmed, setIsJjimmed] = useState(false);
@@ -13,8 +17,8 @@ function Card({ card, onHeartClick, onCardClick }) {
   const handleHeartClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    onHeartClick(card, !isJjimmed); // Notify parent component about heart status change
-    setIsJjimmed(!isJjimmed); // Update local state for heart icon
+    onHeartClick(card, !isJjimmed);
+    setIsJjimmed(!isJjimmed);
   };
 
   const handleCardClick = () => {
@@ -36,7 +40,7 @@ function Card({ card, onHeartClick, onCardClick }) {
       <div className="card-img-wrapper">
         <a href={`/detail/${card.title}`} onClick={(e) => e.stopPropagation()}>
           <img
-            src={card.image}
+            src={require(`../image/${card.image}`)}
             className="card-img"
             alt="썸네일"
             loading="lazy"
@@ -48,15 +52,13 @@ function Card({ card, onHeartClick, onCardClick }) {
           <h5 className="card-title">{card.title}</h5>
           <div className="rating-heart">
             <div className="rating">
-              <img src="image/star.webp" alt="별점" className="star-icon" />
+              <img src={star} alt="별점" className="star-icon" />
               <span className="rating-score">{card.rating}</span>
             </div>
             <button className="heart-btn" onClick={handleHeartClick}>
               <img
                 className="heart-img"
-                src={
-                  isJjimmed ? "image/heart_sel.webp" : "image/heart_non.webp"
-                }
+                src={isJjimmed ? heartSel : heartNon}
                 alt="하트"
                 loading="lazy"
               />
@@ -67,7 +69,7 @@ function Card({ card, onHeartClick, onCardClick }) {
         <div className="location-box">
           <img
             className="location-icon"
-            src="image/location.webp"
+            src={locationIcon}
             alt="위치 이미지"
             loading="lazy"
           />

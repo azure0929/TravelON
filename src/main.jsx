@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -9,6 +9,25 @@ import "./css/main.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import popularData from "./data/popularData.json";
+
+// image
+import scrollTopIcon from "@/image/scrollTop.png";
+import event01 from "@/image/event01.webp";
+import event02 from "@/image/event02.webp";
+import event03 from "@/image/event03.webp";
+import video01 from "@/image/video01.mp4";
+import video02 from "@/image/video02.mp4";
+import benefit01 from "@/image/benefit01.png";
+import benefit02 from "@/image/benefit02.webp";
+import benefit03 from "@/image/benefit03.webp";
+import benefit04 from "@/image/benefit01.png";
+import arrow from "@/image/main-arrow.png";
+import weeklysale01 from "@/image/weeklysale01.webp";
+import weeklysale02 from "@/image/weeklysale02.webp";
+import weeklysale03 from "@/image/weeklysale03.webp";
+import weeklyrecommend01 from "@/image/weeklyrecommend01.jpg";
+import weeklyrecommend02 from "@/image/weeklyrecommend02.jpg";
+import weeklyrecommend03 from "@/image/weeklyrecommend03.jpg";
 
 export default function Main() {
   const [popularTab, setPopularTab] = useState("seoul");
@@ -60,7 +79,7 @@ export default function Main() {
             <h1 className="title">이벤트</h1>
             <div className="content">
               <div className="main">
-                <img src="image/event01.webp" alt="이벤트-01" loading="lazy" />
+                <img src={event01} alt="이벤트-01" loading="lazy" />
                 <div className="info">
                   <div>
                     <span>친구, 연인과 함께라면</span>
@@ -80,16 +99,12 @@ export default function Main() {
                     el: ".event-progressbar",
                   }}
                   autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  modules={[Pagination]}
+                  modules={[Autoplay, Pagination]}
                 >
                   <SwiperSlide className="event-list">
                     <div className="photo">
                       <a href="#none">
-                        <img
-                          src="/image/event02.webp"
-                          alt="이벤트-02"
-                          loading="lazy"
-                        />
+                        <img src={event02} alt="이벤트-02" loading="lazy" />
                       </a>
                     </div>
                     <div className="info">
@@ -103,11 +118,7 @@ export default function Main() {
                   <SwiperSlide className="event-list">
                     <div className="photo">
                       <a href="#none">
-                        <img
-                          src="image/event03.webp"
-                          alt="이벤트-03"
-                          loading="lazy"
-                        />
+                        <img src={event03} alt="이벤트-03" loading="lazy" />
                       </a>
                     </div>
                     <div className="info">
@@ -121,11 +132,7 @@ export default function Main() {
                   <SwiperSlide className="event-list">
                     <div className="photo">
                       <a href="#none">
-                        <img
-                          src="/image/event02.webp"
-                          alt="이벤트-02"
-                          loading="lazy"
-                        />
+                        <img src={event02} alt="이벤트-02" loading="lazy" />
                       </a>
                     </div>
                     <div className="info">
@@ -161,10 +168,10 @@ export default function Main() {
                       id="bg-video"
                       preload="none"
                     >
-                      <source src="image/video01.mp4" type="video/mp4" />
+                      <source src={video01} type="video/mp4" />
                     </video>
                     <img
-                      src="image/benefit01.png"
+                      src={benefit01}
                       alt="도심 호캉스 이미지"
                       loading="lazy"
                     />
@@ -184,20 +191,12 @@ export default function Main() {
                         cursor: "pointer",
                       }}
                     >
-                      <img
-                        src="image/main-arrow.png"
-                        alt="arrow"
-                        loading="lazy"
-                      />
+                      <img src={arrow} alt="arrow" loading="lazy" />
                     </button>
                   </div>
                 </li>
                 <li className="offer-card">
-                  <img
-                    src="image/benefit02.webp"
-                    alt="주말 특가 이미지"
-                    loading="lazy"
-                  />
+                  <img src={benefit02} alt="주말 특가 이미지" loading="lazy" />
                   <h3 className="info">
                     주말 특가! <br />
                     인기 숙소 단 2일간 <br />
@@ -213,17 +212,13 @@ export default function Main() {
                         cursor: "pointer",
                       }}
                     >
-                      <img
-                        src="image/main-arrow.png"
-                        alt="arrow"
-                        loading="lazy"
-                      />
+                      <img src={arrow} alt="arrow" loading="lazy" />
                     </button>
                   </div>
                 </li>
                 <li className="offer-card">
                   <img
-                    src="image/benefit03.webp"
+                    src={benefit03}
                     alt="얼리버드 특전 이미지"
                     loading="lazy"
                   />
@@ -242,11 +237,7 @@ export default function Main() {
                         cursor: "pointer",
                       }}
                     >
-                      <img
-                        src="image/main-arrow.png"
-                        alt="arrow"
-                        loading="lazy"
-                      />
+                      <img src={arrow} alt="arrow" loading="lazy" />
                     </button>
                   </div>
                 </li>
@@ -260,10 +251,10 @@ export default function Main() {
                       id="bg-video"
                       preload="auto"
                     >
-                      <source src="image/video02.mp4" type="video/mp4" />
+                      <source src={video02} type="video/mp4" />
                     </video>
                     <img
-                      src="image/benefit04.png"
+                      src={benefit04}
                       alt="바다 근처 숙소 이미지"
                       loading="lazy"
                     />
@@ -283,11 +274,7 @@ export default function Main() {
                         cursor: "pointer",
                       }}
                     >
-                      <img
-                        src="image/main-arrow.png"
-                        alt="arrow"
-                        loading="lazy"
-                      />
+                      <img src={arrow} alt="arrow" loading="lazy" />
                     </button>
                   </div>
                 </li>
@@ -311,7 +298,7 @@ export default function Main() {
                   <div className="photo">
                     <a href="#none">
                       <img
-                        src="image/weeklysale01.webp"
+                        src={weeklysale01}
                         alt="코코아 게스트하우스"
                         loading="lazy"
                       />
@@ -329,7 +316,7 @@ export default function Main() {
                   <div className="photo">
                     <a href="#none">
                       <img
-                        src="image/weeklysale02.webp"
+                        src={weeklysale02}
                         alt="해운대 Y 게스트하우스"
                         loading="lazy"
                       />
@@ -347,7 +334,7 @@ export default function Main() {
                   <div className="photo">
                     <a href="#none">
                       <img
-                        src="image/weeklysale03.webp"
+                        src={weeklysale03}
                         alt="ABC 홈스테이"
                         loading="lazy"
                       />
@@ -365,7 +352,7 @@ export default function Main() {
                   <div className="photo">
                     <a href="#none">
                       <img
-                        src="image/weeklysale01.webp"
+                        src={weeklysale01}
                         alt="코코아 게스트하우스"
                         loading="lazy"
                       />
@@ -383,7 +370,25 @@ export default function Main() {
                   <div className="photo">
                     <a href="#none">
                       <img
-                        src="image/weeklysale03.webp"
+                        src={weeklysale02}
+                        alt="해운대 Y 게스트하우스"
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div className="info">
+                    <span>해운대 Y 게스트하우스</span>
+                    <div className="detail">
+                      <span className="saleprice">55%</span>
+                      <span>25,000원~</span>
+                    </div>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide className="list">
+                  <div className="photo">
+                    <a href="#none">
+                      <img
+                        src={weeklysale03}
                         alt="ABC 홈스테이"
                         loading="lazy"
                       />
@@ -416,7 +421,7 @@ export default function Main() {
                 <div className="photo">
                   <a href="#none">
                     <img
-                      src="image/weeklyrecommend01.jpg"
+                      src={weeklyrecommend01}
                       alt="백팩 GH 이태원"
                       loading="lazy"
                     />
@@ -434,7 +439,7 @@ export default function Main() {
                 <div className="photo">
                   <a href="#none">
                     <img
-                      src="image/weeklyrecommend02.jpg"
+                      src={weeklyrecommend02}
                       alt="인천공항 라인 게스트하우스"
                       loading="lazy"
                     />
@@ -452,7 +457,7 @@ export default function Main() {
                 <div className="photo">
                   <a href="#none">
                     <img
-                      src="image/weeklyrecommend03.jpg"
+                      src={weeklyrecommend03}
                       alt="오게스트"
                       loading="lazy"
                     />
@@ -470,7 +475,7 @@ export default function Main() {
                 <div className="photo">
                   <a href="#none">
                     <img
-                      src="image/weeklyrecommend01.jpg"
+                      src={weeklyrecommend01}
                       alt="백팩 GH 이태원"
                       loading="lazy"
                     />
@@ -488,7 +493,7 @@ export default function Main() {
                 <div className="photo">
                   <a href="#none">
                     <img
-                      src="image/weeklyrecommend02.jpg"
+                      src={weeklyrecommend02}
                       alt="인천공항 라인 게스트하우스"
                       loading="lazy"
                     />
@@ -506,7 +511,7 @@ export default function Main() {
                 <div className="photo">
                   <a href="#none">
                     <img
-                      src="image/weeklyrecommend03.jpg"
+                      src={weeklyrecommend03}
                       alt="오게스트"
                       loading="lazy"
                     />
@@ -577,7 +582,11 @@ export default function Main() {
                   {popularData[popularTab].map((item, i) => (
                     <li key={i} className="list">
                       <div className="photo">
-                        <img src={item.image} alt={item.title} loading="lazy" />
+                        <img
+                          src={require(`./${item.image}`)}
+                          alt={item.title}
+                          loading="lazy"
+                        />
                       </div>
                       <div className="info">
                         <span>{item.title}</span>
@@ -601,7 +610,7 @@ export default function Main() {
         id="scrollTopBtn"
         aria-label="맨 위로 이동"
       >
-        <img src="image/scrollTop.png" alt="scroll-top" />
+        <img src={scrollTopIcon} alt="scroll-top" />
       </div>
     </div>
   );
