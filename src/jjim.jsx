@@ -3,10 +3,10 @@ import "./css/jjim.css";
 import "./css/common.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import TotalModal from "./totalmodal";
-import CardModal from "./cardmodal";
+import ReserveModal from "@/modal/reservemodal";
+import CardModal from "@/modal/cardmodal";
+import TotalModal from "@/modal/totalmodal";
 import ScrollTop from "@/components/ScrollTop";
-import ReserveModal from "./reservemodal";
 import locationIcon from "@/image/location.webp";
 
 export default function Jjim() {

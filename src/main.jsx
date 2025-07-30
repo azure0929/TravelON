@@ -20,7 +20,7 @@ import video02 from "@/image/video02.mp4";
 import benefit01 from "@/image/benefit01.png";
 import benefit02 from "@/image/benefit02.webp";
 import benefit03 from "@/image/benefit03.webp";
-import benefit04 from "@/image/benefit01.png";
+import benefit04 from "@/image/benefit04.png";
 import arrow from "@/image/main-arrow.png";
 import weeklysale01 from "@/image/weeklysale01.webp";
 import weeklysale02 from "@/image/weeklysale02.webp";

@@ -5,12 +5,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import ScrollTop from "@/components/ScrollTop";
 
-import "./css/common.css";
-import "./css/detailpage.css";
+import "@/css/common.css";
+import "@/css/detailpage.css";
 
 import singleroom from "@/image/singleroom.webp";
 import doubleroom from "@/image/doubleroom.webp";
@@ -29,9 +29,9 @@ import cardData from "@/data/cardData.json";
 import roomCategoriesData from "@/data/roomCategories.json";
 import reviewData from "@/data/reviewData.json";
 
-import ReserveModal from "./reservemodal";
-import CardModal from "./cardmodal";
-import TotalModal from "./totalmodal";
+import ReserveModal from "@/modal/reservemodal";
+import CardModal from "@/modal/cardmodal";
+import TotalModal from "@/modal/totalmodal";
 
 SwiperCore.use([Navigation, Pagination]);
 
