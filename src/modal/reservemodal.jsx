@@ -4,7 +4,7 @@ import "flatpickr/dist/flatpickr.min.css";
 import "flatpickr/dist/themes/material_green.css";
 import { Korean } from "flatpickr/dist/l10n/ko.js";
 import "@/css/reservemodal.css";
-import "@/css/common.css";
+import "@/css/common.css"; // Ensure this contains .form-control and placeholder styles
 
 import roomCategoriesData from "@/data/roomCategories.json";
 import reservemodalIcon from "@/image/reservemodalicon.png";
@@ -27,11 +27,113 @@ export default function ReserveModal({
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [selectedDates, setSelectedDates] = useState([]);
 
+  // Error states for each input
+  const [userNameError, setUserNameError] = useState("");
+  const [userAgeError, setUserAgeError] = useState("");
+  const [guestCountError, setGuestCountError] = useState("");
+  const [userEmailError, setUserEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordConfirmError, setPasswordConfirmError] = useState("");
+  const [datesError, setDatesError] = useState("");
+
   const [selectedRoomDetails, setSelectedRoomDetails] = useState(null);
 
   const nameInputRef = useRef(null);
   const dateInputRef = useRef(null);
+  const ageInputRef = useRef(null);
+  const guestCountInputRef = useRef(null);
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
+  const passwordConfirmInputRef = useRef(null);
 
+  const validateUserName = (name) => {
+    const nameRegex = /^[a-zA-Z가-힣\s]*$/;
+    if (!name.trim()) {
+      setUserNameError("이름을 입력해주세요.");
+      return false;
+    } else if (!nameRegex.test(name)) {
+      setUserNameError("이름은 영어와 한글만 입력 가능합니다.");
+      return false;
+    }
+    setUserNameError("");
+    return true;
+  };
+
+  const validateUserAge = (age) => {
+    const ageValue = parseInt(age);
+    if (!age.trim()) {
+      setUserAgeError("나이를 입력해주세요.");
+      return false;
+    } else if (isNaN(ageValue) || ageValue < 1 || ageValue > 99) {
+      setUserAgeError("나이는 1부터 99까지 숫자로만 입력 가능합니다.");
+      return false;
+    }
+    setUserAgeError("");
+    return true;
+  };
+
+  const validateGuestCount = (count) => {
+    const guestCountValue = parseInt(count);
+    if (!count.trim()) {
+      setGuestCountError("인원 수를 입력해주세요.");
+      return false;
+    } else if (
+      isNaN(guestCountValue) ||
+      guestCountValue < 1 ||
+      guestCountValue > 99
+    ) {
+      setGuestCountError("인원 수는 1부터 99까지 숫자로만 입력 가능합니다.");
+      return false;
+    }
+    setGuestCountError("");
+    return true;
+  };
+
+  const validateUserEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.trim()) {
+      setUserEmailError("이메일을 입력해주세요.");
+      return false;
+    } else if (!emailRegex.test(email)) {
+      setUserEmailError("유효한 이메일 주소를 입력해주세요.");
+      return false;
+    }
+    setUserEmailError("");
+    return true;
+  };
+
+  const validatePassword = (pass) => {
+    if (!pass.trim()) {
+      setPasswordError("비밀번호를 입력해주세요.");
+      return false;
+    } else if (pass.length < 4 || pass.length > 8) {
+      setPasswordError("비밀번호는 4자 이상 8자 이하로 입력해주세요.");
+      return false;
+    }
+    setPasswordError("");
+    return true;
+  };
+
+  const validatePasswordConfirm = (confirmPass, originalPass) => {
+    if (!confirmPass.trim()) {
+      setPasswordConfirmError("비밀번호 확인을 입력해주세요.");
+      return false;
+    } else if (confirmPass !== originalPass) {
+      setPasswordConfirmError("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+      return false;
+    }
+    setPasswordConfirmError("");
+    return true;
+  };
+
+  const validateDates = (dates) => {
+    if (dates.length < 2) {
+      setDatesError("숙박 예정일을 선택해주세요.");
+      return false;
+    }
+    setDatesError("");
+    return true;
+  };
   // 모달이 열릴 때마다 초기화 및 데이터 설정
   useEffect(() => {
     if (isOpen) {
@@ -42,6 +144,14 @@ export default function ReserveModal({
       setPassword("");
       setPasswordConfirm("");
       setSelectedDates([]);
+
+      setUserNameError("");
+      setUserAgeError("");
+      setGuestCountError("");
+      setUserEmailError("");
+      setPasswordError("");
+      setPasswordConfirmError("");
+      setDatesError("");
 
       let foundRoom = null;
       for (const category of roomCategoriesData) {
@@ -62,88 +172,77 @@ export default function ReserveModal({
     }
   }, [isOpen, selectedRoomTitleFromParent]);
 
+  const validateAllFields = () => {
+    const isUserNameValid = validateUserName(userName);
+    const isUserAgeValid = validateUserAge(userAge);
+    const isGuestCountValid = validateGuestCount(guestCount);
+    const isUserEmailValid = validateUserEmail(userEmail);
+    const isPasswordValid = validatePassword(password);
+    const isPasswordConfirmValid = validatePasswordConfirm(
+      passwordConfirm,
+      password
+    );
+    const isDatesValid = validateDates(selectedDates);
+
+    let overallValid =
+      isUserNameValid &&
+      isUserAgeValid &&
+      isGuestCountValid &&
+      isUserEmailValid &&
+      isPasswordValid &&
+      isPasswordConfirmValid &&
+      isDatesValid;
+
+    if (!currentCard) {
+      alert("게스트하우스 정보를 찾을 수 없습니다.");
+      overallValid = false;
+    }
+    if (!selectedRoomDetails) {
+      alert("선택된 객실 정보가 유효하지 않습니다.");
+      overallValid = false;
+    }
+
+    if (!overallValid) {
+      if (!isUserNameValid) nameInputRef.current?.focus();
+      else if (!isUserAgeValid) ageInputRef.current?.focus();
+      else if (!isGuestCountValid) guestCountInputRef.current?.focus();
+      else if (!isUserEmailValid) emailInputRef.current?.focus();
+      else if (!isPasswordValid) passwordInputRef.current?.focus();
+      else if (!isPasswordConfirmValid)
+        passwordConfirmInputRef.current?.focus();
+      else if (!isDatesValid) dateInputRef.current?.flatpickr?.open();
+    }
+
+    return overallValid;
+  };
+
   // '다음' 버튼 클릭 시 예약 정보 제출
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!userName.trim()) {
-      alert("이름을 입력해주세요.");
-      userName.current?.focus();
-      return;
-    }
-    if (!userAge.trim()) {
-      alert("나이를 입력해주세요.");
-      userAge.current?.focus();
-      return;
-    }
-    if (!guestCount.trim()) {
-      alert("인원 수를 입력해주세요.");
-      guestCount.current?.focus();
-      return;
-    }
-    if (!userEmail.trim()) {
-      alert("이메일을 입력해주세요.");
-      userEmail.current?.focus();
-      return;
-    }
-    if (!password.trim()) {
-      alert("비밀번호를 입력해주세요.");
-      password.current?.focus();
-      return;
-    }
-    if (!passwordConfirm.trim()) {
-      alert("비밀번호 확인을 입력해주세요.");
-      passwordConfirm.current?.focus();
-      return;
-    }
+    if (validateAllFields()) {
+      const reservationObj = {
+        card: {
+          title: currentCard.title,
+          location: currentCard.location,
+          roomType: selectedRoomDetails.title,
+          discountPrice: selectedRoomDetails.discountPrice,
+          roomTop: selectedRoomDetails.categoryType,
+        },
+        user: {
+          name: userName,
+          age: userAge,
+          guestCount: guestCount,
+          stayDate: selectedDates
+            .map((date) => date.toISOString().split("T")[0])
+            .join(" - "),
+          email: userEmail,
+        },
+      };
 
-    if (password !== passwordConfirm) {
-      alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-      password.current?.focus();
-      return;
+      localStorage.setItem("reservations", JSON.stringify([reservationObj]));
+      onSubmitReservation(reservationObj);
     }
-
-    if (!currentCard) {
-      alert("게스트하우스 정보를 찾을 수 없습니다.");
-      currentCard.current?.focus();
-      return;
-    }
-
-    if (!selectedRoomDetails) {
-      alert("선택된 객실 정보가 유효하지 않습니다.");
-      selectedRoomDetails.current?.focus();
-      return;
-    }
-
-    if (selectedDates.length < 2) {
-      alert("숙박 예정일을 선택해주세요.");
-      nameInputRef.current?.focus();
-      return;
-    }
-
-    // 예약 객체 구성
-    const reservationObj = {
-      card: {
-        title: currentCard.title,
-        location: currentCard.location,
-        roomType: selectedRoomDetails.title,
-        discountPrice: selectedRoomDetails.discountPrice,
-        roomTop: selectedRoomDetails.categoryType,
-      },
-      user: {
-        name: userName,
-        age: userAge,
-        guestCount: guestCount,
-        stayDate: selectedDates
-          .map((date) => date.toISOString().split("T")[0])
-          .join(" - "),
-        email: userEmail,
-      },
-    };
-
-    localStorage.setItem("reservations", JSON.stringify([reservationObj]));
-
-    onSubmitReservation(reservationObj);
   };
 
   // 날짜 선택 아이콘 클릭 핸들러
@@ -189,11 +288,17 @@ export default function ReserveModal({
               type="text"
               id="nameInput"
               placeholder="이름을 입력하세요."
+              maxlength="20"
               value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              onChange={(e) => {
+                setUserName(e.target.value);
+                if (userNameError) validateUserName(e.target.value);
+              }}
+              onBlur={() => validateUserName(userName)} // Validate when input loses focus
               required
               ref={nameInputRef}
             />
+            {userNameError && <p className="error-message">{userNameError}</p>}
           </div>
           <div className="form-group">
             <label>게스트하우스</label>
@@ -206,13 +311,20 @@ export default function ReserveModal({
           <div className="form-group">
             <label htmlFor="ageInput">나이</label>
             <input
-              type="number"
+              type="text"
               id="ageInput"
               placeholder="나이를 입력하세요."
+              maxlength="2"
               value={userAge}
-              onChange={(e) => setUserAge(e.target.value)}
+              onChange={(e) => {
+                setUserAge(e.target.value);
+                if (userAgeError) validateUserAge(e.target.value);
+              }}
+              onBlur={() => validateUserAge(userAge)}
               required
+              ref={ageInputRef}
             />
+            {userAgeError && <p className="error-message">{userAgeError}</p>}
           </div>
           <div className="form-group">
             <label htmlFor="roomInput">룸</label>
@@ -230,9 +342,17 @@ export default function ReserveModal({
               id="emailInput"
               placeholder="이메일을 입력하세요."
               value={userEmail}
-              onChange={(e) => setUserEmail(e.target.value)}
+              onChange={(e) => {
+                setUserEmail(e.target.value);
+                if (userEmailError) validateUserEmail(e.target.value);
+              }}
+              onBlur={() => validateUserEmail(userEmail)}
               required
+              ref={emailInputRef}
             />
+            {userEmailError && (
+              <p className="error-message">{userEmailError}</p>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="stayDateInput">숙박 예정일</label>
@@ -248,6 +368,7 @@ export default function ReserveModal({
                 value={selectedDates}
                 onChange={(dates) => {
                   setSelectedDates(dates);
+                  validateDates(dates);
                 }}
                 className="form-control"
                 id="stayDateInput"
@@ -273,6 +394,7 @@ export default function ReserveModal({
                 />
               </svg>
             </div>
+            {datesError && <p className="error-message">{datesError}</p>}
           </div>
           <div className="form-group">
             <label htmlFor="passwordInput">비밀번호</label>
@@ -281,9 +403,17 @@ export default function ReserveModal({
               id="passwordInput"
               placeholder="비밀번호를 입력하세요."
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                if (passwordError) validatePassword(e.target.value); // Validate if there's already an error
+                if (passwordConfirmError)
+                  validatePasswordConfirm(passwordConfirm, e.target.value);
+              }}
+              onBlur={() => validatePassword(password)}
               required
+              ref={passwordInputRef}
             />
+            {passwordError && <p className="error-message">{passwordError}</p>}
           </div>
           <div className="form-group">
             <label htmlFor="guestCountInput">인원 수</label>
@@ -291,10 +421,19 @@ export default function ReserveModal({
               type="text"
               id="guestCountInput"
               placeholder="ex. 3"
+              maxlength="2"
               value={guestCount}
-              onChange={(e) => setGuestCount(e.target.value)}
+              onChange={(e) => {
+                setGuestCount(e.target.value);
+                if (guestCountError) validateGuestCount(e.target.value);
+              }}
+              onBlur={() => validateGuestCount(guestCount)}
               required
+              ref={guestCountInputRef}
             />
+            {guestCountError && (
+              <p className="error-message">{guestCountError}</p>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="passwordConfirmInput">비밀번호 확인</label>
@@ -303,9 +442,18 @@ export default function ReserveModal({
               id="passwordConfirmInput"
               placeholder="비밀번호를 다시 입력하세요."
               value={passwordConfirm}
-              onChange={(e) => setPasswordConfirm(e.target.value)}
+              onChange={(e) => {
+                setPasswordConfirm(e.target.value);
+                if (passwordConfirmError)
+                  validatePasswordConfirm(e.target.value, password);
+              }}
+              onBlur={() => validatePasswordConfirm(passwordConfirm, password)}
               required
+              ref={passwordConfirmInputRef}
             />
+            {passwordConfirmError && (
+              <p className="error-message">{passwordConfirmError}</p>
+            )}
           </div>
         </div>
         <button className="btn-next" onClick={handleSubmit}>

@@ -148,3 +148,16 @@
 .reservemodal .date-picker-icon:hover {
   fill: #0056b3;
 }
+
+.error-message {
+  color: #ff0000;
+  font-size: 0.85em;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.form-group input.error-border,
+.form-group .flatpickr-input.error-border {
+  border-color: #ff0000 !important;
+}
