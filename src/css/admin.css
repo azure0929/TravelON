@@ -7,11 +7,11 @@
   display: block;
 }
 /* main 공통 스타일 */
-main {
+.admin-main {
   margin-left: 323px;
   margin-top: 232px;
 }
-main .title {
+.admin-main .title {
   font-size: 1.5rem;
   font-weight: 500;
   color: var(--primary-color);
@@ -25,7 +25,7 @@ main .title {
 }
 
 /* header */
-header {
+.admin-header {
   position: fixed;
   top: 0;
   right: 0;
@@ -82,7 +82,7 @@ header {
   background-color: #ffffff;
   height: 230px;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
 }
 #clients .contents .card .profile {
@@ -195,7 +195,7 @@ aside .aside-inner .profile .tabs .tab .icon i {
 }
 
 /* footer */
-.footer {
+.admin-footer {
   background-color: #f8f8f8;
   padding: 60px 0;
   margin-top: 100px;
@@ -307,7 +307,7 @@ aside .aside-inner .profile .tabs .tab .icon i {
   border: 1px solid #555d7e;
   background-color: transparent;
   cursor: pointer;
-  transition: background-color .3s, color .3s;
+  transition: background-color 0.3s, color 0.3s;
   border-radius: 8px;
 }
 .pagination .page button.active {
