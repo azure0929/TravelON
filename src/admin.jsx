@@ -6,6 +6,22 @@ import logo from "@/image/logo.png";
 import clientsJson from "@/data/client.json";
 import salesJson from "@/data/sales.json";
 import reserveJson from "@/data/reserve.json";
+import ScrollTop from "@/components/ScrollTop";
+
+// icon
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChartSimple,
+  faUsers,
+  faChartPie,
+} from "@fortawesome/free-solid-svg-icons";
+
+// image
+import adminProfile from "@/image/admin-profile.png";
+import facebook from "@/image/facebook.png";
+import instagram from "@/image/instagram.png";
+import kakaoIcon from "@/image/kakao.png";
+import callIcon from "@/image/call.png";
 
 Chart.register(ChartDataLabels);
 
@@ -339,16 +355,17 @@ export default function Admin() {
           className={`main-section ${activeTab === 1 ? "active" : ""}`}
         >
           <h1 className="title">고객 정보</h1>
-          <div className="contents">
+          <div className="clients-contents">
             {clientsData.map((client, index) => (
-              <article className="card" key={index}>
-                <div className="profile">
-                  <img
-                    className="client-image"
-                    src={`image/client0${index + 1}.png`}
-                    alt={`${client.name} 프로필 사진`}
-                    loading="lazy"
-                  />
+              <div className="clients-card" key={index}>
+                <div className="clients-profile">
+                  <div className="client-image">
+                    <img
+                      src={require(`./image/${client.image}`)}
+                      alt={`${client.name} 프로필 사진`}
+                      loading="lazy"
+                    />
+                  </div>
                   <div className="client-info">
                     <p className="name">
                       이름: <span>{client.name}</span>
@@ -359,7 +376,7 @@ export default function Admin() {
                   </div>
                 </div>
                 <div className="reservation-info">
-                  <p className="reserve-title">예약 정보</p>
+                  <span className="reserve-title">예약 정보</span>
                   <div className="reserve-detail">
                     <span>{client.guesthouse}</span>{" "}
                     <p>
@@ -376,7 +393,7 @@ export default function Admin() {
                     </p>
                   </div>
                 </div>
-              </article>
+              </div>
             ))}
           </div>
           <div className="loading-spinner" aria-hidden="true"></div>
@@ -423,7 +440,7 @@ export default function Admin() {
         <div className="aside-inner">
           <div className="profile">
             <div className="photo">
-              <img src="image/admin-profile.png" alt="관리자 프로필" />
+              <img src={adminProfile} alt="관리자 프로필" />
             </div>
             <ul className="tabs">
               <li
@@ -431,7 +448,9 @@ export default function Admin() {
                 onClick={() => handleTabClick(0)}
               >
                 <span className="icon">
-                  <i className="fa-solid fa-chart-simple"></i>
+                  <i>
+                    <FontAwesomeIcon icon={faChartSimple} />
+                  </i>
                 </span>
                 <span>매출 현황</span>
               </li>
@@ -440,7 +459,9 @@ export default function Admin() {
                 onClick={() => handleTabClick(1)}
               >
                 <span className="icon">
-                  <i className="fa-solid fa-users"></i>
+                  <i>
+                    <FontAwesomeIcon icon={faUsers} />
+                  </i>
                 </span>
                 <span>고객 정보</span>
               </li>
@@ -449,7 +470,9 @@ export default function Admin() {
                 onClick={() => handleTabClick(2)}
               >
                 <span className="icon">
-                  <i className="fa-solid fa-chart-pie"></i>
+                  <i>
+                    <FontAwesomeIcon icon={faChartPie} />
+                  </i>
                 </span>
                 <span>예약자 비율</span>
               </li>
@@ -459,11 +482,7 @@ export default function Admin() {
       </aside>
       <footer className="admin-footer">
         <div className="footer-inner">
-          <img
-            className="footer-logo"
-            src="image/logo.png"
-            alt="TravelON 로고"
-          />
+          <img className="footer-logo" src={logo} alt="TravelON 로고" />
           <div className="info-wrap">
             <div className="info-inner">
               <div className="company-info">
@@ -485,10 +504,10 @@ export default function Admin() {
               </nav>
               <div className="social-links">
                 <a href="#none" aria-label="Facebook">
-                  <img src="image/facebook.png" alt="Facebook 아이콘" />
+                  <img src={facebook} alt="Facebook 아이콘" />
                 </a>
                 <a href="#none" aria-label="Instagram">
-                  <img src="image/instagram.png" alt="Instagram 아이콘" />
+                  <img src={instagram} alt="Instagram 아이콘" />
                 </a>
               </div>
             </div>
@@ -498,11 +517,11 @@ export default function Admin() {
               <p>카카오톡 문의: 24시간 운영</p>
               <div className="contact-buttons">
                 <a href="#none" className="contact-button">
-                  <img src="image/call.png" alt="전화 아이콘" />
+                  <img src={callIcon} alt="전화 아이콘" />
                   <span>1677-1234</span>
                 </a>
                 <a href="#none" className="contact-button">
-                  <div className="kakao-icon"></div>
+                  <img src={kakaoIcon} alt="kakao 아이콘" />
                   <span>카카오 문의</span>
                 </a>
               </div>
@@ -510,9 +529,7 @@ export default function Admin() {
           </div>
         </div>
       </footer>
-      <div role="button" className="scroll-top" id="scrollTopBtn">
-        <img src="image/scrollTop.png" alt="scroll-top" />
-      </div>
+      <ScrollTop />
     </div>
   );
 }

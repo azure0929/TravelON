@@ -1,4 +1,3 @@
-/* 공통 */
 /* tab별 콘텐츠 보이기 & 숨기기 */
 .main-section {
   display: none;
@@ -73,49 +72,54 @@
   max-width: 1080px;
 }
 /* main - 고객 정보 */
-#clients .contents {
+#clients .clients-contents {
+  width: calc(100% - 100px);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
-#clients .contents .card {
-  background-color: #ffffff;
-  height: 230px;
+#clients .clients-contents .clients-card {
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  box-shadow: 4px 4px 12px rgba(25, 25, 25, 0.16);
+  padding: 20px;
 }
-#clients .contents .card .profile {
+#clients .clients-contents .clients-card .clients-profile {
   display: flex;
   gap: 20px;
-  margin-bottom: 20px;
+  align-items: center;
 }
-#clients .contents .card .profile .client-image {
-  width: 80px;
-  height: 80px;
+#clients .clients-contents .clients-card .clients-profile .client-image {
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
 }
-#clients .contents .card .profile .client-info p {
-  font-weight: 500;
+#clients .clients-contents .clients-card .clients-profile .client-image img {
+  width: 100%;
+  height: 100%;
+}
+#clients .clients-contents .clients-card .clients-profile .client-info p {
   margin: 0;
   padding: 0;
-}
-#clients .contents .card .profile .client-info p span {
-  font-weight: 400;
-}
-#clients .contents .card .reservation-info .reserve-title {
   font-weight: 500;
-  padding: 0;
-  margin: 0;
 }
-#clients .contents .card .reservation-info .reserve-detail {
+#clients .clients-contents .clients-card .clients-profile .client-info p span {
+  font-size: 14px;
   font-weight: normal;
-  font-size: 0.875rem;
 }
-#clients .contents .card .reservation-info .reserve-detail p {
+#clients .clients-contents .clients-card .reservation-info {
+  margin-top: 18px;
+}
+#clients .clients-contents .clients-card .reservation-info .reserve-title {
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+#clients .clients-contents .clients-card .reservation-info .reserve-detail p {
   margin: 0;
   padding: 0;
+  font-size: 14px;
 }
+
 /* main: 예약자 비율 */
 #reserve .contents {
   display: flex;
@@ -278,15 +282,9 @@ aside .aside-inner .profile .tabs .tab .icon i {
   color: #6e6f73;
   text-decoration: none;
 }
-.contact-button img,
-.contact-button .kakao-icon {
+.contact-button img {
   width: 26px;
   height: 26px;
-}
-.kakao-icon {
-  background-image: url(../image/kakao.png);
-  background-size: cover;
-  background-position: 50% 50%;
 }
 
 /* pagination */

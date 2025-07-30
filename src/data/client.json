@@ -11,7 +11,8 @@
       "checkin": "2025-06-01",
       "checkout": "2025-06-04",
       "nights": 3,
-      "people": 3
+      "people": 3,
+      "image": "client01.png"
     },
     {
       "name": "아이유",
@@ -24,7 +25,8 @@
       "checkin": "2025-06-01",
       "checkout": "2025-06-04",
       "nights": 3,
-      "people": 3
+      "people": 3,
+      "image": "client02.png"
     },
     {
       "name": "신시아",
@@ -37,7 +39,8 @@
       "checkin": "2025-06-01",
       "checkout": "2025-06-04",
       "nights": 3,
-      "people": 3
+      "people": 3,
+      "image": "client03.png"
     },
     {
       "name": "고윤정",
@@ -50,7 +53,8 @@
       "checkin": "2025-06-01",
       "checkout": "2025-06-04",
       "nights": 3,
-      "people": 3
+      "people": 3,
+      "image": "client04.png"
     },
     {
       "name": "김소현",
@@ -63,7 +67,8 @@
       "checkin": "2025-06-01",
       "checkout": "2025-06-04",
       "nights": 3,
-      "people": 3
+      "people": 3,
+      "image": "client05.png"
     },
     {
       "name": "박보영",
@@ -76,7 +81,8 @@
       "checkin": "2025-06-01",
       "checkout": "2025-06-04",
       "nights": 3,
-      "people": 3
+      "people": 3,
+      "image": "client06.png"
     }
   ]
 }
