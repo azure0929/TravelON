@@ -183,7 +183,9 @@ export default function Jjim() {
       <div id="wrap">
         <main className="jjim-contents">
           <div className="delete-container">
-            <span onClick={handleClearAll}>전체삭제</span>
+            <button className="alldelete" onClick={handleClearAll}>
+              전체삭제
+            </button>
           </div>
           <div className="cardlists">
             {cards.length === 0 ? (

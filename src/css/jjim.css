@@ -7,6 +7,9 @@
   display: flex;
   justify-content: end;
 }
+.jjim-contents .delete-container .alldelete {
+  background-color: transparent;
+}
 .jjim-contents .cardlists {
   height: 570px;
   position: relative;
