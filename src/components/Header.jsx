@@ -6,10 +6,8 @@ import logo from "@/image/logo.png";
 import reserveIcon from "@/image/reserve.png";
 import wishlistIcon from "@/image/wishlist.png";
 
-// Font Awesome 임포트 시작
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons"; // 사용할 아이콘 (돋보기, 닫기) 임포트
-// Font Awesome 임포트 끝
+import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
   const [search, setSearch] = useState("");
@@ -21,7 +19,7 @@ export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
   const menubarRef = useRef(null);
 
-  // 최초 렌더링 시 숨김
+  // 메뉴바 초기 숨김 설정
   useEffect(() => {
     if (menubarRef.current) {
       menubarRef.current.style.opacity = 0;
@@ -30,6 +28,7 @@ export default function Header() {
     }
   }, []);
 
+  // 메뉴바 열기/닫기 GSAP 애니메이션
   useEffect(() => {
     const menubar = menubarRef.current;
     if (!menubar) return;
@@ -61,7 +60,7 @@ export default function Header() {
     }
   }, [menuActive]);
 
-  // URL query 파싱 (최초 1회)
+  // URL 쿼리 파싱 (최초 1회)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const savedQuery = params.get("query");
@@ -71,51 +70,45 @@ export default function Header() {
     }
   }, []);
 
-  // 검색 아이콘 클릭
+  // 검색 아이콘 클릭 핸들러
   const handleSearchIconClick = () => {
     if (searchActive) {
-      // 검색 활성화 상태일 때 (X 아이콘일 때)
-      setSearch(""); // 검색어 초기화
-      setSearchActive(false); // 검색 비활성화 (돋보기로 변경)
-      // 필요하다면 검색 결과 페이지에서 메인 페이지로 이동
-      // navigate('/');
+      setSearch("");
+      setSearchActive(false);
     } else if (search.trim()) {
-      // 검색 비활성화 상태이고 검색어가 있을 때 (돋보기 아이콘일 때)
       navigate(`/searchpage?query=${encodeURIComponent(search)}`);
-      setSearchActive(true); // 검색 활성화 (X 아이콘으로 변경)
+      setSearchActive(true);
     }
-    // 검색 비활성화 상태이고 검색어가 없을 때는 아무것도 하지 않아 돋보기 유지
   };
 
-  // 검색 input 변경
+  // 검색 input 변경 핸들러
   const handleInputChange = (e) => {
     setSearch(e.target.value);
-    // 입력 필드가 비어있으면 돋보기 아이콘으로 되돌림
     if (!e.target.value) {
       setSearchActive(false);
     }
-    // 사용자가 입력하기 시작하면 'X' 아이콘으로 변경되게 하려면 아래 주석 해제 (단, 검색 버튼 클릭 전까지는 돋보기로 유지하고 싶다면 그대로 둠)
-    // else {
-    //   setSearchActive(true);
-    // }
   };
 
-  // Enter 키로 검색
+  // Enter 키로 검색 실행
   const handleInputKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSearchIconClick();
     }
   };
 
-  // 예약 버튼 클릭 시 모달
+  // 예약 버튼 클릭 시 모달 열기
   const handleReserveClick = (e) => {
     e.preventDefault();
     setModalOpen(true);
   };
+
+  // 예약 모달 확인 버튼 핸들러
   const handleModalConfirm = () => {
     setModalOpen(false);
     searchInputRef.current && searchInputRef.current.focus();
   };
+
+  // 예약 모달 취소 버튼 핸들러
   const handleModalCancel = () => setModalOpen(false);
 
   return (
@@ -123,7 +116,7 @@ export default function Header() {
       <div className="inner">
         <div className="logo">
           <a href="/">
-            <img src={logo} alt="logo" loading="lazy" />
+            <img src={logo} alt="TravelON 로고" loading="lazy" />
           </a>
         </div>
         <div className="search">
@@ -142,7 +135,6 @@ export default function Header() {
             onClick={handleSearchIconClick}
             style={{ cursor: "pointer" }}
           >
-            {/* Font Awesome 아이콘 컴포넌트 사용 */}
             <FontAwesomeIcon
               icon={searchActive && search.trim() ? faTimes : faSearch}
             />
