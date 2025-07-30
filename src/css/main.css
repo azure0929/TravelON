@@ -19,8 +19,7 @@ section.intro .intro-bg {
   min-width: 1280px;
   height: 476px;
   border-radius: 238px;
-  background: url("../image/intro.jpg") no-repeat;
-  background-size: cover;
+  overflow: hidden;
 }
 
 /* section: notice */

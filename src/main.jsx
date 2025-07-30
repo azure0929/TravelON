@@ -14,6 +14,7 @@ import weeklySaleData from "@/data/weeklySaleData";
 import weeklyRecommendData from "@/data/weeklyRecommendData";
 
 // image
+import introbg from "@/image/intro.webp";
 import event01 from "@/image/event01.webp";
 import event02 from "@/image/event02.webp";
 import event03 from "@/image/event03.webp";
@@ -55,7 +56,9 @@ export default function Main() {
               <span>진짜_최종.여행</span>
               <span>최대 70% 할인가로 FLEX!</span>
             </div>
-            <div className="intro-bg" aria-label="여행 메인 배경 이미지"></div>
+            <div className="intro-bg" aria-label="여행 메인 배경 이미지">
+              <img src={introbg} alt="intro-bg" />
+            </div>
           </div>
         </section>
         {/* section: 공지사항 */}
