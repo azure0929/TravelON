@@ -10,6 +10,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollTop from "@/components/ScrollTop";
 import popularData from "@/data/popularData.json";
+import weeklySaleData from "@/data/weeklySaleData";
+import weeklyRecommendData from "@/data/weeklyRecommendData";
 
 // image
 import event01 from "@/image/event01.webp";
@@ -22,12 +24,6 @@ import benefit02 from "@/image/benefit02.webp";
 import benefit03 from "@/image/benefit03.webp";
 import benefit04 from "@/image/benefit04.png";
 import arrow from "@/image/main-arrow.png";
-import weeklysale01 from "@/image/weeklysale01.webp";
-import weeklysale02 from "@/image/weeklysale02.webp";
-import weeklysale03 from "@/image/weeklysale03.webp";
-import weeklyrecommend01 from "@/image/weeklyrecommend01.jpg";
-import weeklyrecommend02 from "@/image/weeklyrecommend02.jpg";
-import weeklyrecommend03 from "@/image/weeklyrecommend03.jpg";
 
 export default function Main() {
   const [popularTab, setPopularTab] = useState("seoul");
@@ -249,7 +245,7 @@ export default function Main() {
                       loop
                       playsInline
                       id="bg-video"
-                      preload="auto"
+                      preload="none"
                     >
                       <source src={video02} type="video/mp4" />
                     </video>
@@ -294,114 +290,22 @@ export default function Main() {
                 navigation={true}
                 spaceBetween={30}
               >
-                <SwiperSlide className="list">
-                  <div className="photo">
-                    <a href="#none">
-                      <img
-                        src={weeklysale01}
-                        alt="코코아 게스트하우스"
-                        loading="lazy"
-                      />
-                    </a>
-                  </div>
-                  <div className="info">
-                    <span>코코아 게스트하우스</span>
-                    <div className="detail">
-                      <span className="saleprice">70%</span>
-                      <span>35,000원~</span>
+                {weeklySaleData.map((item, index) => (
+                  <SwiperSlide className="list" key={index}>
+                    <div className="photo">
+                      <a href="#none">
+                        <img src={item.image} alt={item.alt} loading="lazy" />
+                      </a>
                     </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="list">
-                  <div className="photo">
-                    <a href="#none">
-                      <img
-                        src={weeklysale02}
-                        alt="해운대 Y 게스트하우스"
-                        loading="lazy"
-                      />
-                    </a>
-                  </div>
-                  <div className="info">
-                    <span>해운대 Y 게스트하우스</span>
-                    <div className="detail">
-                      <span className="saleprice">55%</span>
-                      <span>25,000원~</span>
+                    <div className="info">
+                      <span>{item.name}</span>
+                      <div className="detail">
+                        <span className="saleprice">{item.salePrice}</span>
+                        <span>{item.price}</span>
+                      </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="list">
-                  <div className="photo">
-                    <a href="#none">
-                      <img
-                        src={weeklysale03}
-                        alt="ABC 홈스테이"
-                        loading="lazy"
-                      />
-                    </a>
-                  </div>
-                  <div className="info">
-                    <span>ABC 홈스테이</span>
-                    <div className="detail">
-                      <span className="saleprice">35%</span>
-                      <span>35,000원</span>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="list">
-                  <div className="photo">
-                    <a href="#none">
-                      <img
-                        src={weeklysale01}
-                        alt="코코아 게스트하우스"
-                        loading="lazy"
-                      />
-                    </a>
-                  </div>
-                  <div className="info">
-                    <span>코코아 게스트하우스</span>
-                    <div className="detail">
-                      <span className="saleprice">70%</span>
-                      <span>35,000원~</span>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="list">
-                  <div className="photo">
-                    <a href="#none">
-                      <img
-                        src={weeklysale02}
-                        alt="해운대 Y 게스트하우스"
-                        loading="lazy"
-                      />
-                    </a>
-                  </div>
-                  <div className="info">
-                    <span>해운대 Y 게스트하우스</span>
-                    <div className="detail">
-                      <span className="saleprice">55%</span>
-                      <span>25,000원~</span>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide className="list">
-                  <div className="photo">
-                    <a href="#none">
-                      <img
-                        src={weeklysale03}
-                        alt="ABC 홈스테이"
-                        loading="lazy"
-                      />
-                    </a>
-                  </div>
-                  <div className="info">
-                    <span>ABC 홈스테이</span>
-                    <div className="detail">
-                      <span className="saleprice">35%</span>
-                      <span>35,000원</span>
-                    </div>
-                  </div>
-                </SwiperSlide>
+                  </SwiperSlide>
+                ))}
               </Swiper>
             </div>
           </div>
@@ -417,114 +321,22 @@ export default function Main() {
               modules={[Navigation]}
               spaceBetween={30}
             >
-              <SwiperSlide className="list">
-                <div className="photo">
-                  <a href="#none">
-                    <img
-                      src={weeklyrecommend01}
-                      alt="백팩 GH 이태원"
-                      loading="lazy"
-                    />
-                  </a>
-                </div>
-                <div className="info">
-                  <h3>
-                    서울 <br />
-                    패밀리/단체형 <br />
-                    백팩 GH 이태원
-                  </h3>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="list">
-                <div className="photo">
-                  <a href="#none">
-                    <img
-                      src={weeklyrecommend02}
-                      alt="인천공항 라인 게스트하우스"
-                      loading="lazy"
-                    />
-                  </a>
-                </div>
-                <div className="info">
-                  <h3>
-                    인천 <br />
-                    프라이빗형 <br />
-                    인천공항 라인 게스트하우스
-                  </h3>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="list">
-                <div className="photo">
-                  <a href="#none">
-                    <img
-                      src={weeklyrecommend03}
-                      alt="오게스트"
-                      loading="lazy"
-                    />
-                  </a>
-                </div>
-                <div className="info">
-                  <h3>
-                    부산 <br />
-                    테마/특수형 <br />
-                    오게스트
-                  </h3>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="list">
-                <div className="photo">
-                  <a href="#none">
-                    <img
-                      src={weeklyrecommend01}
-                      alt="백팩 GH 이태원"
-                      loading="lazy"
-                    />
-                  </a>
-                </div>
-                <div className="info">
-                  <h3>
-                    서울 <br />
-                    패밀리/단체형 <br />
-                    백팩 GH 이태원
-                  </h3>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="list">
-                <div className="photo">
-                  <a href="#none">
-                    <img
-                      src={weeklyrecommend02}
-                      alt="인천공항 라인 게스트하우스"
-                      loading="lazy"
-                    />
-                  </a>
-                </div>
-                <div className="info">
-                  <h3>
-                    인천 <br />
-                    프라이빗형 <br />
-                    인천공항 라인 게스트하우스
-                  </h3>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="list">
-                <div className="photo">
-                  <a href="#none">
-                    <img
-                      src={weeklyrecommend03}
-                      alt="오게스트"
-                      loading="lazy"
-                    />
-                  </a>
-                </div>
-                <div className="info">
-                  <h3>
-                    부산 <br />
-                    테마/특수형 <br />
-                    오게스트
-                  </h3>
-                </div>
-              </SwiperSlide>
+              {weeklyRecommendData.map((item, index) => (
+                <SwiperSlide className="list" key={index}>
+                  <div className="photo">
+                    <a href="#none">
+                      <img src={item.image} alt={item.alt} loading="lazy" />
+                    </a>
+                  </div>
+                  <div className="info">
+                    <h3>
+                      {item.location} <br />
+                      {item.type} <br />
+                      {item.name}
+                    </h3>
+                  </div>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
         </section>
