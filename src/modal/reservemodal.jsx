@@ -7,6 +7,9 @@ import "@/css/reservemodal.css";
 import "@/css/common.css";
 
 import roomCategoriesData from "@/data/roomCategories.json";
+import reservemodalIcon from "@/image/reservemodalicon.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default function ReserveModal({
   isOpen,
@@ -153,25 +156,33 @@ export default function ReserveModal({
   }
 
   return (
-    <div className="modal" id="modalWrap" style={{ display: "flex" }}>
+    <div className="reservemodal" style={{ display: "flex" }}>
       <div
-        className="modal-container"
+        className="reservemodal-container"
         role="dialog"
         aria-modal="true"
         aria-labelledby="modalTitle"
       >
-        <div className="modal-header">
-          <div id="modalTitle">📩 예약</div>
-          <button
-            className="modal-close"
+        <div className="reservemodal-header">
+          <div className="modalTitle">
+            <div className="reservemodalicon">
+              <img src={reservemodalIcon} alt="reserveIcon" />
+            </div>
+            <span>예약</span>
+          </div>
+          <div
+            role="button"
+            className="reservemodal-close"
             id="modalCloseBtn"
             aria-label="닫기"
             onClick={onClose}
           >
-            &times;
-          </button>
+            <i>
+              <FontAwesomeIcon icon={faTimes} />
+            </i>
+          </div>
         </div>
-        <div className="modal-body">
+        <div className="reservemodal-body">
           <div className="form-group">
             <label htmlFor="nameInput">이름</label>
             <input
@@ -231,7 +242,6 @@ export default function ReserveModal({
                   mode: "range",
                   dateFormat: "Y.m.d",
                   locale: Korean,
-                  placeholder: "예: 2025.06.01 - 2025.06.04",
                   minDate: "today",
                   allowInput: false,
                 }}
@@ -242,6 +252,8 @@ export default function ReserveModal({
                 className="form-control"
                 id="stayDateInput"
                 ref={dateInputRef}
+                placeholder="예: 2025.06.01 - 2025.06.04"
+                style={{ border: "1px solid var(--input-border-color)" }}
               />
               <svg
                 className="date-picker-icon"

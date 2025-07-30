@@ -1,4 +1,4 @@
-#modalWrap.modal {
+.reservemodal {
   display: none;
   position: fixed;
   top: 0;
@@ -8,86 +8,101 @@
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1000;
 }
-#modalWrap .modal-container {
+.reservemodal .reservemodal-container {
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 720px;
-  padding: 30px 40px;
-  border-radius: 20px;
-  border: 15px solid #dadada;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  background: white;
+  height: fit-content;
+  padding: 30px;
+  border-radius: 40px;
+  border: 10px solid #dadada;
+  background: #ffffff;
 }
-#modalWrap .modal-header {
+.reservemodal .reservemodal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
 }
-#modalWrap .modal-header .info-head {
+.reservemodal .reservemodal-header .modalTitle {
   display: flex;
   align-items: center;
   gap: 6px;
 }
-#modalWrap .modal-header .info-head img {
-  width: 48px;
+.reservemodal .reservemodal-header .modalTitle .reservemodalicon {
+  width: 42px;
+  height: 42px;
 }
-#modalWrap .modal-header span {
+.reservemodal .reservemodal-header .modalTitle .reservemodalicon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.reservemodal .reservemodal-header .modalTitle span {
   display: inline-block;
-  width: 80px;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 500;
 }
-#modalWrap .modal-close {
+.reservemodal .reservemodal-close {
   position: absolute;
-  top: 0;
-  right: 20px;
-  font-size: 3rem;
+  top: 30px;
+  right: 30px;
+  width: 26px;
+  height: 26px;
   border: none;
   background: none;
   cursor: pointer;
 }
-#modalWrap .modal-body {
+.reservemodal .modal-close i {
+  font-size: 26px;
+}
+.reservemodal .reservemodal-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 30px;
+  column-gap: 20px;
   row-gap: 20px;
+  height: fit-content;
 }
-#modalWrap .form-group {
+.reservemodal .form-group {
   display: flex;
   flex-direction: column;
 }
-#modalWrap .form-group label {
-  font-weight: 600;
-  margin-bottom: 5px;
+.reservemodal .form-group label {
+  font-weight: 500;
+  margin-bottom: 12px;
 }
-#modalWrap .form-group input {
+.reservemodal .form-group input {
   padding: 10px;
-  border: 1px solid #ddd;
+  height: 36px;
+  border: 1px solid var(--input-border-color);
   border-radius: 10px;
   color: var(--input-placeholder-color);
   font-size: 0.875rem;
 }
-#modalWrap .form-group input.invalid {
+.reservemodal .form-group input.invalid {
   border-color: #dc3545;
 }
-#modalWrap .form-group input.valid {
+.reservemodal .form-group input.valid {
   border-color: #28a745;
 }
-#modalWrap .tag-boxes {
+.reservemodal .tag-boxes {
   display: flex;
   gap: 10px;
 }
-#modalWrap .tag-box {
+.reservemodal .form-control::placeholder {
+  color: var(--input-placeholder-color);
+}
+.reservemodal .tag-box {
   background-color: #f1f1f1;
   padding: 6px 12px;
   border-radius: 8px;
   font-size: 16px;
   user-select: none;
 }
-#modalWrap .btn-next {
+.reservemodal .btn-next {
   position: absolute;
   bottom: 30px;
   right: 40px;
@@ -101,17 +116,17 @@
   border-radius: 6px;
   transition: background-color 0.2s ease;
 }
-#modalWrap .btn-next:hover {
+.reservemodal .btn-next:hover {
   background-color: #555d7e;
   color: white;
 }
-#modalWrap .date-picker-wrapper {
+.reservemodal .date-picker-wrapper {
   position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
 }
-#modalWrap #stayDateInput {
+.reservemodal #stayDateInput {
   flex: 1;
   cursor: pointer;
   background-color: #fff;
@@ -121,7 +136,7 @@
   padding: 10px;
   font-size: 16px;
 }
-#modalWrap .date-picker-icon {
+.reservemodal .date-picker-icon {
   width: 28px;
   height: 28px;
   cursor: pointer;
@@ -130,6 +145,6 @@
   user-select: none;
   transition: fill 0.2s ease;
 }
-#modalWrap .date-picker-icon:hover {
+.reservemodal .date-picker-icon:hover {
   fill: #0056b3;
 }
