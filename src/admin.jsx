@@ -345,7 +345,7 @@ export default function Admin() {
               </div>
             </div>
             <div className="chart-container">
-              <canvas id="weeklySalesChart"></canvas>
+              <canvas className="chart-canvas" id="weeklySalesChart"></canvas>
             </div>
           </section>
         </section>
@@ -407,13 +407,13 @@ export default function Admin() {
           <div className="contents">
             <div className="detail">
               <article className="chart">
-                <div className="chart-container">
+                <div className="reservechart-container">
                   <h1>나이별</h1>
                   <canvas id="ageChart"></canvas>
                 </div>
               </article>
               <article className="chart">
-                <div className="chart-container">
+                <div className="reservechart-container">
                   <h1>지역별</h1>
                   <canvas id="regionChart"></canvas>
                 </div>
@@ -421,13 +421,13 @@ export default function Admin() {
             </div>
             <div className="detail">
               <article className="chart">
-                <div className="chart-container">
+                <div className="reservechart-container">
                   <h1>룸 유형별</h1>
                   <canvas id="roomChart"></canvas>
                 </div>
               </article>
               <article className="chart">
-                <div className="chart-container">
+                <div className="reservechart-container">
                   <h1>게스트하우스 유형별</h1>
                   <canvas id="guesthouseChart"></canvas>
                 </div>
