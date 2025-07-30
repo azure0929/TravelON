@@ -126,9 +126,9 @@ header .inner .search input:focus {
 }
 header .inner .search .search-icon {
   position: absolute;
-  top: 50%;
+  top: 14px;
   right: 20px;
-  font-size: 20px; /* 아이콘 크기 조정 */
+  font-size: 16px;
   color: #191919;
   cursor: pointer;
   transform: translateY(-50%);
@@ -137,7 +137,7 @@ header .inner .search .search-icon {
 
 header .inner .search .search-icon.active {
   color: #191919;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 /* nav 스타일 */

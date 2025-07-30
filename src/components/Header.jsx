@@ -6,6 +6,11 @@ import logo from "@/image/logo.png";
 import reserveIcon from "@/image/reserve.png";
 import wishlistIcon from "@/image/wishlist.png";
 
+// Font Awesome 임포트 시작
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons"; // 사용할 아이콘 (돋보기, 닫기) 임포트
+// Font Awesome 임포트 끝
+
 export default function Header() {
   const [search, setSearch] = useState("");
   const [searchActive, setSearchActive] = useState(false);
@@ -69,17 +74,30 @@ export default function Header() {
   // 검색 아이콘 클릭
   const handleSearchIconClick = () => {
     if (searchActive) {
-      setSearch("");
-      setSearchActive(false);
+      // 검색 활성화 상태일 때 (X 아이콘일 때)
+      setSearch(""); // 검색어 초기화
+      setSearchActive(false); // 검색 비활성화 (돋보기로 변경)
+      // 필요하다면 검색 결과 페이지에서 메인 페이지로 이동
+      // navigate('/');
     } else if (search.trim()) {
+      // 검색 비활성화 상태이고 검색어가 있을 때 (돋보기 아이콘일 때)
       navigate(`/searchpage?query=${encodeURIComponent(search)}`);
+      setSearchActive(true); // 검색 활성화 (X 아이콘으로 변경)
     }
+    // 검색 비활성화 상태이고 검색어가 없을 때는 아무것도 하지 않아 돋보기 유지
   };
 
   // 검색 input 변경
   const handleInputChange = (e) => {
     setSearch(e.target.value);
-    if (!e.target.value) setSearchActive(false);
+    // 입력 필드가 비어있으면 돋보기 아이콘으로 되돌림
+    if (!e.target.value) {
+      setSearchActive(false);
+    }
+    // 사용자가 입력하기 시작하면 'X' 아이콘으로 변경되게 하려면 아래 주석 해제 (단, 검색 버튼 클릭 전까지는 돋보기로 유지하고 싶다면 그대로 둠)
+    // else {
+    //   setSearchActive(true);
+    // }
   };
 
   // Enter 키로 검색
@@ -124,7 +142,10 @@ export default function Header() {
             onClick={handleSearchIconClick}
             style={{ cursor: "pointer" }}
           >
-            <i className={`fas fa-${searchActive ? "times" : "search"}`}></i>
+            {/* Font Awesome 아이콘 컴포넌트 사용 */}
+            <FontAwesomeIcon
+              icon={searchActive && search.trim() ? faTimes : faSearch}
+            />
           </div>
         </div>
         <nav>
