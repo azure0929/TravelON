@@ -20,7 +20,6 @@ export default function Jjim() {
   });
   const [selected, setSelected] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const stayDateInputRef = useRef(null);
 
   // 예약 모달 상태
   const [isReserveModalOpen, setIsReserveModalOpen] = useState(false);

@@ -8,8 +8,19 @@
   justify-content: end;
 }
 .jjim-contents .cardlists {
+  height: 570px;
+  position: relative;
   margin-top: 34px;
   margin-bottom: 196px;
+}
+.jjim-contents .cardlists .none-data {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  font-weight: bold;
+  color: #ff0000;
 }
 .jjim-contents .booking-container {
   display: flex;
