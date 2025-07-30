@@ -17,8 +17,8 @@ import "@/css/searchpage.css";
 import cardData from "@/data/cardData.json";
 
 // image
-import sortSel from "@/image/sort_sel.webp";
-import sortNon from "@/image/sort_non.webp";
+import sortSel from "@/assets/image/sort_sel.webp";
+import sortNon from "@/assets/image/sort_non.webp";
 
 function SearchPage() {
   const [activeCategory, setActiveCategory] = useState("전체");

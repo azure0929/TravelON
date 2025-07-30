@@ -137,7 +137,7 @@ section.event .swiper-pagination-progressbar-fill {
 /* section: benefit */
 section.benefit {
   margin-top: 100px;
-  background: url("../image/benefit-bg.webp") no-repeat center;
+  background: url("../assets/image/benefit-bg.webp") no-repeat center;
   background-size: cover;
 }
 section.benefit .inner {
@@ -326,7 +326,7 @@ section.weeklyrecommend .swiper-button-prev:hover:after {
 /* section: skip_ad */
 section.skip_ad {
   margin-top: 120px;
-  background: url("../image/strip-ad.png") no-repeat center;
+  background: url("../assets/image/strip-ad.png") no-repeat center;
   background-size: cover;
   width: 100%;
   height: 142px;
@@ -345,7 +345,7 @@ section.welcome .inner .content {
   border-radius: 16px;
   margin-top: 36px;
   height: 270px;
-  background: url("../image/welcomecoupon.png") no-repeat center;
+  background: url("../assets/image/welcomecoupon.png") no-repeat center;
   background-size: cover;
 }
 section.welcome .inner .content .info {

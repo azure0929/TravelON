@@ -12,18 +12,18 @@ import ScrollTop from "@/components/ScrollTop";
 import "@/css/common.css";
 import "@/css/detailpage.css";
 
-import singleroom from "@/image/singleroom.webp";
-import doubleroom from "@/image/doubleroom.webp";
-import optionroom from "@/image/optionroom.webp";
-
-import detailImage1 from "@/image/detailimage1.webp";
-import detailImage2 from "@/image/detailimage2.webp";
-import detailImage3 from "@/image/detailimage3.webp";
-import locationIcon from "@/image/location.webp";
-import heartNonIcon from "@/image/heart_non.webp";
-import heartSelIcon from "@/image/heart_sel.webp";
-import personIcon from "@/image/person.png";
-import bedIcon from "@/image/bed.png";
+// image
+import singleroom from "@/assets/image/singleroom.webp";
+import doubleroom from "@/assets/image/doubleroom.webp";
+import optionroom from "@/assets/image/optionroom.webp";
+import detailImage1 from "@/assets/image/detailimage1.webp";
+import detailImage2 from "@/assets/image/detailimage2.webp";
+import detailImage3 from "@/assets/image/detailimage3.webp";
+import locationIcon from "@/assets/image/location.webp";
+import heartNonIcon from "@/assets/image/heart_non.webp";
+import heartSelIcon from "@/assets/image/heart_sel.webp";
+import personIcon from "@/assets/image/person.png";
+import bedIcon from "@/assets/image/bed.png";
 
 import cardData from "@/data/cardData.json";
 import roomCategoriesData from "@/data/roomCategories.json";
@@ -332,7 +332,7 @@ const DetailPage = () => {
                         <div className="review-text">{review.text}</div>
                         <div className="review-thumb">
                           <img
-                            src={require(`./image/${review.image}`)}
+                            src={require(`./assets/image/${review.image}`)}
                             alt="리뷰 썸네일"
                           />
                         </div>

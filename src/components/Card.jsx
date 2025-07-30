@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import "@/css/searchpage.css";
 import "@/css/common.css";
-import star from "@/image/star.webp";
-import heartSel from "@/image/heart_sel.webp";
-import heartNon from "@/image/heart_non.webp";
-import locationIcon from "@/image/location.webp";
+import star from "@/assets/image/star.webp";
+import heartSel from "@/assets/image/heart_sel.webp";
+import heartNon from "@/assets/image/heart_non.webp";
+import locationIcon from "@/assets/image/location.webp";
 
 function Card({ card, onHeartClick, onCardClick }) {
   const [isJjimmed, setIsJjimmed] = useState(false);
@@ -40,7 +40,7 @@ function Card({ card, onHeartClick, onCardClick }) {
       <div className="card-img-wrapper">
         <a href={`/detail/${card.title}`} onClick={(e) => e.stopPropagation()}>
           <img
-            src={require(`../image/${card.image}`)}
+            src={require(`../assets/image/${card.image}`)}
             className="card-img"
             alt="썸네일"
             loading="lazy"

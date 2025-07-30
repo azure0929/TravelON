@@ -1,4 +1,4 @@
-import scrollTopIcon from "@/image/scrollTop.png";
+import scrollTopIcon from "@/assets/image/scrollTop.png";
 import { useEffect } from "react";
 import "@/css/common.css";
 

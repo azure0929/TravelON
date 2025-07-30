@@ -1,6 +1,6 @@
-import weeklysale01 from "@/image/weeklysale01.webp";
-import weeklysale02 from "@/image/weeklysale02.webp";
-import weeklysale03 from "@/image/weeklysale03.webp";
+import weeklysale01 from "@/assets/image/weeklysale01.webp";
+import weeklysale02 from "@/assets/image/weeklysale02.webp";
+import weeklysale03 from "@/assets/image/weeklysale03.webp";
 
 const weeklySaleData = [
   {

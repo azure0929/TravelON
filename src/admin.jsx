@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import "@/css/admin.css";
-import logo from "@/image/logo.png";
 import clientsJson from "@/data/client.json";
 import salesJson from "@/data/sales.json";
 import reserveJson from "@/data/reserve.json";
@@ -17,11 +16,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 // image
-import adminProfile from "@/image/admin-profile.png";
-import facebook from "@/image/facebook.png";
-import instagram from "@/image/instagram.png";
-import kakaoIcon from "@/image/kakao.png";
-import callIcon from "@/image/call.png";
+import logo from "@/assets/image/logo.png";
+import adminProfile from "@/assets/image/admin-profile.png";
+import facebook from "@/assets/image/facebook.png";
+import instagram from "@/assets/image/instagram.png";
+import kakaoIcon from "@/assets/image/kakao.png";
+import callIcon from "@/assets/image/call.png";
 
 Chart.register(ChartDataLabels);
 
@@ -361,7 +361,7 @@ export default function Admin() {
                 <div className="clients-profile">
                   <div className="client-image">
                     <img
-                      src={require(`./image/${client.image}`)}
+                      src={require(`./assets/image/${client.image}`)}
                       alt={`${client.name} 프로필 사진`}
                       loading="lazy"
                     />

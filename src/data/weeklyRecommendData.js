@@ -1,6 +1,6 @@
-import weeklyrecommend01 from "@/image/weeklyrecommend01.webp";
-import weeklyrecommend02 from "@/image/weeklyrecommend02.webp";
-import weeklyrecommend03 from "@/image/weeklyrecommend03.webp";
+import weeklyrecommend01 from "@/assets/image/weeklyrecommend01.webp";
+import weeklyrecommend02 from "@/assets/image/weeklyrecommend02.webp";
+import weeklyrecommend03 from "@/assets/image/weeklyrecommend03.webp";
 
 const weeklyRecommendData = [
   {

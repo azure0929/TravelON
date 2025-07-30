@@ -7,7 +7,7 @@ import "@/css/reservemodal.css";
 import "@/css/common.css"; // Ensure this contains .form-control and placeholder styles
 
 import roomCategoriesData from "@/data/roomCategories.json";
-import reservemodalIcon from "@/image/reservemodalicon.png";
+import reservemodalIcon from "@/assets/image/reservemodalicon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 

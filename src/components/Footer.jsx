@@ -1,10 +1,11 @@
 import "@/css/common.css";
-import logo from "@/image/logo.png";
-import facebookIcon from "@/image/facebook.png";
-import instagramIcon from "@/image/instagram.png";
-import callIcon from "@/image/call.png";
-import kakaoIcon from "@/image/kakao.png";
-import scrollTopIcon from "@/image/scrollTop.png";
+
+// image
+import logo from "@/assets/image/logo.png";
+import facebookIcon from "@/assets/image/facebook.png";
+import instagramIcon from "@/assets/image/instagram.png";
+import callIcon from "@/assets/image/call.png";
+import kakaoIcon from "@/assets/image/kakao.png";
 
 export default function Footer() {
   return (

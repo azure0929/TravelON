@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import cardIcon from "@/image/card.png";
+import cardIcon from "@/assets/image/card.png";
 import "@/css/cardmodal.css";
 
 export default function CardModal({ isOpen, onClose, onPaymentSuccess }) {

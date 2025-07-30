@@ -2,9 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import "@/css/common.css";
-import logo from "@/image/logo.png";
-import reserveIcon from "@/image/reserve.png";
-import wishlistIcon from "@/image/wishlist.png";
+
+// image
+import logo from "@/assets/image/logo.png";
+import reserveIcon from "@/assets/image/reserve.png";
+import wishlistIcon from "@/assets/image/wishlist.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";

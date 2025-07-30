@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./css/jjim.css";
-import "./css/common.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import { useEffect, useState } from "react";
+import "@/css/jjim.css";
+import "@/css/common.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import ReserveModal from "@/modal/reservemodal";
 import CardModal from "@/modal/cardmodal";
 import TotalModal from "@/modal/totalmodal";
 import ScrollTop from "@/components/ScrollTop";
-import locationIcon from "@/image/location.webp";
+import locationIcon from "@/assets/image/location.webp";
 
 export default function Jjim() {
   // 상태 관리
@@ -128,7 +128,7 @@ export default function Jjim() {
           />
         </div>
         <div className="jjimcard-photo">
-          <img src={require(`./image/${card.image}`)} alt={card.title} />
+          <img src={require(`./assets/image/${card.image}`)} alt={card.title} />
         </div>
       </div>
       <div className="jjimcard-content">

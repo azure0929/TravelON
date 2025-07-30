@@ -14,17 +14,19 @@ import weeklySaleData from "@/data/weeklySaleData";
 import weeklyRecommendData from "@/data/weeklyRecommendData";
 
 // image
-import introbg from "@/image/intro.webp";
-import event01 from "@/image/event01.webp";
-import event02 from "@/image/event02.webp";
-import event03 from "@/image/event03.webp";
-import video01 from "@/image/video01.mp4";
-import video02 from "@/image/video02.mp4";
-import benefit01 from "@/image/benefit01.png";
-import benefit02 from "@/image/benefit02.webp";
-import benefit03 from "@/image/benefit03.webp";
-import benefit04 from "@/image/benefit04.png";
-import arrow from "@/image/main-arrow.png";
+import introbg from "@/assets/image/intro.webp";
+import event01 from "@/assets/image/event01.webp";
+import event02 from "@/assets/image/event02.webp";
+import event03 from "@/assets/image/event03.webp";
+import benefit01 from "@/assets/image/benefit01.png";
+import benefit02 from "@/assets/image/benefit02.webp";
+import benefit03 from "@/assets/image/benefit03.webp";
+import benefit04 from "@/assets/image/benefit04.png";
+import arrow from "@/assets/image/main-arrow.png";
+
+// video
+import video01 from "@/assets/video/video01.mp4";
+import video02 from "@/assets/video/video02.mp4";
 
 export default function Main() {
   const [popularTab, setPopularTab] = useState("seoul");
@@ -398,7 +400,7 @@ export default function Main() {
                     <li key={i} className="list">
                       <div className="photo">
                         <img
-                          src={require(`./${item.image}`)}
+                          src={require(`./assets/${item.image}`)}
                           alt={item.title}
                           loading="lazy"
                         />
