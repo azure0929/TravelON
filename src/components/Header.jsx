@@ -1,26 +1,39 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
-import "@/css/common.css";
+import "@/css/common.css"; // 공통 스타일시트
 
-// image
+// 이미지 파일 임포트
 import logo from "@/assets/image/logo.png";
-import reserveIcon from "@/assets/image/reserve.png";
+import reserveIcon from "@/assets/image/reserve.png"; // '로그인/예약' 아이콘으로 사용
 import wishlistIcon from "@/assets/image/wishlist.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 
+// 분리된 모달 컴포넌트 임포트
+import LoginRegisterModal from "./LoginRegisterModal";
+
 export default function Header() {
   const [search, setSearch] = useState("");
   const [searchActive, setSearchActive] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [menuActive, setMenuActive] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 사용자 로그인 상태 (Header에서 관리)
+  const [loginModalOpen, setLoginModalOpen] = useState(false); // 로그인/회원가입 모달 활성화 상태
+
   const searchInputRef = useRef(null);
+  const menubarRef = useRef(null);
   const navigate = useNavigate();
 
-  const [menuActive, setMenuActive] = useState(false);
-  const menubarRef = useRef(null);
+  // 컴포넌트 마운트 시 세션 스토리지에서 로그인 상태 확인
+  useEffect(() => {
+    const storedUser = sessionStorage.getItem("loggedInUser");
+    if (storedUser) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
+  // --- 메뉴바 애니메이션 관련 useEffect ---
   // 메뉴바 초기 숨김 설정
   useEffect(() => {
     if (menubarRef.current) {
@@ -36,7 +49,7 @@ export default function Header() {
     if (!menubar) return;
 
     if (menuActive) {
-      menubar.style.display = "flex";
+      menubar.style.display = "flex"; // 애니메이션 시작 전 'flex'로 설정
       gsap.fromTo(
         menubar,
         { x: -446, opacity: 0 },
@@ -56,7 +69,7 @@ export default function Header() {
         ease: "power2.in",
         overwrite: "auto",
         onComplete: () => {
-          menubar.style.display = "none";
+          menubar.style.display = "none"; // 애니메이션 완료 후 'none'으로 숨김
         },
       });
     }
@@ -72,7 +85,7 @@ export default function Header() {
     }
   }, []);
 
-  // 검색 아이콘 클릭 핸들러
+  // --- 검색 기능 관련 핸들러 ---
   const handleSearchIconClick = () => {
     if (searchActive) {
       setSearch("");
@@ -83,7 +96,6 @@ export default function Header() {
     }
   };
 
-  // 검색 input 변경 핸들러
   const handleInputChange = (e) => {
     setSearch(e.target.value);
     if (!e.target.value) {
@@ -91,27 +103,33 @@ export default function Header() {
     }
   };
 
-  // Enter 키로 검색 실행
   const handleInputKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSearchIconClick();
     }
   };
 
-  // 예약 버튼 클릭 시 모달 열기
-  const handleReserveClick = (e) => {
+  // '로그인'/'예약' 버튼 클릭 핸들러
+  const handleLoginOrReserveClick = (e) => {
     e.preventDefault();
-    setModalOpen(true);
+    if (isLoggedIn) {
+      const userConfirmed = window.confirm("숙소를 바로 보시겠습니까?");
+      if (userConfirmed) {
+        navigate("/SearchPage");
+      } else {
+        navigate("/");
+      }
+    } else {
+      setLoginModalOpen(true);
+    }
   };
 
-  // 예약 모달 확인 버튼 핸들러
-  const handleModalConfirm = () => {
-    setModalOpen(false);
-    searchInputRef.current && searchInputRef.current.focus();
+  // 로그아웃 핸들러
+  const handleLogout = () => {
+    sessionStorage.removeItem("loggedInUser");
+    setIsLoggedIn(false); // 로그인 상태 업데이트
+    alert("로그아웃 되었습니다.");
   };
-
-  // 예약 모달 취소 버튼 핸들러
-  const handleModalCancel = () => setModalOpen(false);
 
   return (
     <header>
@@ -145,10 +163,19 @@ export default function Header() {
         <nav>
           <ul>
             <li>
-              <a href="#none" id="reserveBtn" onClick={handleReserveClick}>
-                <img src={reserveIcon} alt="예약" loading="lazy" />
-                <span>예약</span>
-              </a>
+              {isLoggedIn ? (
+                // 로그인 상태일 때 '예약' 버튼
+                <a href="#none" onClick={handleLoginOrReserveClick}>
+                  <img src={reserveIcon} alt="예약" loading="lazy" />
+                  <span>예약</span>
+                </a>
+              ) : (
+                // 비로그인 상태일 때 '로그인' 버튼
+                <a href="#none" onClick={handleLoginOrReserveClick}>
+                  <img src={reserveIcon} alt="로그인" loading="lazy" />
+                  <span>로그인</span>
+                </a>
+              )}
             </li>
             <li>
               <a href="/jjim">
@@ -156,6 +183,13 @@ export default function Header() {
                 <span>찜</span>
               </a>
             </li>
+            {isLoggedIn && ( // 로그인 상태일 때만 '로그아웃' 버튼 표시
+              <li className="logout">
+                <a href="#none" onClick={handleLogout}>
+                  <span>로그아웃</span>
+                </a>
+              </li>
+            )}
           </ul>
           <div className="menu" onClick={() => setMenuActive(true)}>
             <span></span>
@@ -210,42 +244,12 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Custom Confirm Modal */}
-      {modalOpen && (
-        <div id="confirmModal" className="show" style={{ display: "block" }}>
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">예약 확인</h5>
-              </div>
-              <div className="modal-body">
-                <p>
-                  예약을 하시려면 숙소를 선택해야 합니다. <br />
-                  메인 페이지에서 검색을 진행해 주세요.
-                </p>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  id="cancelBtn"
-                  onClick={handleModalCancel}
-                >
-                  취소
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  id="confirmBtn"
-                  onClick={handleModalConfirm}
-                >
-                  확인
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* LoginRegisterModal 컴포넌트 사용 */}
+      <LoginRegisterModal
+        isOpen={loginModalOpen}
+        onClose={() => setLoginModalOpen(false)}
+        setIsLoggedIn={setIsLoggedIn}
+      />
     </header>
   );
 }

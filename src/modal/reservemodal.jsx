@@ -4,7 +4,7 @@ import "flatpickr/dist/flatpickr.min.css";
 import "flatpickr/dist/themes/material_green.css";
 import { Korean } from "flatpickr/dist/l10n/ko.js";
 import "@/css/reservemodal.css";
-import "@/css/common.css"; // Ensure this contains .form-control and placeholder styles
+import "@/css/common.css";
 
 import roomCategoriesData from "@/data/roomCategories.json";
 import reservemodalIcon from "@/assets/image/reservemodalicon.png";
@@ -134,9 +134,11 @@ export default function ReserveModal({
     setDatesError("");
     return true;
   };
-  // 모달이 열릴 때마다 초기화 및 데이터 설정
+
+  // ⭐️ 수정된 useEffect: 모달이 열릴 때 로그인 사용자 정보를 불러와 상태를 업데이트합니다.
   useEffect(() => {
     if (isOpen) {
+      // 폼 필드 및 오류 메시지 초기화
       setUserName("");
       setUserAge("");
       setGuestCount("");
@@ -152,6 +154,18 @@ export default function ReserveModal({
       setPasswordError("");
       setPasswordConfirmError("");
       setDatesError("");
+
+      // ⭐️ 로그인된 사용자 정보를 sessionStorage에서 가져옵니다.
+      const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+      if (loggedInUser) {
+        setUserName(loggedInUser.name);
+        setUserAge(loggedInUser.age);
+        setUserEmail(loggedInUser.email);
+        // 비밀번호는 보안상 자동으로 채우지 않는 것이 일반적이지만,
+        // 현재 코드에서는 비밀번호도 저장하고 있으므로 함께 채웁니다.
+        setPassword(loggedInUser.password);
+        setPasswordConfirm(loggedInUser.password);
+      }
 
       let foundRoom = null;
       for (const category of roomCategoriesData) {
@@ -288,7 +302,7 @@ export default function ReserveModal({
               type="text"
               id="nameInput"
               placeholder="이름을 입력하세요."
-              maxlength="20"
+              maxLength={20}
               value={userName}
               onChange={(e) => {
                 setUserName(e.target.value);
@@ -314,7 +328,7 @@ export default function ReserveModal({
               type="text"
               id="ageInput"
               placeholder="나이를 입력하세요."
-              maxlength="2"
+              maxLength={2}
               value={userAge}
               onChange={(e) => {
                 setUserAge(e.target.value);
