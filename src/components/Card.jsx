@@ -35,21 +35,21 @@ function Card({ card, onHeartClick, onCardClick }) {
   );
 
   return (
-    <div className="card" onClick={handleCardClick}>
+    <div className="roomcard" onClick={handleCardClick}>
       {" "}
-      <div className="card-img-wrapper">
+      <div className="roomcard-img-wrapper">
         <a href={`/detail/${card.title}`} onClick={(e) => e.stopPropagation()}>
           <img
             src={require(`../assets/image/${card.image}`)}
-            className="card-img"
+            className="roomcard-img"
             alt="썸네일"
             loading="lazy"
           />
         </a>
       </div>
-      <div className="card-body">
-        <div className="card-head">
-          <h5 className="card-title">{card.title}</h5>
+      <div className="roomcard-body">
+        <div className="roomcard-head">
+          <h5 className="roomcard-title">{card.title}</h5>
           <div className="rating-heart">
             <div className="rating">
               <img src={star} alt="별점" className="star-icon" />

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -80,7 +80,9 @@ export default function Main() {
             <h1 className="title">이벤트</h1>
             <div className="content">
               <div className="main">
-                <img src={event01} alt="이벤트-01" loading="lazy" />
+                <div className="eventmainphoto">
+                  <img src={event01} alt="이벤트-01" loading="lazy" />
+                </div>
                 <div className="info">
                   <div>
                     <span>친구, 연인과 함께라면</span>
@@ -93,14 +95,9 @@ export default function Main() {
                 <Swiper
                   className="event-wrap"
                   slidesPerView={2}
-                  loop={true}
                   spaceBetween={20}
-                  pagination={{
-                    type: "progressbar",
-                    el: ".event-progressbar",
-                  }}
-                  autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  modules={[Autoplay, Pagination]}
+                  navigation={true}
+                  modules={[Navigation]}
                 >
                   <SwiperSlide className="event-list">
                     <div className="photo">
@@ -145,10 +142,6 @@ export default function Main() {
                     </div>
                   </SwiperSlide>
                 </Swiper>
-                <div
-                  className="swiper-pagination event-progressbar"
-                  aria-label="이벤트 진행바"
-                ></div>
               </div>
             </div>
           </div>

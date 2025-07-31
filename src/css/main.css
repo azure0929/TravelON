@@ -58,15 +58,18 @@ section.event .title {
 }
 section.event .content {
   display: flex;
-  gap: 86px;
+  gap: 60px;
   justify-content: space-between;
   color: #f1f1f1;
 }
 section.event .content .main {
   position: relative;
-  width: 492px;
   border-radius: 16px;
   overflow: hidden;
+}
+section.event .content .main .eventmainphoto {
+  width: 492px;
+  height: 470px;
 }
 section.event .content .main .info {
   position: absolute;
@@ -82,16 +85,13 @@ section.event .content .main .info > div span {
   font-size: 2.125rem;
   font-weight: bold;
 }
-section.event .content .event-wrap {
-  position: relative;
-  width: 706px;
-}
 section.event .content .event-lists {
-  position: relative;
   display: flex;
   gap: 46px;
   align-items: center;
   background-color: transparent;
+  width: 100%;
+  max-width: 706px;
 }
 section.event .content .event-lists .event-list {
   position: relative;
@@ -116,22 +116,6 @@ section.event .content .event-lists .event-list .info .info-detail span {
   display: block;
   font-size: 2.125rem;
   font-weight: bold;
-}
-section.event .swiper-pagination {
-  width: 330px;
-  height: 8px;
-  background-color: #efefef;
-  border-radius: 4px;
-  overflow: hidden;
-  margin-top: 460px;
-  margin-left: 378px;
-  z-index: 10;
-}
-section.event .swiper-pagination-progressbar-fill {
-  background-color: var(--primary-color, #2a95a9);
-  border-radius: 4px;
-  height: 100%;
-  transition: width 0.3s ease;
 }
 
 /* section: benefit */
@@ -297,17 +281,13 @@ section.weeklyrecommend .content .list .info h3 {
 section.weeklyrecommend .swiper-button-prev,
 section.weeklyrecommend .swiper-button-next {
   position: absolute;
-  top: 30px;
-  right: 20px;
+  top: 50%;
   width: 42px;
   height: 42px;
   border: 1px solid var(--primary-color, #2a95a9);
   border-radius: 50%;
   background-color: #fff;
   transition: all 0.3s ease;
-}
-section.weeklyrecommend .swiper-button-prev {
-  left: 1170px;
 }
 section.weeklyrecommend .swiper-button-next:after,
 section.weeklyrecommend .swiper-button-prev:after {
@@ -344,9 +324,9 @@ section.welcome .inner .content {
   position: relative;
   border-radius: 16px;
   margin-top: 36px;
-  height: 270px;
   background: url("../assets/image/welcomecoupon.png") no-repeat center;
   background-size: cover;
+  height: 270px;
 }
 section.welcome .inner .content .info {
   position: absolute;
@@ -401,6 +381,7 @@ section.popular .content .tabs .tab.active {
 }
 section.popular .content .popularlists {
   display: flex;
+  gap: 20px;
   justify-content: space-between;
   margin-top: 30px;
 }
@@ -433,4 +414,89 @@ section.popular .content .popularlists .list .info span {
   font-size: 1.875rem;
   font-weight: bold;
   margin-bottom: 10px;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  /* section: intro */
+  section.intro .intro-bg {
+    min-width: 100%;
+    height: auto;
+  }
+
+  /* section: event */
+  section.event .content .main {
+    font-size: 24px;
+  }
+  section.event .content .main .eventmainphoto {
+    width: 100%;
+    height: 100%;
+  }
+  section.event .content .main .info > div span {
+    font-size: 24px;
+  }
+  section.event .content .main .info > span {
+    font-size: 18px;
+  }
+  section.event .content .event-lists {
+    width: 100%;
+  }
+  section.event .content .event-lists .event-list {
+    width: 100%;
+    height: 100%;
+  }
+  section.event .content .event-lists .event-list .info .info-detail span {
+    font-size: 24px;
+  }
+
+  /* section: benefit */
+  section.benefit .inner {
+    padding: 60px;
+  }
+  section.benefit .inner .title {
+    font-size: 24px;
+    margin-bottom: 36px;
+  }
+  section.benefit .content ul {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  section.benefit .content ul li {
+    position: relative;
+    height: 320px;
+    border-radius: 18px;
+  }
+  section.benefit .content ul li img {
+    object-fit: cover;
+  }
+  section.benefit .content ul li .info {
+    font-size: 24px;
+  }
+  section.benefit .content ul li .link {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  /* section: weeklysale */
+  section.weeklysale .inner .content .photo {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* section: weeklyrecommend */
+  section.weeklyrecommend .content .list .photo {
+    width: 100%;
+    height: auto;
+  }
+  section.weeklyrecommend .content .list .info h3 {
+    font-size: 20px;
+  }
+
+  /* section: popular */
+  section.popular .content .popularlists .list {
+    width: 100%;
+  }
+  section.popular .content .popularlists .list .photo {
+    width: 100%;
+  }
 }

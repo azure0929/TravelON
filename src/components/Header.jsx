@@ -124,7 +124,7 @@ export default function Header() {
         <div className="search">
           <input
             type="text"
-            placeholder="떠나고 싶은 여행지를 입력해 주세요! ex)강릉"
+            placeholder="ex) 강릉"
             id="searchInput"
             value={search}
             onChange={handleInputChange}
