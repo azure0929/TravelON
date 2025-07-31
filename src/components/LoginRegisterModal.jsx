@@ -1,18 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "@/css/common.css";
 
 export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
-  const [isRegisterMode, setIsRegisterMode] = useState(false); // false: 로그인 폼, true: 회원가입 폼
+  // 모드 전환 상태: false → 로그인, true → 회원가입
+  const [isRegisterMode, setIsRegisterMode] = useState(false);
 
-  // --- 로그인 폼 관련 상태 ---
+  // 로그인 폼 관련 상태
   const [loginIdOrEmail, setLoginIdOrEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [loginError, setLoginError] = useState(""); // 로그인 오류 메시지
 
-  // --- 회원가입 폼 관련 상태 ---
+  // 회원가입 폼 관련 상태
   const [registerName, setRegisterName] = useState("");
   const [registerId, setRegisterId] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -20,7 +21,7 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
   const [registerAge, setRegisterAge] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
 
-  // --- 회원가입 유효성 검사 오류 메시지 상태 ---
+  // 회원가입 유효성 검사 오류 메시지 상태
   const [nameError, setNameError] = useState("");
   const [idError, setIdError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -125,11 +126,13 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
 
     let isValid = true;
 
+    // 이름 유효성 검사
     if (!registerName.trim()) {
       setNameError("이름을 입력해주세요.");
       isValid = false;
     }
 
+    // 아이디 유효성 검사
     const idRegex = /^[a-zA-Z가-힣]{1,10}$/;
     if (!registerId.trim()) {
       setIdError("아이디를 입력해주세요.");
@@ -139,6 +142,7 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
       isValid = false;
     }
 
+    // 비밀번호 유효성 검사
     if (!registerPassword) {
       setPasswordError("비밀번호를 입력해주세요.");
       isValid = false;
@@ -147,6 +151,7 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
       isValid = false;
     }
 
+    // 비밀번호 확인 검사
     if (registerPassword !== registerConfirmPassword) {
       setConfirmPasswordError("비밀번호가 일치하지 않습니다.");
       isValid = false;
@@ -155,6 +160,7 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
       isValid = false;
     }
 
+    // 나이 유효성 검사
     const ageRegex = /^\d{1,2}$/;
     if (!registerAge) {
       setAgeError("나이를 입력해주세요.");
@@ -168,6 +174,7 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
       isValid = false;
     }
 
+    // 이메일 유효성 검사
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!registerEmail.trim()) {
       setEmailError("이메일을 입력해주세요.");
@@ -180,7 +187,7 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
       return;
     }
 
-    // --- 유효성 검사 통과 후 회원 정보 저장 ---
+    // 유효성 검사 통과 후 회원 정보 저장
     const newUser = {
       name: registerName,
       id: registerId,
@@ -191,7 +198,7 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
 
     sessionStorage.setItem("registeredUser", JSON.stringify(newUser)); // 세션 스토리지에 회원 정보 저장
 
-    setIsRegisterMode(false);
+    setIsRegisterMode(false); // 로그인 모드로 전환
     alert("회원가입이 완료되었습니다. 로그인해 주세요.");
   };
 
@@ -214,7 +221,6 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
           </div>
           <div className="modal-body">
             {isRegisterMode ? (
-              // --- 회원가입 폼 (그리드 레이아웃 적용) ---
               <form onSubmit={handleRegister} className="register-form-grid">
                 <div className="form-group">
                   <label htmlFor="registerName">이름</label>
@@ -333,7 +339,6 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
                 </div>
               </form>
             ) : (
-              // --- 로그인 폼 (이전과 동일) ---
               <form onSubmit={handleLogin}>
                 <div className="form-group">
                   <label htmlFor="loginIdOrEmail">아이디 또는 이메일</label>

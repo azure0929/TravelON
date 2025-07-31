@@ -18,7 +18,7 @@ export default function ReserveModal({
   selectedRoomTitleFromParent,
   currentCard,
 }) {
-  // --- [상태 관리] 모달 내부 폼 필드 상태 ---
+  // 모달 내부 폼 필드 상태
   const [userName, setUserName] = useState("");
   const [userAge, setUserAge] = useState("");
   const [guestCount, setGuestCount] = useState("");
@@ -27,7 +27,7 @@ export default function ReserveModal({
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [selectedDates, setSelectedDates] = useState([]);
 
-  // --- [상태 관리] 각 입력 필드의 유효성 검사 오류 메시지 상태 ---
+  // 각 입력 필드의 유효성 검사 오류 메시지 상태
   const [userNameError, setUserNameError] = useState("");
   const [userAgeError, setUserAgeError] = useState("");
   const [guestCountError, setGuestCountError] = useState("");
@@ -38,7 +38,7 @@ export default function ReserveModal({
 
   const [selectedRoomDetails, setSelectedRoomDetails] = useState(null);
 
-  // --- [참조 관리] 각 입력 필드에 대한 DOM 참조 ---
+  // 각 입력 필드에 대한 DOM 참조
   const nameInputRef = useRef(null);
   const dateInputRef = useRef(null);
   const ageInputRef = useRef(null);
@@ -47,7 +47,7 @@ export default function ReserveModal({
   const passwordInputRef = useRef(null);
   const passwordConfirmInputRef = useRef(null);
 
-  // --- [유효성 검사 함수] 이름 유효성 검사 ---
+  // 이름 유효성 검사
   const validateUserName = (name) => {
     const nameRegex = /^[a-zA-Z가-힣\s]*$/;
     if (!name.trim()) {
@@ -61,7 +61,7 @@ export default function ReserveModal({
     return true;
   };
 
-  // --- [유효성 검사 함수] 나이 유효성 검사 ---
+  // 나이 유효성 검사
   const validateUserAge = (age) => {
     const ageValue = parseInt(age);
     if (!age.trim()) {
@@ -75,7 +75,7 @@ export default function ReserveModal({
     return true;
   };
 
-  // --- [유효성 검사 함수] 인원 수 유효성 검사 ---
+  // 인원 수 유효성 검사
   const validateGuestCount = (count) => {
     const guestCountValue = parseInt(count);
     if (!count.trim()) {
@@ -93,7 +93,7 @@ export default function ReserveModal({
     return true;
   };
 
-  // --- [유효성 검사 함수] 이메일 유효성 검사 ---
+  // 이메일 유효성 검사
   const validateUserEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email.trim()) {
@@ -107,7 +107,7 @@ export default function ReserveModal({
     return true;
   };
 
-  // --- [유효성 검사 함수] 비밀번호 유효성 검사 ---
+  // 비밀번호 유효성 검사
   const validatePassword = (pass) => {
     if (!pass.trim()) {
       setPasswordError("비밀번호를 입력해주세요.");
@@ -120,7 +120,7 @@ export default function ReserveModal({
     return true;
   };
 
-  // --- [유효성 검사 함수] 비밀번호 확인 유효성 검사 ---
+  // 비밀번호 확인 유효성 검사
   const validatePasswordConfirm = (confirmPass, originalPass) => {
     if (!confirmPass.trim()) {
       setPasswordConfirmError("비밀번호 확인을 입력해주세요.");
@@ -133,7 +133,7 @@ export default function ReserveModal({
     return true;
   };
 
-  // --- [유효성 검사 함수] 날짜 선택 유효성 검사 ---
+  // 날짜 선택 유효성 검사
   const validateDates = (dates) => {
     if (dates.length < 2) {
       setDatesError("숙박 예정일을 선택해주세요.");
@@ -143,7 +143,7 @@ export default function ReserveModal({
     return true;
   };
 
-  // --- [Effect 훅] 모달이 열릴 때마다 폼 필드 초기화 및 로그인 정보 불러오기 ---
+  // 모달이 열릴 때마다 폼 필드 초기화 및 로그인 정보 불러오기
   useEffect(() => {
     if (isOpen) {
       // 폼 필드 및 오류 메시지 상태 초기화
@@ -193,7 +193,7 @@ export default function ReserveModal({
     }
   }, [isOpen, selectedRoomTitleFromParent]);
 
-  // --- [헬퍼 함수] 모든 폼 필드에 대한 유효성 검사 일괄 처리 ---
+  // 모든 폼 필드에 대한 유효성 검사 일괄 처리
   const validateAllFields = () => {
     // 모든 유효성 검사 함수를 순차적으로 실행
     const isUserNameValid = validateUserName(userName);
@@ -242,7 +242,7 @@ export default function ReserveModal({
     return overallValid;
   };
 
-  // --- [이벤트 핸들러] '다음' 버튼 클릭 시 예약 정보 제출 ---
+  // '다음' 버튼 클릭 시 예약 정보 제출
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -274,7 +274,7 @@ export default function ReserveModal({
     }
   };
 
-  // --- [이벤트 핸들러] 날짜 선택 아이콘 클릭 시 DatePicker 열기 ---
+  // 날짜 선택 아이콘 클릭 시 DatePicker 열기
   const handleDatePickerIconClick = () => {
     dateInputRef.current?.flatpickr?.open();
   };
@@ -284,7 +284,6 @@ export default function ReserveModal({
     return null;
   }
 
-  // --- [JSX 렌더링] ---
   return (
     <div className="reservemodal" style={{ display: "flex" }}>
       <div

@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
-import "@/css/common.css"; // 공통 스타일시트
+import "@/css/common.css";
 
-// 이미지 파일 임포트
 import logo from "@/assets/image/logo.png";
 import reserveIcon from "@/assets/image/reserve.png"; // '로그인/예약' 아이콘으로 사용
 import wishlistIcon from "@/assets/image/wishlist.png";
@@ -11,7 +10,6 @@ import wishlistIcon from "@/assets/image/wishlist.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-// 분리된 모달 컴포넌트 임포트
 import LoginRegisterModal from "./LoginRegisterModal";
 
 export default function Header() {
@@ -33,7 +31,7 @@ export default function Header() {
     }
   }, []);
 
-  // --- 메뉴바 애니메이션 관련 useEffect ---
+  // 메뉴바 애니메이션 관련
   // 메뉴바 초기 숨김 설정
   useEffect(() => {
     if (menubarRef.current) {
@@ -75,7 +73,7 @@ export default function Header() {
     }
   }, [menuActive]);
 
-  // URL 쿼리 파싱 (최초 1회)
+  // URL 쿼리 파싱
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const savedQuery = params.get("query");
@@ -85,7 +83,7 @@ export default function Header() {
     }
   }, []);
 
-  // --- 검색 기능 관련 핸들러 ---
+  // 검색 기능 관련 핸들러
   const handleSearchIconClick = () => {
     if (searchActive) {
       setSearch("");
