@@ -78,6 +78,9 @@ h6 {
   margin: 0;
   padding: 0;
 }
+.modal-backdrop {
+  background-color: transparent;
+}
 
 /* header */
 header {
@@ -477,39 +480,30 @@ footer .inner .company-info .contact .contact-link li a .photo {
   }
 }
 
-/* 모달 배경 - 초기에는 숨겨져 있어야 하며, JS(GSAP)에 의해 제어됩니다. */
+/* 로그인 및 회원가입 모달 */
 #loginModal {
-  /* ID 선택자를 사용하여 이 스타일이 확실히 적용되도록 합니다. */
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* 반투명 검은색 배경 */
   display: none;
   visibility: hidden;
-  justify-content: center; /* 자식 요소를 중앙에 배치 */
-  align-items: center; /* 자식 요소를 중앙에 배치 */
-  z-index: 1000; /* 다른 요소 위에 표시 */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
-
-/* 모달 컨테이너 (실제 내용 담는 부분) */
-.modal-dialog {
-  background: #fff;
+#loginModal .modal-dialog {
+  position: absolute;
+  top: 140px;
+  right: 90px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 420px; /* 모달 최대 너비 */
+  min-width: 420px;
   padding: 30px;
-  position: relative;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-/* 모달 내부 콘텐츠 */
-.modal-content {
+#loginModal .modal-content {
   display: flex;
   flex-direction: column;
 }
-
-/* 모달 헤더 */
-.modal-header {
+#loginModal .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -517,16 +511,16 @@ footer .inner .company-info .contact .contact-link li a .photo {
   border-bottom: 1px solid #eee;
   padding-bottom: 15px;
 }
-
-.modal-title {
+#loginModal .modal-title {
   font-size: 1.7em;
   font-weight: bold;
   color: #333;
   margin: 0;
 }
-
-/* 닫기 버튼 */
-.btn-close {
+#loginModal .btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
   background: none;
   border: none;
   font-size: 1.8em;
@@ -534,106 +528,95 @@ footer .inner .company-info .contact .contact-link li a .photo {
   color: #999;
   transition: color 0.2s ease-in-out;
 }
-.btn-close:hover {
+#loginModal .btn-close:hover {
   color: #333;
 }
-
-/* 모달 바디 (폼 영역) */
-.modal-body {
+#loginModal .modal-body {
   padding-top: 5px;
 }
-
-/* 폼 그룹 (라벨 + 입력 필드) */
-.form-group {
+#loginModal .form-group {
   margin-bottom: 18px;
 }
-
-.form-group label {
+#loginModal .form-group label {
   display: block;
   margin-bottom: 7px;
   font-weight: bold;
   color: #555;
   font-size: 0.95em;
 }
-
-/* 폼 입력 필드 */
-.form-control {
+#loginModal .form-control {
   width: 100%;
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 6px;
-  font-size: 1em;
+  font-size: 14px;
   box-sizing: border-box;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.form-control:focus {
+#loginModal .form-control:focus {
   border-color: #2a95a9;
   box-shadow: 0 0 0 0.2rem rgba(42, 149, 169, 0.25);
   outline: none;
 }
 /* 유효성 검사 오류 시 input 테두리 */
-.form-control.input-error {
+#loginModal .form-control.input-error {
   border-color: red;
   box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
 }
 /* 오류 메시지 스타일 */
-.error-message {
+#loginModal .error-message {
   color: red;
   font-size: 0.85em;
   margin-top: 6px;
   margin-bottom: 0;
   line-height: 1.2;
 }
-/* 버튼 기본 스타일 */
-.btn {
+#loginModal .btn {
   display: inline-block;
   padding: 12px 25px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-size: 1.05em;
-  font-weight: bold;
   text-align: center;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
 }
-.btn-primary {
+#loginModal .btn-primary {
   background-color: #2a95a9;
   color: white;
 }
-.btn-primary:hover {
+#loginModal .btn-primary:hover {
   background-color: #247a8a;
 }
-.btn-block {
+#loginModal .btn-block {
   width: 100%;
   margin-top: 20px;
 }
-.modal-switch-text {
+#loginModal .modal-switch-text {
   text-align: center;
   margin-top: 20px;
   font-size: 0.9em;
   color: #666;
 }
-.modal-switch-text span {
+#loginModal .modal-switch-text span {
   color: #2a95a9;
   cursor: pointer;
   font-weight: bold;
   margin-left: 5px;
 }
-.modal-switch-text span:hover {
+#loginModal .modal-switch-text span:hover {
   text-decoration: underline;
 }
-.register-form-grid {
+#loginModal .register-form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(150px, 1fr));
   gap: 15px 25px;
 }
-
-.register-form-grid .form-group {
+#loginModal .register-form-grid .form-group {
   margin-bottom: 0;
 }
-
-.register-submit-area {
+#loginModal .register-submit-area {
   grid-column: 1 / -1;
   margin-top: 10px;
 }

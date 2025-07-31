@@ -238,7 +238,7 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
                     type="text"
                     id="registerId"
                     className={`form-control ${idError ? "input-error" : ""}`}
-                    placeholder="아이디 (영어/한글 10자 이내)"
+                    placeholder="영어/한글 10자 이내"
                     value={registerId}
                     onChange={(e) => {
                       setIdError("");
@@ -256,7 +256,7 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
                     className={`form-control ${
                       passwordError ? "input-error" : ""
                     }`}
-                    placeholder="비밀번호 (4~10자)"
+                    placeholder="4~10자"
                     value={registerPassword}
                     onChange={(e) => {
                       setPasswordError("");
@@ -294,7 +294,7 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
                     type="number"
                     id="registerAge"
                     className={`form-control ${ageError ? "input-error" : ""}`}
-                    placeholder="나이 (0~99세)"
+                    placeholder="0~99세"
                     value={registerAge}
                     onChange={(e) => {
                       setAgeError("");
@@ -312,7 +312,7 @@ export default function LoginRegisterModal({ isOpen, onClose, setIsLoggedIn }) {
                     className={`form-control ${
                       emailError ? "input-error" : ""
                     }`}
-                    placeholder="이메일"
+                    placeholder="이메일을 입력해주세요."
                     value={registerEmail}
                     onChange={(e) => {
                       setEmailError("");

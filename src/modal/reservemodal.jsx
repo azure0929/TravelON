@@ -18,7 +18,7 @@ export default function ReserveModal({
   selectedRoomTitleFromParent,
   currentCard,
 }) {
-  // 모달 내부 폼 필드 상태 관리
+  // --- [상태 관리] 모달 내부 폼 필드 상태 ---
   const [userName, setUserName] = useState("");
   const [userAge, setUserAge] = useState("");
   const [guestCount, setGuestCount] = useState("");
@@ -27,7 +27,7 @@ export default function ReserveModal({
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [selectedDates, setSelectedDates] = useState([]);
 
-  // Error states for each input
+  // --- [상태 관리] 각 입력 필드의 유효성 검사 오류 메시지 상태 ---
   const [userNameError, setUserNameError] = useState("");
   const [userAgeError, setUserAgeError] = useState("");
   const [guestCountError, setGuestCountError] = useState("");
@@ -38,6 +38,7 @@ export default function ReserveModal({
 
   const [selectedRoomDetails, setSelectedRoomDetails] = useState(null);
 
+  // --- [참조 관리] 각 입력 필드에 대한 DOM 참조 ---
   const nameInputRef = useRef(null);
   const dateInputRef = useRef(null);
   const ageInputRef = useRef(null);
@@ -46,6 +47,7 @@ export default function ReserveModal({
   const passwordInputRef = useRef(null);
   const passwordConfirmInputRef = useRef(null);
 
+  // --- [유효성 검사 함수] 이름 유효성 검사 ---
   const validateUserName = (name) => {
     const nameRegex = /^[a-zA-Z가-힣\s]*$/;
     if (!name.trim()) {
@@ -59,6 +61,7 @@ export default function ReserveModal({
     return true;
   };
 
+  // --- [유효성 검사 함수] 나이 유효성 검사 ---
   const validateUserAge = (age) => {
     const ageValue = parseInt(age);
     if (!age.trim()) {
@@ -72,6 +75,7 @@ export default function ReserveModal({
     return true;
   };
 
+  // --- [유효성 검사 함수] 인원 수 유효성 검사 ---
   const validateGuestCount = (count) => {
     const guestCountValue = parseInt(count);
     if (!count.trim()) {
@@ -89,6 +93,7 @@ export default function ReserveModal({
     return true;
   };
 
+  // --- [유효성 검사 함수] 이메일 유효성 검사 ---
   const validateUserEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email.trim()) {
@@ -102,6 +107,7 @@ export default function ReserveModal({
     return true;
   };
 
+  // --- [유효성 검사 함수] 비밀번호 유효성 검사 ---
   const validatePassword = (pass) => {
     if (!pass.trim()) {
       setPasswordError("비밀번호를 입력해주세요.");
@@ -114,6 +120,7 @@ export default function ReserveModal({
     return true;
   };
 
+  // --- [유효성 검사 함수] 비밀번호 확인 유효성 검사 ---
   const validatePasswordConfirm = (confirmPass, originalPass) => {
     if (!confirmPass.trim()) {
       setPasswordConfirmError("비밀번호 확인을 입력해주세요.");
@@ -126,6 +133,7 @@ export default function ReserveModal({
     return true;
   };
 
+  // --- [유효성 검사 함수] 날짜 선택 유효성 검사 ---
   const validateDates = (dates) => {
     if (dates.length < 2) {
       setDatesError("숙박 예정일을 선택해주세요.");
@@ -135,10 +143,10 @@ export default function ReserveModal({
     return true;
   };
 
-  // ⭐️ 수정된 useEffect: 모달이 열릴 때 로그인 사용자 정보를 불러와 상태를 업데이트합니다.
+  // --- [Effect 훅] 모달이 열릴 때마다 폼 필드 초기화 및 로그인 정보 불러오기 ---
   useEffect(() => {
     if (isOpen) {
-      // 폼 필드 및 오류 메시지 초기화
+      // 폼 필드 및 오류 메시지 상태 초기화
       setUserName("");
       setUserAge("");
       setGuestCount("");
@@ -155,18 +163,17 @@ export default function ReserveModal({
       setPasswordConfirmError("");
       setDatesError("");
 
-      // ⭐️ 로그인된 사용자 정보를 sessionStorage에서 가져옵니다.
+      // 로그인된 사용자 정보를 세션 스토리지에서 가져와서 필드에 자동 채우기
       const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
       if (loggedInUser) {
         setUserName(loggedInUser.name);
         setUserAge(loggedInUser.age);
         setUserEmail(loggedInUser.email);
-        // 비밀번호는 보안상 자동으로 채우지 않는 것이 일반적이지만,
-        // 현재 코드에서는 비밀번호도 저장하고 있으므로 함께 채웁니다.
         setPassword(loggedInUser.password);
         setPasswordConfirm(loggedInUser.password);
       }
 
+      // 선택된 객실의 상세 정보를 찾아서 상태에 저장
       let foundRoom = null;
       for (const category of roomCategoriesData) {
         foundRoom = category.rooms.find(
@@ -186,7 +193,9 @@ export default function ReserveModal({
     }
   }, [isOpen, selectedRoomTitleFromParent]);
 
+  // --- [헬퍼 함수] 모든 폼 필드에 대한 유효성 검사 일괄 처리 ---
   const validateAllFields = () => {
+    // 모든 유효성 검사 함수를 순차적으로 실행
     const isUserNameValid = validateUserName(userName);
     const isUserAgeValid = validateUserAge(userAge);
     const isGuestCountValid = validateGuestCount(guestCount);
@@ -198,6 +207,7 @@ export default function ReserveModal({
     );
     const isDatesValid = validateDates(selectedDates);
 
+    // 전체 유효성 검사 결과
     let overallValid =
       isUserNameValid &&
       isUserAgeValid &&
@@ -207,6 +217,7 @@ export default function ReserveModal({
       isPasswordConfirmValid &&
       isDatesValid;
 
+    // 추가적인 유효성 검사 (부모 컴포넌트로부터 받은 데이터)
     if (!currentCard) {
       alert("게스트하우스 정보를 찾을 수 없습니다.");
       overallValid = false;
@@ -216,6 +227,7 @@ export default function ReserveModal({
       overallValid = false;
     }
 
+    // 유효성 검사 실패 시 첫 번째 오류 필드로 포커스 이동
     if (!overallValid) {
       if (!isUserNameValid) nameInputRef.current?.focus();
       else if (!isUserAgeValid) ageInputRef.current?.focus();
@@ -230,11 +242,12 @@ export default function ReserveModal({
     return overallValid;
   };
 
-  // '다음' 버튼 클릭 시 예약 정보 제출
+  // --- [이벤트 핸들러] '다음' 버튼 클릭 시 예약 정보 제출 ---
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validateAllFields()) {
+      // 모든 유효성 검사 통과 시, 예약 객체 생성
       const reservationObj = {
         card: {
           title: currentCard.title,
@@ -254,20 +267,24 @@ export default function ReserveModal({
         },
       };
 
+      // 예약 정보를 로컬 스토리지에 저장 (데모용)
       localStorage.setItem("reservations", JSON.stringify([reservationObj]));
+      // 부모 컴포넌트에 예약 정보 전달 및 모달 닫기
       onSubmitReservation(reservationObj);
     }
   };
 
-  // 날짜 선택 아이콘 클릭 핸들러
+  // --- [이벤트 핸들러] 날짜 선택 아이콘 클릭 시 DatePicker 열기 ---
   const handleDatePickerIconClick = () => {
     dateInputRef.current?.flatpickr?.open();
   };
 
+  // 모달이 닫힌 상태일 때는 아무것도 렌더링하지 않음
   if (!isOpen) {
     return null;
   }
 
+  // --- [JSX 렌더링] ---
   return (
     <div className="reservemodal" style={{ display: "flex" }}>
       <div
@@ -308,7 +325,7 @@ export default function ReserveModal({
                 setUserName(e.target.value);
                 if (userNameError) validateUserName(e.target.value);
               }}
-              onBlur={() => validateUserName(userName)} // Validate when input loses focus
+              onBlur={() => validateUserName(userName)}
               required
               ref={nameInputRef}
             />
@@ -419,7 +436,7 @@ export default function ReserveModal({
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
-                if (passwordError) validatePassword(e.target.value); // Validate if there's already an error
+                if (passwordError) validatePassword(e.target.value);
                 if (passwordConfirmError)
                   validatePasswordConfirm(passwordConfirm, e.target.value);
               }}
@@ -435,7 +452,7 @@ export default function ReserveModal({
               type="text"
               id="guestCountInput"
               placeholder="ex. 3"
-              maxlength="2"
+              maxLength={2}
               value={guestCount}
               onChange={(e) => {
                 setGuestCount(e.target.value);
